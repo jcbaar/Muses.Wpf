@@ -1,0 +1,9 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+
+    <ResourceDictionary.MergedDictionaries>
+        <!-- The generic theme is the light theme... -->
+        <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Themes/Light.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>

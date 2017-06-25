@@ -1,0 +1,26 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options">
+
+    <SolidColorBrush x:Key="BackgroundColorBrush" Color="{DynamicResource BackgroundColor}" po:Freeze="True"/>
+    <SolidColorBrush x:Key="ForegroundColorBrush" Color="{DynamicResource ForegroundColor}" po:Freeze="True"/>
+
+    <SolidColorBrush x:Key="BorderColorBrush" Color="{DynamicResource BorderColor}" po:Freeze="True"/>
+
+    <SolidColorBrush x:Key="DisabledBackColorBrush" Color="{DynamicResource DisabledBackColor}" po:Freeze="True"/>
+    <SolidColorBrush x:Key="DisabledColorBrush" Color="{DynamicResource DisabledColor}" po:Freeze="True"/>
+
+    <SolidColorBrush x:Key="ControlColorBrush" Color="{DynamicResource ControlColor}" po:Freeze="True"/>
+    <SolidColorBrush x:Key="ControlHoveredColorBrush" Color="{DynamicResource ControlHoveredColor}" po:Freeze="True"/>
+    <SolidColorBrush x:Key="ControlFocusColorBrush" Color="{DynamicResource ControlFocusColor}" po:Freeze="True"/>
+
+    <SolidColorBrush x:Key="AccentColorBrush" Color="{DynamicResource AccentColor}" po:Freeze="True"/>
+    <SolidColorBrush x:Key="AccentHoverColorBrush" Color="{DynamicResource AccentHoverColor}" po:Freeze="True"/>
+    <SolidColorBrush x:Key="AccentLightColorBrush" Color="{DynamicResource AccentLightColor}" po:Freeze="True"/>
+    <SolidColorBrush x:Key="AccentDarkColorBrush" Color="{DynamicResource AccentDarkColor}" po:Freeze="True"/>
+    <SolidColorBrush x:Key="AccentForegroundColorBrush" Color="{DynamicResource AccentForegroundColor}" po:Freeze="True"/>
+
+    <SolidColorBrush x:Key="InactiveColorBrush" Color="{DynamicResource InactiveColor}" po:Freeze="True"/>
+    <SolidColorBrush x:Key="InactiveColorLightBrush" Color="{DynamicResource InactiveLightColor}" po:Freeze="True"/>
+
+</ResourceDictionary>

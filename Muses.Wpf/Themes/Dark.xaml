@@ -1,0 +1,33 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Color x:Key="BackgroundColor">#FF2D2D30</Color>
+    <Color x:Key="ForegroundColor">#FFFFFFFF</Color>
+    
+    <Color x:Key="BorderColor">#FF3F3F46</Color>
+    
+    <Color x:Key="DisabledBackColor">#FF2D2D30</Color>
+    <Color x:Key="DisabledColor">#FF3F3F46</Color>
+    
+    <Color x:Key="ControlColor">#FF333337</Color>
+    <Color x:Key="ControlHoveredColor">#FF3F3F46</Color>
+    <Color x:Key="ControlFocusColor">#FF333337</Color>
+    
+    <Color x:Key="AccentColor">#FF007ACC</Color>
+    <Color x:Key="AccentLightColor">#FF52B0EF</Color>
+    <Color x:Key="AccentDarkColor">#FF035083</Color>
+    <Color x:Key="AccentHoverColor">#FF1C86CD</Color>
+    <Color x:Key="AccentForegroundColor">#FFFFFFFF</Color>
+    
+    <Color x:Key="InactiveColor">#FF3F3F46</Color>
+    <Color x:Key="InactiveLightColor">#FF555555</Color>
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Resources/Brushes.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/BaseWindow.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.TabControl.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.Buttons.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.TextBox.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>
