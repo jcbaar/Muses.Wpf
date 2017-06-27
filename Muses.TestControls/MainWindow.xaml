@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:muses="clr-namespace:Muses.Wpf.Controls;assembly=Muses.Wpf"
+        xmlns:support="clr-namespace:Muses.Wpf.Controls.Support;assembly=Muses.Wpf"
         mc:Ignorable="d"
         Title="MainWindow with a longer title that should break" 
                   ResizeMode="CanResizeWithGrip" 
@@ -68,8 +69,10 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Orientation="Vertical" Grid.Column="1" muses:Spacing.Vertical="4">
-                        <muses:FlatTextBox Hint="This is a hint... Yes. It really is!"
-                                           SelectAllOnFocus="True"/>
+                        <TextBox support:TextBoxSupport.Hint="This is a hint... Yes. It really is!" 
+                                           support:TextBoxSupport.SelectAllOnFocus="True"/>
+                        <PasswordBox support:TextBoxSupport.Hint="This is a password box..." 
+                                           support:TextBoxSupport.SelectAllOnFocus="True"/>
                     </StackPanel>
                 </Grid>
             </muses:CloseableTabItem>

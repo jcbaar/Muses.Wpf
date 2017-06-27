@@ -55,7 +55,7 @@
   <ItemGroup>
     <Compile Include="Actions\CloseTabAction.cs" />
     <Compile Include="Controls\ClosingTabEventArgs.cs" />
-    <Compile Include="Controls\FlatTextBox.cs" />
+    <Compile Include="Controls\Support\TextBoxSupport.cs" />
     <Compile Include="Themes\ThemeHelper.cs" />
     <Page Include="Resources\Brushes.xaml">
       <SubType>Designer</SubType>

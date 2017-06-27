@@ -47,7 +47,7 @@ namespace Muses.TestControls
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            ThemeHelper.SetAccentColor(Colors.DarkGoldenrod);
+            ThemeHelper.SetAccentColor(Colors.DarkGoldenrod, false);
         }
 
         private void CloseableTabControl_ClosingTabItem(object sender, RoutedEventArgs e)
