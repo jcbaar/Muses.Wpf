@@ -91,7 +91,7 @@
 
                     <ControlTemplate.Triggers>
                         <!-- 
-                        When the tabitem is not closeable then we collapse the button
+                        When the tab item is not close able then we collapse the button
                         so that it does not take up any room.
                         -->
                         <Trigger Property="IsCloseable" Value="False">
@@ -99,7 +99,7 @@
                         </Trigger>
                         
                         <!--
-                        Setup the correct colors when the tabitem is selected or not.
+                        Setup the correct colors when the tab item is selected or not.
                         -->
                         <Trigger Property="IsSelected" Value="True">
                             <Setter TargetName="Border" Property="Background" Value="{DynamicResource AccentColorBrush}" />
@@ -111,7 +111,7 @@
                         </Trigger>
                         
                         <!--
-                        Change the background color of selected tabitems when the parent window
+                        Change the background color of selected tab items when the parent window
                         is inactive.
                         -->
                         <MultiDataTrigger>
@@ -123,7 +123,7 @@
                         </MultiDataTrigger>
 
                         <!--
-                        Setup the background hover color of unselected tabitems
+                        Setup the background hover color of unselected tab items
                         -->
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -135,7 +135,7 @@
                         </MultiTrigger>
 
                         <!--
-                        Show the close button of tabitems that are selected and closeable.
+                        Show the close button of tab items that are selected and close-able.
                         -->
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
@@ -146,7 +146,7 @@
                         </MultiDataTrigger>
 
                         <!--
-                        Show the close button of tabitems that are hovered and closeable.
+                        Show the close button of tab items that are hovered and close-able.
                         -->
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>

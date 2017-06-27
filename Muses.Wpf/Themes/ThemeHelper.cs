@@ -24,6 +24,8 @@ namespace Muses.Wpf.Themes
         /// </returns>
         public static Color ChangeColorBrightness(Color color, float correctionFactor)
         {
+            if (correctionFactor < -1.0 || correctionFactor > 1.0) throw new ArgumentOutOfRangeException(nameof(correctionFactor), "Value must be between -1.0 and 1.0");
+
             float red = (float)color.R;
             float green = (float)color.G;
             float blue = (float)color.B;
@@ -45,15 +47,24 @@ namespace Muses.Wpf.Themes
             return Color.FromArgb(color.A, (byte)red, (byte)green, (byte)blue);
         }
 
+        /// <summary>
+        /// Initiate a color update.
+        /// </summary>
         public static void BeginColorUpdate()
         {
             Interlocked.Increment(ref _count);
         }
 
+        /// <summary>
+        /// End an apply color updates. The update will be applied when <see cref="EndColorUpdate"/> has
+        /// been called as many times as <seealso cref="BeginColorUpdate"/>.
+        /// </summary>
         public static void EndColorUpdate()
         {
             if (Interlocked.Decrement(ref _count) == 0)
             {
+                // Re-apply the current theme which will make use
+                // of the updated color table.
                 var dict = new ResourceDictionary()
                 {
                     Source = Application.Current.Resources.MergedDictionaries[0].Source
@@ -64,14 +75,58 @@ namespace Muses.Wpf.Themes
             }
         }
 
+        /// <summary>
+        /// Set the value of a theme color.
+        /// </summary>
+        /// <param name="colorName">The name of the theme color to set.</param>
+        /// <param name="newValue">The color to set.</param>
         public static void UpdateColor(string colorName, Color newValue)
         {
+            // We only update the table after BeginColorUpdate() has been
+            // called at least one time.
             if (Interlocked.CompareExchange(ref _count, 0, 0) > 0)
             {
                 Application.Current.Resources[colorName] = newValue;
             }
+            else
+            {
+                throw new InvalidOperationException("UpdateColor() should only be called between BeginColorUpdate() and EndColorUpdate()");
+            }
         }
 
+        /// <summary>
+        /// Set the theme accent color. This will actually set the following colors.
+        /// <list type="bullet">
+        ///     <listheader> 
+        ///         <term>Color name</term>
+        ///         <description>The name of the color.</description>  
+        ///     </listheader>  
+        ///     <item>  
+        ///         <term>AccentColor</term>  
+        ///         <description>The actual accent color.</description>  
+        ///     </item>  
+        ///     <item>  
+        ///         <term>AccentLightColor</term>  
+        ///         <description>The accent color (.5 brighter accent color).</description>  
+        ///     </item>  
+        ///     <item>  
+        ///         <term>AccentDarkColor</term>  
+        ///         <description>The accent color (.3 darker accent color).</description>  
+        ///     </item>  
+        ///     <item>  
+        ///         <term>AccentHoverColor</term>  
+        ///         <description>The accent color (.2 brighter accent color).</description>  
+        ///     </item>  
+        ///     <item>  
+        ///         <term>ControlHoveredColor</term>  
+        ///         <description>The color when a control is hovered. (40% transparent accent color). This
+        ///         will only be set when the <paramref name="accentHoverColor"/> is set to true./></description>  
+        ///     </item>  
+        /// </list>
+        /// </summary>
+        /// <param name="color">The color to set as accent color.</param>
+        /// <param name="accentHoverColor">True to also set the ControlHoverColor. False to skip setting
+        /// this color (default).</param>
         public static void SetAccentColor(Color color, bool accentHoverColor = true)
         {
             BeginColorUpdate();

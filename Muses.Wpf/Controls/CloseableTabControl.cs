@@ -5,6 +5,11 @@ namespace Muses.Wpf.Controls
 {
     public class CloseableTabControl : TabControl
     {
+        static CloseableTabControl()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(CloseableTabControl), new FrameworkPropertyMetadata(typeof(CloseableTabControl)));
+        }
+
         public static readonly RoutedEvent ClosingTabItemEvent = EventManager.RegisterRoutedEvent("ClosingTabItem", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(CloseableTabControl));
         public static readonly RoutedEvent CloseTabItemEvent = EventManager.RegisterRoutedEvent("CloseTabItem", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(CloseableTabControl));
 
@@ -19,11 +24,5 @@ namespace Muses.Wpf.Controls
             add { AddHandler(CloseTabItemEvent, value); }
             remove { RemoveHandler(CloseTabItemEvent, value); }
         }
-
-        static CloseableTabControl()
-        {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(CloseableTabControl), new FrameworkPropertyMetadata(typeof(CloseableTabControl)));
-        }
-
     }
 }
