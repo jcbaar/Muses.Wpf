@@ -3,7 +3,7 @@
                     xmlns:controls="clr-namespace:Muses.Wpf.Controls">
     
     <!-- Standard flat button -->
-    <Style x:Key="FlatButton" TargetType="{x:Type Button}">
+    <Style x:Key="FlatButtonStyle" TargetType="{x:Type Button}">
         <Setter Property="Foreground" Value="{DynamicResource ForegroundColorBrush}" />
         <Setter Property="Background" Value="{DynamicResource ControlColorBrush}" />
         <Setter Property="BorderThickness" Value="1" />
@@ -54,7 +54,7 @@
     </Style>
 
     <!-- Flat Checkbox -->
-    <Style x:Key="FlatCheckBox" TargetType="{x:Type CheckBox}">
+    <Style x:Key="FlatCheckBoxStyle" TargetType="{x:Type CheckBox}">
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
@@ -115,7 +115,7 @@
     </Style>
 
     <!-- Flat Radiobutton -->
-    <Style x:Key="FlatRadioButton" TargetType="{x:Type RadioButton}">
+    <Style x:Key="FlatRadioButtonStyle" TargetType="{x:Type RadioButton}">
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
@@ -170,7 +170,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="WindowButton" TargetType="{x:Type Button}">
+    <Style x:Key="WindowButtonStyle" TargetType="{x:Type Button}">
         <Setter Property="Foreground" Value="{DynamicResource ForegroundColorBrush}" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />

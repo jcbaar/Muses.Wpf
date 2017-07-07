@@ -10,7 +10,7 @@
                   ResizeMode="CanResizeWithGrip" 
                   Height="350" 
                   Width="525" 
-                  Style="{StaticResource BaseWindow}">
+                  Style="{StaticResource BaseWindowStyle}">
 
     <Grid FocusManager.FocusedElement="{Binding ElementName=FocusButton}">
         <Grid.RowDefinitions>
@@ -30,33 +30,33 @@
                                 Grid.Row="0"
                                 Grid.Column="0"
                                 muses:Spacing.Vertical="8">
-                        <Button x:Name="FocusButton" Style="{StaticResource FlatButton}" Height="26" Click="Button_Click" Content="Focused"/>
-                        <Button Style="{StaticResource FlatButton}" Height="26" Content="Unfocused" Click="Button_Click_1"/>
-                        <Button Style="{StaticResource FlatButton}" Height="26" Content="Default" IsDefault="True"/>
-                        <Button Style="{StaticResource FlatButton}" Height="26" Content="Disabled" IsEnabled="False"/>
+                        <Button x:Name="FocusButton" Style="{StaticResource FlatButtonStyle}" Height="26" Click="Button_Click" Content="Focused"/>
+                        <Button Style="{StaticResource FlatButtonStyle}" Height="26" Content="Unfocused" Click="Button_Click_1"/>
+                        <Button Style="{StaticResource FlatButtonStyle}" Height="26" Content="Default" IsDefault="True"/>
+                        <Button Style="{StaticResource FlatButtonStyle}" Height="26" Content="Disabled" IsEnabled="False"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" Orientation="Vertical" Margin="8,0,0,0" muses:Spacing.Vertical="4">
-                        <CheckBox Style="{StaticResource FlatCheckBox}" Content="Title bar color" IsChecked="{Binding Path=FillTitleBar, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"></CheckBox>
+                        <CheckBox Style="{StaticResource FlatCheckBoxStyle}" Content="Title bar color" IsChecked="{Binding Path=FillTitleBar, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"></CheckBox>
 
                         <Line Stroke="{DynamicResource AccentColorBrush}"
                               StrokeThickness="2"
                               X1="0" Y1="0" X2="200" Y2="0"/>
 
-                        <CheckBox Style="{StaticResource FlatCheckBox}" Content="Unchecked" IsChecked="False"></CheckBox>
-                        <CheckBox Style="{StaticResource FlatCheckBox}" Content="Checked" IsChecked="True"></CheckBox>
-                        <CheckBox Style="{StaticResource FlatCheckBox}" Content="Indeterminate" IsThreeState="True" IsChecked="{x:Null}"></CheckBox>
+                        <CheckBox Style="{StaticResource FlatCheckBoxStyle}" Content="Unchecked" IsChecked="False"></CheckBox>
+                        <CheckBox Style="{StaticResource FlatCheckBoxStyle}" Content="Checked" IsChecked="True"></CheckBox>
+                        <CheckBox Style="{StaticResource FlatCheckBoxStyle}" Content="Indeterminate" IsThreeState="True" IsChecked="{x:Null}"></CheckBox>
 
-                        <CheckBox Style="{StaticResource FlatCheckBox}" Content="Disabled" IsEnabled="False" IsChecked="False"></CheckBox>
-                        <CheckBox Style="{StaticResource FlatCheckBox}" Content="Disabled checked" IsEnabled="False" IsChecked="True"></CheckBox>
-                        <CheckBox Style="{StaticResource FlatCheckBox}" Content="Disbled indeterminate" IsThreeState="True" IsEnabled="False" IsChecked="{x:Null}"></CheckBox>
+                        <CheckBox Style="{StaticResource FlatCheckBoxStyle}" Content="Disabled" IsEnabled="False" IsChecked="False"></CheckBox>
+                        <CheckBox Style="{StaticResource FlatCheckBoxStyle}" Content="Disabled checked" IsEnabled="False" IsChecked="True"></CheckBox>
+                        <CheckBox Style="{StaticResource FlatCheckBoxStyle}" Content="Disabled indeterminate" IsThreeState="True" IsEnabled="False" IsChecked="{x:Null}"></CheckBox>
                     </StackPanel>
                     <StackPanel Grid.Column="2" Orientation="Vertical" Margin="8,0,0,0" muses:Spacing.Vertical="4">
-                        <RadioButton Style="{StaticResource FlatRadioButton}" Content="Enabled" IsChecked="True" GroupName="A"/>
-                        <RadioButton Style="{StaticResource FlatRadioButton}" Content="Enabled" GroupName="A"/>
+                        <RadioButton Style="{StaticResource FlatRadioButtonStyle}" Content="Enabled" IsChecked="True" GroupName="A"/>
+                        <RadioButton Style="{StaticResource FlatRadioButtonStyle}" Content="Enabled" GroupName="A"/>
 
-                        <RadioButton Style="{StaticResource FlatRadioButton}" Content="Disabled" IsEnabled="False" IsChecked="True" GroupName="B"/>
-                        <RadioButton Style="{StaticResource FlatRadioButton}" Content="Disabled" IsEnabled="False" GroupName="B"/>
+                        <RadioButton Style="{StaticResource FlatRadioButtonStyle}" Content="Disabled" IsEnabled="False" IsChecked="True" GroupName="B"/>
+                        <RadioButton Style="{StaticResource FlatRadioButtonStyle}" Content="Disabled" IsEnabled="False" GroupName="B"/>
                     </StackPanel>
                 </Grid>
             </muses:CloseableTabItem>
@@ -70,7 +70,7 @@
 
                     <StackPanel Orientation="Vertical" Grid.Column="1" muses:Spacing.Vertical="4">
                         <TextBox support:TextBoxSupport.Hint="This is a hint... Yes. It really is!" 
-                                           support:TextBoxSupport.SelectAllOnFocus="True"/>
+                                           support:TextBoxSupport.SelectAllOnFocus="False"/>
                         <PasswordBox support:TextBoxSupport.Hint="This is a password box..." 
                                            support:TextBoxSupport.SelectAllOnFocus="True"/>
                     </StackPanel>

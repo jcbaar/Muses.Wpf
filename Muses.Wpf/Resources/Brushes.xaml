@@ -22,5 +22,6 @@
 
     <SolidColorBrush x:Key="InactiveColorBrush" Color="{DynamicResource InactiveColor}" po:Freeze="True"/>
     <SolidColorBrush x:Key="InactiveColorLightBrush" Color="{DynamicResource InactiveLightColor}" po:Freeze="True"/>
+    <SolidColorBrush x:Key="InactiveColorLightTextBrush" Color="{DynamicResource InactiveLightTextColor}" po:Freeze="True"/>
 
 </ResourceDictionary>

@@ -76,6 +76,10 @@ namespace Muses.Wpf.Controls.Support
                     pb.PasswordChanged += PasswordChanged;
                 }
             }
+            else if(!(d is TextBox))
+            {
+                throw new NotSupportedException($"{nameof(HintProperty)} is not supported for {d.GetType()}");
+            }
         }
 
         /// <summary>

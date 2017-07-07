@@ -21,6 +21,7 @@
 
     <Color x:Key="InactiveColor">#FFCCCEDB</Color>
     <Color x:Key="InactiveLightColor">#FFAFB3CD</Color>
+    <Color x:Key="InactiveLightTextColor">#FF999999</Color>
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Resources/Brushes.xaml" />
@@ -28,6 +29,7 @@
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.TabControl.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.Buttons.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.TextBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.Label.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

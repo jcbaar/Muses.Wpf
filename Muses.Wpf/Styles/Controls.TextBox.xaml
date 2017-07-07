@@ -6,7 +6,7 @@
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Resources/Shared.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style x:Name="FlatTextBox" TargetType="{x:Type TextBox}">
+    <Style x:Name="FlatTextBoxStyle" TargetType="{x:Type TextBox}">
         <Setter Property="BorderBrush" Value="{DynamicResource BorderColorBrush}" />
         <Setter Property="Background" Value="{DynamicResource ControlFocusColorBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource ForegroundColorBrush}" />
@@ -44,7 +44,7 @@
                                    Margin="7,3" 
                                    Text="{Binding Path=(support:TextBoxSupport.Hint), RelativeSource={RelativeSource TemplatedParent}}" 
                                    TextTrimming="CharacterEllipsis"
-                                   Foreground="{DynamicResource InactiveColorLightBrush}"
+                                   Foreground="{DynamicResource InactiveColorLightTextBrush}"
                                    IsHitTestVisible="False"
                                    VerticalAlignment="Center"
                                    Visibility="{Binding RelativeSource={RelativeSource AncestorType=TextBox}, Path=Text.IsEmpty, Converter={StaticResource BoolToVisibility}}" />
@@ -64,7 +64,7 @@
         </Setter>
     </Style>
 
-    <Style x:Name="FlatPasswordBox" TargetType="{x:Type PasswordBox}">
+    <Style x:Name="FlatPasswordBoxStyle" TargetType="{x:Type PasswordBox}">
         <Setter Property="BorderBrush" Value="{DynamicResource BorderColorBrush}" />
         <Setter Property="Background" Value="{DynamicResource ControlFocusColorBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource ForegroundColorBrush}" />
@@ -102,7 +102,7 @@
                                    Margin="7,3" 
                                    Text="{Binding Path=(support:TextBoxSupport.Hint), RelativeSource={RelativeSource TemplatedParent}}" 
                                    TextTrimming="CharacterEllipsis"
-                                   Foreground="{DynamicResource InactiveColorLightBrush}"
+                                   Foreground="{DynamicResource InactiveColorLightTextBrush}"
                                    IsHitTestVisible="False"
                                    VerticalAlignment="Center"
                                    Visibility="Collapsed" />
