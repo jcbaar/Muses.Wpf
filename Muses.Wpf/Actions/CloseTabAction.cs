@@ -1,10 +1,7 @@
 ﻿using Muses.Wpf.Controls;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Interactivity;
 
@@ -17,14 +14,14 @@ namespace Muses.Wpf.Actions
 
         public CloseableTabControl CloseableTabControl
         {
-            get { return (CloseableTabControl)GetValue(CloseableTabControlProperty); }
-            set { SetValue(CloseableTabControlProperty, value); }
+            get => (CloseableTabControl)GetValue(CloseableTabControlProperty);
+            set => SetValue(CloseableTabControlProperty, value);
         }
 
         public CloseableTabItem CloseableTabItem
         {
-            get { return (CloseableTabItem)GetValue(CloseableTabItemProperty); }
-            set { SetValue(CloseableTabItemProperty, value); }
+            get => (CloseableTabItem)GetValue(CloseableTabItemProperty);
+            set => SetValue(CloseableTabItemProperty, value);
         }
 
         protected override void Invoke(object parameter)
@@ -36,12 +33,14 @@ namespace Muses.Wpf.Actions
 
             var closeAction = new Action(() =>
             {
-                // Make sure we can close this tab.
+                // Make sure we can close this tab by sending the ClosingTabEvent to the
+                // TabControl. When the Cancel property of the event arguments is set to true
+                // after the event we do not close the tab.
                 var args = new ClosingTabEventArgs(CloseableTabControl.ClosingTabItemEvent, (object)CloseableTabItem);
                 CloseableTabControl.RaiseEvent(args);
                 if(args.Cancel)
                 {
-                    // Select the tab they tries to close...
+                    // Select the tab they tried to close...
                     CloseableTabControl.SelectedItem = CloseableTabItem;
                     return;
                 }
@@ -60,6 +59,7 @@ namespace Muses.Wpf.Actions
                     {
                         return;
                     }
+
                     // find the item and kill it (I mean, remove it)
                     var item2Remove = collection.OfType<object>().FirstOrDefault(item => CloseableTabItem == item || CloseableTabItem.DataContext == item);
                     if (item2Remove != null)

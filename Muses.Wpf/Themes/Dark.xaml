@@ -3,6 +3,7 @@
 
     <Color x:Key="BackgroundColor">#FF2D2D30</Color>
     <Color x:Key="ForegroundColor">#FFFFFFFF</Color>
+    <Color x:Key="ForegroundPressedColor">#FFFFFFFF</Color>
     
     <Color x:Key="BorderColor">#FF3F3F46</Color>
     
@@ -12,6 +13,7 @@
     <Color x:Key="ControlColor">#FF333337</Color>
     <Color x:Key="ControlHoveredColor">#FF3F3F46</Color>
     <Color x:Key="ControlFocusColor">#FF333337</Color>
+    <Color x:Key="TextBoxFocusColor">#FF3F3F46</Color>
     
     <Color x:Key="AccentColor">#FF007ACC</Color>
     <Color x:Key="AccentLightColor">#FF52B0EF</Color>

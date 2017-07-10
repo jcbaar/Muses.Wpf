@@ -52,11 +52,11 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="BorderBrush" Value="{DynamicResource AccentColorBrush}"/>
-                            <Setter Property="Background" Value="{DynamicResource ControlHoveredColorBrush}"/>
+                            <Setter Property="Background" Value="{DynamicResource TextBoxFocusColorBrush}"/>
                         </Trigger>
                         <Trigger Property="IsFocused" Value="True">
                             <Setter Property="BorderBrush" Value="{DynamicResource AccentColorBrush}"/>
-                            <Setter Property="Background" Value="{DynamicResource ControlHoveredColorBrush}"/>
+                            <Setter Property="Background" Value="{DynamicResource TextBoxFocusColorBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -110,11 +110,11 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="BorderBrush" Value="{DynamicResource AccentColorBrush}"/>
-                            <Setter Property="Background" Value="{DynamicResource ControlHoveredColorBrush}"/>
+                            <Setter Property="Background" Value="{DynamicResource TextBoxFocusColorBrush}"/>
                         </Trigger>
                         <Trigger Property="IsFocused" Value="True">
                             <Setter Property="BorderBrush" Value="{DynamicResource AccentColorBrush}"/>
-                            <Setter Property="Background" Value="{DynamicResource ControlHoveredColorBrush}"/>
+                            <Setter Property="Background" Value="{DynamicResource TextBoxFocusColorBrush}"/>
                         </Trigger>
                         <Trigger Property="support:TextBoxSupport.PasswordLength" Value="0">
                             <Setter Property="Visibility" TargetName="PART_Hint" Value="Visible"/>

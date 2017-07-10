@@ -4,6 +4,7 @@
 
     <SolidColorBrush x:Key="BackgroundColorBrush" Color="{DynamicResource BackgroundColor}" po:Freeze="True"/>
     <SolidColorBrush x:Key="ForegroundColorBrush" Color="{DynamicResource ForegroundColor}" po:Freeze="True"/>
+    <SolidColorBrush x:Key="ForegroundPressedColorBrush" Color="{DynamicResource ForegroundPressedColor}" po:Freeze="True"/>
 
     <SolidColorBrush x:Key="BorderColorBrush" Color="{DynamicResource BorderColor}" po:Freeze="True"/>
 
@@ -13,6 +14,7 @@
     <SolidColorBrush x:Key="ControlColorBrush" Color="{DynamicResource ControlColor}" po:Freeze="True"/>
     <SolidColorBrush x:Key="ControlHoveredColorBrush" Color="{DynamicResource ControlHoveredColor}" po:Freeze="True"/>
     <SolidColorBrush x:Key="ControlFocusColorBrush" Color="{DynamicResource ControlFocusColor}" po:Freeze="True"/>
+    <SolidColorBrush x:Key="TextBoxFocusColorBrush" Color="{DynamicResource TextBoxFocusColor}" po:Freeze="True"/>
 
     <SolidColorBrush x:Key="AccentColorBrush" Color="{DynamicResource AccentColor}" po:Freeze="True"/>
     <SolidColorBrush x:Key="AccentHoverColorBrush" Color="{DynamicResource AccentHoverColor}" po:Freeze="True"/>
