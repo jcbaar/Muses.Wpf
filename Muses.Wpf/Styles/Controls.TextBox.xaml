@@ -4,6 +4,7 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Resources/Shared.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.ScrollViewer.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Name="FlatTextBoxStyle" TargetType="{x:Type TextBox}">
@@ -11,6 +12,7 @@
         <Setter Property="Background" Value="{DynamicResource ControlFocusColorBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource ForegroundColorBrush}" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Padding" Value="5,3" />
         <Setter Property="support:TextBoxSupport.Hint" Value="" />
         <Setter Property="support:TextBoxSupport.SelectAllOnFocus" Value="False" />
         <Setter Property="Template">
@@ -32,16 +34,15 @@
 
                         <ScrollViewer x:Name="PART_ContentHost"
                                  Grid.Column="0"
-                                 Margin="5,3"
+                                 Margin="1"
                                  Foreground="{TemplateBinding Foreground}"
                                  Background="Transparent"
                                  BorderBrush="Transparent"
-                                 BorderThickness="0"
-                                 Padding="2" />
+                                 BorderThickness="0" />
 
                         <TextBlock x:Name="PART_Hint"
                                    Grid.Column="0"
-                                   Margin="7,3" 
+                                   Margin="{TemplateBinding Padding}" 
                                    Text="{Binding Path=(support:TextBoxSupport.Hint), RelativeSource={RelativeSource TemplatedParent}}" 
                                    TextTrimming="CharacterEllipsis"
                                    Foreground="{DynamicResource InactiveColorLightTextBrush}"
@@ -69,6 +70,7 @@
         <Setter Property="Background" Value="{DynamicResource ControlFocusColorBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource ForegroundColorBrush}" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Padding" Value="5,3" />
         <Setter Property="support:TextBoxSupport.Hint" Value="" />
         <Setter Property="support:TextBoxSupport.SelectAllOnFocus" Value="True" />
         <Setter Property="Template">
@@ -90,16 +92,15 @@
 
                         <ScrollViewer x:Name="PART_ContentHost"
                                  Grid.Column="0"
-                                 Margin="5,3"
+                                 Padding="1"
                                  Foreground="{TemplateBinding Foreground}"
                                  Background="Transparent"
                                  BorderBrush="Transparent"
-                                 BorderThickness="0"
-                                 Padding="2" />
+                                 BorderThickness="0"/>
 
                         <TextBlock x:Name="PART_Hint"
                                    Grid.Column="0"
-                                   Margin="7,3" 
+                                   Margin="{TemplateBinding Padding}" 
                                    Text="{Binding Path=(support:TextBoxSupport.Hint), RelativeSource={RelativeSource TemplatedParent}}" 
                                    TextTrimming="CharacterEllipsis"
                                    Foreground="{DynamicResource InactiveColorLightTextBrush}"

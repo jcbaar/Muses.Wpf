@@ -1,0 +1,67 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" >
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.ScrollBar.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <!--
+    The scrollviewer style.
+    -->
+    <Style x:Name="ScrollViewerStyle" TargetType="{x:Type ScrollViewer}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                    <Grid Background="{TemplateBinding Background}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <ScrollBar 
+                            x:Name="PART_VerticalScrollBar"
+                            Grid.Column="1"
+                            Minimum="0.0"
+                            Maximum="{TemplateBinding ScrollableHeight}"
+                            ViewportSize="{TemplateBinding ViewportHeight}"
+                            Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=VerticalOffset, Mode=OneWay}"
+                            Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"         
+                            Cursor="Arrow"
+                            AutomationProperties.AutomationId="VerticalScrollBar"
+                            Style="{StaticResource VerticalScrollBarStyle}"/>
+                        
+                        <ScrollBar 
+                            x:Name="PART_HorizontalScrollBar"
+                            Orientation="Horizontal"
+                            Grid.Row="1"
+                            Minimum="0.0"
+                            Maximum="{TemplateBinding ScrollableWidth}"
+                            ViewportSize="{TemplateBinding ViewportWidth}"
+                            Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=HorizontalOffset, Mode=OneWay}"
+                            Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"
+                            Cursor="Arrow"
+                            AutomationProperties.AutomationId="HorizontalScrollBar"
+                            Style="{StaticResource HorizontalScrollBarStyle}"/>
+
+                        <ScrollContentPresenter 
+                            x:Name="PART_ScrollContentPresenter"
+                            Margin="{TemplateBinding Padding}"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            CanContentScroll="{TemplateBinding CanContentScroll}"/>
+
+                        <Rectangle 
+                            x:Name="PART_Corner"
+                            Grid.Column="1"
+                            Grid.Row="1"
+                            Fill="{DynamicResource BackgroundColorBrush}"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
