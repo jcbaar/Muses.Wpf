@@ -67,17 +67,23 @@
                     </Grid.ColumnDefinitions>
 
                     <GroupBox Style="{StaticResource FlatGroupBoxStyle}" Header="A couple of text boxes in a GroupBox!">
-                    <StackPanel Orientation="Vertical" Grid.Column="1" muses:Spacing.Vertical="4">
-                        <TextBox support:TextBoxSupport.Hint="This is a hint... Yes. It really is!" 
-                                           support:TextBoxSupport.SelectAllOnFocus="False"/>
-                        <PasswordBox support:TextBoxSupport.Hint="This is a password box..." 
-                                           support:TextBoxSupport.SelectAllOnFocus="True"/>
-                        <TextBox HorizontalScrollBarVisibility="Auto"
-                                 VerticalScrollBarVisibility="Auto"
-                                 Height="100"
-                                 Padding="1"
-                                 AcceptsReturn="True"
-                                 xml:space="preserve">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent accumsan, nibh eu
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <StackPanel Grid.Column="0" Orientation="Vertical" muses:Spacing.Vertical="8" Margin="0,0,4,0">
+                                <TextBox support:TextBoxSupport.Hint="This is a hint... Yes. It really is!" 
+                                                   support:TextBoxSupport.SelectAllOnFocus="False"/>
+                                <PasswordBox support:TextBoxSupport.Hint="This is a password box..." 
+                                                   support:TextBoxSupport.SelectAllOnFocus="True"/>
+                                <TextBox HorizontalScrollBarVisibility="Auto"
+                                         VerticalScrollBarVisibility="Auto"
+                                         Height="100"
+                                         Padding="1"
+                                         AcceptsReturn="True"
+                                         xml:space="preserve">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent accumsan, nibh eu
 congue bibendum, odio lectus ornare nisl, quis sollicitudin ipsum libero at dui. Nam
 vel augue id justo ultrices volutpat. Aenean eu orci volutpat, ullamcorper ex non,
 tempor nunc. Duis tristique sapien ac finibus lobortis. Proin viverra eu dui sed pellentesque.
@@ -85,7 +91,30 @@ Fusce orci nisl, tincidunt et blandit aliquam, blandit et tortor. Cras sollicitu
 aliquet ex, at malesuada nisl. In ut pulvinar nisl, malesuada convallis augue. Morbi eget varius odio, 
 at luctus neque. Vestibulum non iaculis lectus, ac ornare ex. Quisque orci velit,
 vulputate et risus ac, fermentum consequat erat.</TextBox>
-                    </StackPanel>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Orientation="Vertical" muses:Spacing.Vertical="8" Margin="4,0,0,0">
+                                        <TextBox support:TextBoxSupport.Hint="This is a hint... Yes. It really is!" 
+                                                 support:TextBoxSupport.SelectAllOnFocus="False"
+                                                 IsEnabled="False"/>
+                                        <PasswordBox support:TextBoxSupport.Hint="This is a password box..." 
+                                                     support:TextBoxSupport.SelectAllOnFocus="True"
+                                                     IsEnabled="False"/>
+                                        <TextBox HorizontalScrollBarVisibility="Auto"
+                                                 IsEnabled="False"
+                                                 VerticalScrollBarVisibility="Auto"
+                                                 Height="100"
+                                                 Padding="1"
+                                                 AcceptsReturn="True"
+                                                 xml:space="preserve">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent accumsan, nibh eu
+congue bibendum, odio lectus ornare nisl, quis sollicitudin ipsum libero at dui. Nam
+vel augue id justo ultrices volutpat. Aenean eu orci volutpat, ullamcorper ex non,
+tempor nunc. Duis tristique sapien ac finibus lobortis. Proin viverra eu dui sed pellentesque.
+Fusce orci nisl, tincidunt et blandit aliquam, blandit et tortor. Cras sollicitudin
+aliquet ex, at malesuada nisl. In ut pulvinar nisl, malesuada convallis augue. Morbi eget varius odio, 
+at luctus neque. Vestibulum non iaculis lectus, ac ornare ex. Quisque orci velit,
+vulputate et risus ac, fermentum consequat erat.</TextBox>
+                            </StackPanel>
+                        </Grid>
                     </GroupBox>
                 </Grid>
             </muses:CloseableTabItem>

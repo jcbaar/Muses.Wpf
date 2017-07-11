@@ -59,6 +59,10 @@
                             <Setter Property="BorderBrush" Value="{DynamicResource AccentColorBrush}"/>
                             <Setter Property="Background" Value="{DynamicResource TextBoxFocusColorBrush}"/>
                         </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="PART_Hint" Property="Foreground" Value="{DynamicResource InactiveColorBrush}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource InactiveColorBrush}"/>
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -119,6 +123,10 @@
                         </Trigger>
                         <Trigger Property="support:TextBoxSupport.PasswordLength" Value="0">
                             <Setter Property="Visibility" TargetName="PART_Hint" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="PART_Hint" Property="Foreground" Value="{DynamicResource InactiveColorBrush}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource InactiveColorBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
