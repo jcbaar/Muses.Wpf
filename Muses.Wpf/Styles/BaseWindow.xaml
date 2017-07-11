@@ -36,6 +36,11 @@
                               Stretch="None" 
                               Data="F1 M1,10 L3,10 M5,10 L7,10 M9,10 L11,10 M2,9 L2,11 M6,9 L6,11 M10,9 L10,11 M5,6 L7,6 M9,6 L11,6 M6,5 L6,7 M10,5 L10,7 M9,2 L11,2 M10,1 L10,3" />
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="False">
+                            <Setter TargetName="ResizeGrip" Property="Stroke" Value="{DynamicResource InactiveColorBrush}"  />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -130,7 +135,8 @@
                                     </Grid>
                                 </AdornerDecorator>
                             </Border>
-                            <Border BorderBrush="{DynamicResource AccentColorBrush}" 
+                            <Border x:Name="PART_Border"
+                                    BorderBrush="{DynamicResource AccentColorBrush}" 
                                     BorderThickness="1" 
                                     Visibility="{Binding IsActive, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Converter={StaticResource BoolToVisibility}}" />
                         </Grid>
@@ -144,6 +150,7 @@
                             <Setter TargetName="Restore" Property="Foreground" Value="{DynamicResource AccentForegroundColorBrush}" />
                             <Setter TargetName="Close" Property="Foreground" Value="{DynamicResource AccentForegroundColorBrush}" />
                         </Trigger>
+                        
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="FillTitleBar" Value="True"/>
