@@ -118,7 +118,47 @@ vulputate et risus ac, fermentum consequat erat.</TextBox>
                     </GroupBox>
                 </Grid>
             </muses:CloseableTabItem>
-            <muses:CloseableTabItem Header="Details" Name="closable"/>
+            <muses:CloseableTabItem Header="ComboBoxes" IsCloseable="False">
+                <Grid Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120*"/>
+                        <ColumnDefinition Width="120*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Vertical" Grid.Column="0" muses:Spacing.Vertical="8" Margin="4,0,0,0">
+                        <ComboBox>
+                            <ComboBoxItem>Item #1</ComboBoxItem>
+                            <ComboBoxItem>Item #2</ComboBoxItem>
+                            <ComboBoxItem>Item #3</ComboBoxItem>
+                            <ComboBoxItem>Item #4</ComboBoxItem>
+                            <ComboBoxItem>Item #5</ComboBoxItem>
+                        </ComboBox>
+                        <ComboBox IsEditable="True">
+                            <ComboBoxItem>Item #1</ComboBoxItem>
+                            <ComboBoxItem>Item #2</ComboBoxItem>
+                            <ComboBoxItem>Item #3</ComboBoxItem>
+                            <ComboBoxItem>Item #4</ComboBoxItem>
+                            <ComboBoxItem>Item #5</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Grid.Column="1" muses:Spacing.Vertical="8" Margin="4,0,0,0">
+                        <ComboBox IsEnabled="False">
+                            <ComboBoxItem IsSelected="True">Item #1</ComboBoxItem>
+                            <ComboBoxItem>Item #2</ComboBoxItem>
+                            <ComboBoxItem>Item #3</ComboBoxItem>
+                            <ComboBoxItem>Item #4</ComboBoxItem>
+                            <ComboBoxItem>Item #5</ComboBoxItem>
+                        </ComboBox>
+                        <ComboBox IsEnabled="False" IsEditable="True">
+                            <ComboBoxItem>Item #1</ComboBoxItem>
+                            <ComboBoxItem IsSelected="True">Item #2</ComboBoxItem>
+                            <ComboBoxItem>Item #3</ComboBoxItem>
+                            <ComboBoxItem>Item #4</ComboBoxItem>
+                            <ComboBoxItem>Item #5</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                </Grid>
+            </muses:CloseableTabItem>
             <muses:CloseableTabItem Header="Details 2"/>
         </muses:CloseableTabControl>
     </Grid>

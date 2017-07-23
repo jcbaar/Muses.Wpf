@@ -35,6 +35,7 @@
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.Buttons.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.TextBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.Label.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.ComboBox.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

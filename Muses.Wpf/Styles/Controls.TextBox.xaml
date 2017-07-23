@@ -13,6 +13,7 @@
         <Setter Property="Foreground" Value="{DynamicResource ForegroundColorBrush}" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Padding" Value="5,3" />
+        <Setter Property="CaretBrush" Value="{DynamicResource ForegroundColorBrush}" />
         <Setter Property="support:TextBoxSupport.Hint" Value="" />
         <Setter Property="support:TextBoxSupport.SelectAllOnFocus" Value="False" />
         <Setter Property="Template">
@@ -75,6 +76,7 @@
         <Setter Property="Foreground" Value="{DynamicResource ForegroundColorBrush}" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Padding" Value="5,3" />
+        <Setter Property="CaretBrush" Value="{DynamicResource ForegroundColorBrush}" />
         <Setter Property="support:TextBoxSupport.Hint" Value="" />
         <Setter Property="support:TextBoxSupport.SelectAllOnFocus" Value="True" />
         <Setter Property="Template">
