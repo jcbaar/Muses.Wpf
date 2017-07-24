@@ -9,7 +9,7 @@
         Title="MainWindow with a longer title that should break" 
                   ResizeMode="CanResizeWithGrip" 
                   Height="350" 
-                  Width="525" 
+                  Width="600" 
                   Style="{StaticResource BaseWindowStyle}">
 
     <Grid FocusManager.FocusedElement="{Binding ElementName=FocusButton}">
@@ -132,6 +132,16 @@ vulputate et risus ac, fermentum consequat erat.</TextBox>
                             <ComboBoxItem>Item #3</ComboBoxItem>
                             <ComboBoxItem>Item #4</ComboBoxItem>
                             <ComboBoxItem>Item #5</ComboBoxItem>
+                            <ComboBoxItem>Item #6</ComboBoxItem>
+                            <ComboBoxItem>Item #7</ComboBoxItem>
+                            <ComboBoxItem>Item #8</ComboBoxItem>
+                            <ComboBoxItem>Item #9</ComboBoxItem>
+                            <ComboBoxItem>Item #10</ComboBoxItem>
+                            <ComboBoxItem>Item #11</ComboBoxItem>
+                            <ComboBoxItem>Item #12</ComboBoxItem>
+                            <ComboBoxItem>Item #13</ComboBoxItem>
+                            <ComboBoxItem>Item #14</ComboBoxItem>
+                            <ComboBoxItem>Item #15</ComboBoxItem>
                         </ComboBox>
                         <ComboBox IsEditable="True">
                             <ComboBoxItem>Item #1</ComboBoxItem>
@@ -159,7 +169,9 @@ vulputate et risus ac, fermentum consequat erat.</TextBox>
                     </StackPanel>
                 </Grid>
             </muses:CloseableTabItem>
-            <muses:CloseableTabItem Header="Details 2"/>
+            <muses:CloseableTabItem Header="Closeable 1"/>
+            <muses:CloseableTabItem Header="Closeable 2"/>
+            <muses:CloseableTabItem Header="Closeable 3"/>
         </muses:CloseableTabControl>
     </Grid>
 
