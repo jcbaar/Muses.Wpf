@@ -9,8 +9,43 @@
         Title="MainWindow with a longer title that should break" 
                   ResizeMode="CanResizeWithGrip" 
                   Height="350" 
-                  Width="600" 
+                  Width="620" 
                   Style="{StaticResource BaseWindowStyle}">
+
+    <Window.Resources>
+        <VisualBrush x:Key="SliderBackH">
+            <VisualBrush.Visual>
+                <Grid>
+                    <Rectangle Width="1" Height="1">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush EndPoint="0,0" StartPoint="1,0">
+                                <GradientStop Color="Red" Offset="0" />
+                                <GradientStop Color="Yellow" Offset="0.5" />
+                                <GradientStop Color="Green" Offset="1" />
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </Grid>
+            </VisualBrush.Visual>
+        </VisualBrush>
+
+        <VisualBrush x:Key="SliderBackV">
+            <VisualBrush.Visual>
+                <Grid>
+                    <Rectangle Width="1" Height="1">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                <GradientStop Color="Red" Offset="0" />
+                                <GradientStop Color="Yellow" Offset="0.5" />
+                                <GradientStop Color="Green" Offset="1" />
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </Grid>
+            </VisualBrush.Visual>
+        </VisualBrush>
+
+    </Window.Resources>
 
     <Grid FocusManager.FocusedElement="{Binding ElementName=FocusButton}">
         <Grid.RowDefinitions>
@@ -167,6 +202,43 @@ vulputate et risus ac, fermentum consequat erat.</TextBox>
                             <ComboBoxItem>Item #5</ComboBoxItem>
                         </ComboBox>
                     </StackPanel>
+                </Grid>
+            </muses:CloseableTabItem>
+            <muses:CloseableTabItem Header="Sliders" IsCloseable="False">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Slider Margin="4" Grid.Row="0" Grid.Column="0" Style="{StaticResource FlatHorizontalSliderStyle}" Background="{StaticResource SliderBackH}" support:SliderSupport.ThumbBrush="DarkGray" support:SliderSupport.ThumbMouseOverBrush="Gray"/>
+                    <Slider Margin="4" Grid.Row="1" Grid.Column="0" Style="{StaticResource FlatHorizontalSliderStyle}" />
+
+                    <Slider Margin="4" Grid.Row="0" Grid.Column="1" Style="{StaticResource FlatHorizontalSliderStyle}" IsEnabled="False" Value="3" Background="{StaticResource SliderBackV}"/>
+                    <Slider Margin="4" Grid.Row="1" Grid.Column="1" Style="{StaticResource FlatHorizontalSliderStyle}" IsEnabled="False" Value="3"/>
+
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Slider Grid.Column="0" Style="{StaticResource FlatVerticalSliderStyle}" Orientation="Vertical" Background="{StaticResource SliderBackV}" support:SliderSupport.ThumbBrush="DarkGray" support:SliderSupport.ThumbMouseOverBrush="Gray"/>
+                        <Slider Grid.Column="1" Style="{StaticResource FlatVerticalSliderStyle}" Orientation="Vertical"/>
+                    </Grid>
+
+                    <Grid Grid.Row="2" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Slider Grid.Column="0" Style="{StaticResource FlatVerticalSliderStyle}" Orientation="Vertical" IsEnabled="False" Value="3" />
+                        <Slider Grid.Column="1" Style="{StaticResource FlatVerticalSliderStyle}" Orientation="Vertical" IsEnabled="False" Value="3" Background="{StaticResource SliderBackV}"/>
+                    </Grid>
                 </Grid>
             </muses:CloseableTabItem>
             <muses:CloseableTabItem Header="Closeable 1"/>

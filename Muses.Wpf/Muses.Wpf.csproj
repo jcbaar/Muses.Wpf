@@ -56,7 +56,9 @@
     <Compile Include="Actions\CloseTabAction.cs" />
     <Compile Include="Controls\ClosingTabEventArgs.cs" />
     <Compile Include="Controls\Support\ComboBoxSupport.cs" />
+    <Compile Include="Controls\Support\SliderSupport.cs" />
     <Compile Include="Controls\Support\TextBoxSupport.cs" />
+    <Compile Include="Converters\NotNullConverter.cs" />
     <Compile Include="Themes\ThemeHelper.cs" />
     <Page Include="Resources\Brushes.xaml">
       <SubType>Designer</SubType>
@@ -93,6 +95,10 @@
     <Page Include="Styles\Controls.ScrollViewer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Controls.Slider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\Controls.TabControl.xaml">
       <SubType>Designer</SubType>

@@ -60,7 +60,7 @@ namespace Muses.Wpf.Controls.Support
                 {
                     if (box.ItemContainerGenerator.ContainerFromIndex(0) is UIElement container && container.RenderSize.Height > 0)
                     {
-                        // This is somewhat nasty. The 3px extra room is necessary for the border and padding
+                        // TODO: This is somewhat nasty. The 3px extra room is necessary for the border and padding
                         // but should of course not be a magic constant number but rather computed is some way...
                         box.MaxDropDownHeight = (container.RenderSize.Height * GetMaxDropDownItems(box)) + 3;
                     }
