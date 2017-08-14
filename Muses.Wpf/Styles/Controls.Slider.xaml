@@ -129,7 +129,7 @@
                 <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Border x:Name="Background" Grid.Row="1" BorderBrush="Transparent" BorderThickness="0,5" Background="{TemplateBinding Background}"/>
+            <Border x:Name="Background" Grid.Row="1" BorderBrush="Transparent" BorderThickness="1,5" Background="{TemplateBinding Background}"/>
             <Track Grid.Row="1" x:Name="PART_Track">
                 <Track.DecreaseRepeatButton>
                     <RepeatButton Style="{StaticResource HSliderDecrease}"  Command="Slider.DecreaseLarge" />
@@ -157,7 +157,7 @@
                 <ColumnDefinition Width="Auto" MinWidth="{TemplateBinding MinWidth}" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Border x:Name="Background" Grid.Column="1" BorderBrush="Transparent" BorderThickness="5,0" Background="{TemplateBinding Background}"/>
+            <Border x:Name="Background" Grid.Column="1" BorderBrush="Transparent" BorderThickness="5,1" Background="{TemplateBinding Background}"/>
             <Track Grid.Column="1" x:Name="PART_Track"  Orientation="Vertical" >
                 <Track.DecreaseRepeatButton>
                     <RepeatButton Style="{StaticResource VSliderDecrease}"  Command="Slider.DecreaseLarge" />
