@@ -56,13 +56,13 @@ namespace Muses.Wpf.Controls.Support
         {
             if (sender is ComboBox box)
             {
-                box.Dispatcher.BeginInvoke(new Action(() =>
+                box.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Input, new Action(() =>
                 {
                     if (box.ItemContainerGenerator.ContainerFromIndex(0) is UIElement container && container.RenderSize.Height > 0)
                     {
-                        // TODO: This is somewhat nasty. The 3px extra room is necessary for the border and padding
+                        // TODO: This is somewhat nasty. The extra room is necessary for the border
                         // but should of course not be a magic constant number but rather computed is some way...
-                        box.MaxDropDownHeight = (container.RenderSize.Height * GetMaxDropDownItems(box)) + 3;
+                        box.MaxDropDownHeight = (container.RenderSize.Height * GetMaxDropDownItems(box)) + 2;
                     }
                 }));
             }

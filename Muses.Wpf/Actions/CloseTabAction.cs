@@ -7,6 +7,10 @@ using System.Windows.Interactivity;
 
 namespace Muses.Wpf.Actions
 {
+    /// <summary>
+    /// <see cref="TriggerAction"/> derived for handling a close click
+    /// on a <see cref="CloseableTabItem"/>.
+    /// </summary>
     public class CloseTabAction : TriggerAction<DependencyObject>
     {
         public static DependencyProperty CloseableTabControlProperty = DependencyProperty.Register(nameof(CloseableTabControl), typeof(CloseableTabControl), typeof(CloseTabAction), new PropertyMetadata(default(CloseableTabControl)));
@@ -24,30 +28,37 @@ namespace Muses.Wpf.Actions
             set => SetValue(CloseableTabItemProperty, value);
         }
 
+        /// <summary>
+        /// Called when the action is invoked.
+        /// </summary>
+        /// <param name="parameter">The trigger parameter object.</param>
         protected override void Invoke(object parameter)
         {
+            // These must be valid. If they are not bail.
             if (CloseableTabControl == null || CloseableTabItem == null)
             {
                 return;
             }
 
-            var closeAction = new Action(() =>
+            // Fire of the close action.
+            Dispatcher.BeginInvoke(new Action(() =>
             {
                 // Make sure we can close this tab by sending the ClosingTabEvent to the
                 // TabControl. When the Cancel property of the event arguments is set to true
                 // after the event we do not close the tab.
-                var args = new ClosingTabEventArgs(CloseableTabControl.ClosingTabItemEvent, (object)CloseableTabItem);
+                var args = new ClosingTabEventArgs(CloseableTabControl.ClosingTabItemEvent, CloseableTabItem);
                 CloseableTabControl.RaiseEvent(args);
                 if(args.Cancel)
                 {
-                    // Select the tab they tried to close...
+                    // It is not allowed to close this tab. Select it so the
+                    // user sees it's contents.
                     CloseableTabControl.SelectedItem = CloseableTabItem;
                     return;
                 }
 
                 if (CloseableTabControl.ItemsSource == null)
                 {
-                    // if the list is hard-coded (i.e. has no ItemsSource)
+                    // If the list is hard-coded (i.e. has no ItemsSource)
                     // then we remove the item from the collection
                     CloseableTabControl.Items.Remove(CloseableTabItem);
                 }
@@ -60,15 +71,14 @@ namespace Muses.Wpf.Actions
                         return;
                     }
 
-                    // find the item and kill it (I mean, remove it)
+                    // Find the item and remove it.
                     var item2Remove = collection.OfType<object>().FirstOrDefault(item => CloseableTabItem == item || CloseableTabItem.DataContext == item);
                     if (item2Remove != null)
                     {
                         collection.Remove(item2Remove);
                     }
                 }
-            });
-            Dispatcher.BeginInvoke(closeAction);
+            }));
         }
     }
 }

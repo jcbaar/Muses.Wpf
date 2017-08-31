@@ -210,6 +210,7 @@ vulputate et risus ac, fermentum consequat erat.</TextBox>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -218,30 +219,36 @@ vulputate et risus ac, fermentum consequat erat.</TextBox>
 
                     <Slider Margin="4" Grid.Row="0" Grid.Column="0" Style="{StaticResource FlatHorizontalSliderStyle}" Background="{StaticResource SliderBackH}" support:SliderSupport.ThumbBrush="DarkGray" support:SliderSupport.ThumbMouseOverBrush="Gray"/>
                     <Slider Margin="4" Grid.Row="1" Grid.Column="0" Style="{StaticResource FlatHorizontalSliderStyle}" />
+                    <Slider Margin="4" Grid.Row="2" Grid.Column="0" Style="{StaticResource FlatHorizontalSliderStyle}" support:SliderSupport.FillBrush="Yellow" support:SliderSupport.ThumbBrush="Red" support:SliderSupport.ThumbMouseOverBrush="Pink"/>
 
                     <Slider Margin="4" Grid.Row="0" Grid.Column="1" Style="{StaticResource FlatHorizontalSliderStyle}" IsEnabled="False" Value="3" Background="{StaticResource SliderBackV}"/>
                     <Slider Margin="4" Grid.Row="1" Grid.Column="1" Style="{StaticResource FlatHorizontalSliderStyle}" IsEnabled="False" Value="3"/>
+                    <Slider Margin="4" Grid.Row="2" Grid.Column="1" Style="{StaticResource FlatHorizontalSliderStyle}" IsEnabled="False" Value="3" support:SliderSupport.FillBrush="Yellow" support:SliderSupport.ThumbBrush="Red" support:SliderSupport.ThumbMouseOverBrush="Pink"/>
 
-                    <Grid Grid.Row="2">
+                    <Grid Grid.Row="3">
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <Slider Grid.Column="0" Style="{StaticResource FlatVerticalSliderStyle}" Orientation="Vertical" Background="{StaticResource SliderBackV}" support:SliderSupport.ThumbBrush="DarkGray" support:SliderSupport.ThumbMouseOverBrush="Gray"/>
                         <Slider Grid.Column="1" Style="{StaticResource FlatVerticalSliderStyle}" Orientation="Vertical"/>
+                        <Slider Grid.Column="2" Style="{StaticResource FlatVerticalSliderStyle}" Orientation="Vertical" support:SliderSupport.FillBrush="Yellow" support:SliderSupport.ThumbBrush="Red" support:SliderSupport.ThumbMouseOverBrush="Pink"/>
                     </Grid>
 
-                    <Grid Grid.Row="2" Grid.Column="1">
+                    <Grid Grid.Row="3" Grid.Column="1">
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <Slider Grid.Column="0" Style="{StaticResource FlatVerticalSliderStyle}" Orientation="Vertical" IsEnabled="False" Value="3" />
                         <Slider Grid.Column="1" Style="{StaticResource FlatVerticalSliderStyle}" Orientation="Vertical" IsEnabled="False" Value="3" Background="{StaticResource SliderBackV}"/>
+                        <Slider Grid.Column="2" Style="{StaticResource FlatVerticalSliderStyle}" Orientation="Vertical" IsEnabled="False" Value="3" support:SliderSupport.FillBrush="Yellow" support:SliderSupport.ThumbBrush="Red" support:SliderSupport.ThumbMouseOverBrush="Pink"/>
                     </Grid>
                 </Grid>
             </muses:CloseableTabItem>
-            <muses:CloseableTabItem Header="Closeable 1"/>
+            <muses:CloseableTabItem x:Name="CantClose" Header="Closeable 1"/>
             <muses:CloseableTabItem Header="Closeable 2"/>
             <muses:CloseableTabItem Header="Closeable 3"/>
         </muses:CloseableTabControl>

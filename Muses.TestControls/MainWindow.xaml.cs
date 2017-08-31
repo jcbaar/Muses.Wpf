@@ -53,11 +53,19 @@ namespace Muses.TestControls
         private void CloseableTabControl_ClosingTabItem(object sender, RoutedEventArgs e)
         {
             var args = (ClosingTabEventArgs) e;
-            var item = args.Source as CloseableTabItem;
+            var item = args.TabItem;
 
-            if (item != null && item.IsCloseable == false)
+            if (item != null)
             {
-                ((ClosingTabEventArgs)e).Cancel = true;
+                if (item.IsCloseable == false)
+                {
+                    ((ClosingTabEventArgs)e).Cancel = true;
+                }
+                else if(item == CantClose)
+                {
+                    MessageBox.Show("Oops. Can't close this one...", "No no no", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    ((ClosingTabEventArgs)e).Cancel = true;
+                }
             }
         }
     }

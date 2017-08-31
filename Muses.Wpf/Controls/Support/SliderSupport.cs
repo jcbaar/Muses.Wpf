@@ -4,6 +4,9 @@ using System.Windows.Media;
 
 namespace Muses.Wpf.Controls.Support
 {
+    /// <summary>
+    /// Class containing attached properties supporting <see cref="Slider"/> controls.
+    /// </summary>
     public static class SliderSupport
     {
         #region Thumb color

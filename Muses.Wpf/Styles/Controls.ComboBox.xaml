@@ -102,7 +102,7 @@
     The combo box style.
     -->
     <Style x:Name="FlatComboBox" TargetType="{x:Type ComboBox}">
-        <Setter Property="UseLayoutRounding" Value="True"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
@@ -180,9 +180,9 @@
                         <Trigger Property="IsGrouping" Value="true">
                             <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
                         </Trigger>
-                        <Trigger SourceName="Popup" Property="IsOpen" Value="True">
+                        <!--<Trigger SourceName="Popup" Property="IsOpen" Value="True">
                             <Setter TargetName="DropDownBorder" Property="BorderThickness" Value="1,0,1,1" />
-                        </Trigger>
+                        </Trigger>-->
                         <Trigger Property="IsEditable"  Value="true">
                             <Setter Property="IsTabStop" Value="false"/>
                             <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible"/>
