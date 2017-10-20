@@ -168,6 +168,11 @@
                             <Setter TargetName="Maximize" Property="Visibility" Value="Visible" />
                             <Setter TargetName="Restore" Property="Visibility" Value="Collapsed" />
                         </Trigger>
+                        <Trigger Property="ResizeMode" Value="NoResize">
+                            <Setter TargetName="Minimize" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="Maximize" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="Restore" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="ResizeMode" Value="CanResizeWithGrip" />
