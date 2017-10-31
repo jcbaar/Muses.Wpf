@@ -22,10 +22,11 @@
                                 BorderThickness="1" />
                         <Border x:Name="PART_ArrowBorder"
                                 Grid.Column="1"
-                                Margin="1"
+                                Margin="0"
                                 Background="{DynamicResource ControlColorBrush}"
                                 BorderBrush="{DynamicResource BorderColorBrush}"
-                                BorderThickness="1,0,0,0" />
+                                BorderThickness="1" 
+                                Visibility="Hidden"/>
                         <Path x:Name="PART_Arrow"
                               Grid.Column="1"     
                               Fill="{DynamicResource ForegroundColorBrush}"
@@ -45,24 +46,28 @@
                         -->
                         <DataTrigger Binding="{Binding Path=Children[2].IsFocused, RelativeSource={RelativeSource AncestorType=Grid}}" Value="True">
                             <Setter TargetName="PART_ArrowBorder" Property="BorderBrush" Value="{DynamicResource AccentColorBrush}" />
+                            <Setter TargetName="PART_ArrowBorder" Property="Visibility" Value="Visible" />
                             <Setter TargetName="PART_Border" Property="BorderBrush" Value="{DynamicResource AccentColorBrush}" />
                             <Setter TargetName="PART_Border" Property="Background" Value="{DynamicResource TextBoxFocusColorBrush}" />
                             <Setter TargetName="PART_Arrow" Property="Fill" Value="{DynamicResource AccentColorBrush}" />
                         </DataTrigger>
                         <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=ComboBox}, Path=IsFocused}" Value="True">
                             <Setter TargetName="PART_ArrowBorder" Property="BorderBrush" Value="{DynamicResource AccentColorBrush}" />
+                            <Setter TargetName="PART_ArrowBorder" Property="Visibility" Value="Visible" />
                             <Setter TargetName="PART_Border" Property="BorderBrush" Value="{DynamicResource AccentColorBrush}" />
                             <Setter TargetName="PART_Border" Property="Background" Value="{DynamicResource TextBoxFocusColorBrush}" />
                             <Setter TargetName="PART_Arrow" Property="Fill" Value="{DynamicResource AccentColorBrush}" />
                         </DataTrigger>
                         <Trigger Property="ToggleButton.IsMouseOver" Value="true">
                             <Setter TargetName="PART_ArrowBorder" Property="BorderBrush" Value="{DynamicResource AccentColorBrush}" />
+                            <Setter TargetName="PART_ArrowBorder" Property="Visibility" Value="Visible" />
                             <Setter TargetName="PART_Border" Property="BorderBrush" Value="{DynamicResource AccentColorBrush}" />
                             <Setter TargetName="PART_Border" Property="Background" Value="{DynamicResource TextBoxFocusColorBrush}" />
                             <Setter TargetName="PART_Arrow" Property="Fill" Value="{DynamicResource AccentColorBrush}" />
                         </Trigger>
                         <Trigger Property="ToggleButton.IsChecked" Value="true">
                             <Setter TargetName="PART_ArrowBorder" Property="BorderBrush" Value="{DynamicResource AccentColorBrush}" />
+                            <Setter TargetName="PART_ArrowBorder" Property="Visibility" Value="Visible" />
                             <Setter TargetName="PART_Border" Property="BorderBrush" Value="{DynamicResource AccentColorBrush}" />
                             <Setter TargetName="PART_Border" Property="Background" Value="{DynamicResource TextBoxFocusColorBrush}" />
                             <Setter TargetName="PART_Arrow" Property="Fill" Value="{DynamicResource AccentColorBrush}" />
