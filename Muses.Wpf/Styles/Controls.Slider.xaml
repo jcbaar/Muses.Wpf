@@ -111,19 +111,24 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Thumb">
-                    <Ellipse x:Name="Thumb" 
-                             Stroke="{DynamicResource BackgroundColorBrush}" 
-                             StrokeThickness="1" 
-                             Height="13" 
-                             Width="13" 
-                             Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Slider}}, Path=(support:SliderSupport.ThumbBrush)}"/>
-                    
+                    <Grid Width="14" Height="14">
+                        <Ellipse x:Name="Thumb" 
+                                 Stroke="{DynamicResource BackgroundColorBrush}" 
+                                 StrokeThickness="1" 
+                                 Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Slider}}, Path=(support:SliderSupport.ThumbBrush)}"/>
+                        <Ellipse x:Name="InnerThumb" 
+                                 Stroke="Transparent" 
+                                 StrokeThickness="6" 
+                                 Fill="{DynamicResource BackgroundColorBrush}"/>
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger  Property="IsMouseOver" Value="True">
                             <Setter TargetName="Thumb" Property="Fill" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Slider}}, Path=(support:SliderSupport.ThumbMouseOverBrush)}"/>
+                            <Setter TargetName="InnerThumb" Property="Fill" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Slider}}, Path=(support:SliderSupport.ThumbMouseOverBrush)}"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="Thumb" Property="Fill" Value="{DynamicResource InactiveColorLightBrush}"/>
+                            <Setter TargetName="InnerThumb" Property="Fill" Value="{DynamicResource BackgroundColorBrush}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -191,6 +196,7 @@
     <Style x:Key="FlatHorizontalSliderStyle" TargetType="Slider">
         <Setter Property="Focusable" Value="False"/>
         <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="true" />
         <Setter Property="Background" Value="{x:Null}" />
         <Setter Property="support:SliderSupport.ThumbBrush" Value="{DynamicResource AccentColorBrush}"/>
@@ -209,6 +215,7 @@
     <Style x:Key="FlatVerticalSliderStyle" TargetType="Slider">
         <Setter Property="Focusable" Value="False"/>
         <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="true" />
         <Setter Property="Background" Value="{x:Null}" />
         <Setter Property="support:SliderSupport.ThumbBrush" Value="{DynamicResource AccentColorBrush}"/>
