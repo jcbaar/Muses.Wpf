@@ -22,6 +22,8 @@ namespace Muses.TestControls
     /// </summary>
     public partial class MainWindow : BaseWindow
     {
+        Random _rnd = new Random();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -47,7 +49,15 @@ namespace Muses.TestControls
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            ThemeHelper.SetAccentColor(Colors.DarkOrange, true);
+            // Generate a random color...
+            var color = Color.FromArgb(255,
+                (byte)_rnd.Next(0, 255),
+                (byte)_rnd.Next(0, 255),
+                (byte)_rnd.Next(0, 255));
+
+            SysAccent.IsChecked = false;
+
+            ThemeHelper.SetAccentColor(color, true);
         }
 
         private void CloseableTabControl_ClosingTabItem(object sender, RoutedEventArgs e)
@@ -79,6 +89,12 @@ namespace Muses.TestControls
                     MessageBox.Show($"You have entered \"{tb.Text}\" as search term.", "Hi", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            var ch = sender as CheckBox;
+            if (ch != null) ThemeHelper.UseSystemAccentColor = ch.IsChecked.HasValue && ch.IsChecked.Value;
         }
     }
 }

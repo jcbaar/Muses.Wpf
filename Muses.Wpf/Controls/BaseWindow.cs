@@ -1,9 +1,11 @@
 ﻿using Muses.Wpf.Extensions;
+using Muses.Wpf.Themes;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
+using System.Windows.Interop;
 
 namespace Muses.Wpf.Controls
 {
@@ -17,7 +19,8 @@ namespace Muses.Wpf.Controls
         const string PART_TitlebarControls = "PART_TitlebarControls";
         Point _startPosition;
         bool _isResizing = false;
-        private ResizeGrip _grip;
+        ResizeGrip _grip;
+        HwndSource _source;
         #endregion
 
         public static readonly DependencyProperty TitlebarControlsProperty = DependencyProperty.Register("TitlebarControls", typeof(ItemsControl), typeof(BaseWindow), new PropertyMetadata(null));
@@ -90,6 +93,11 @@ namespace Muses.Wpf.Controls
                 _grip.PreviewMouseLeftButtonUp += _grip_PreviewMouseLeftButtonUp;
             }
 
+            if(_source != null)
+            {
+                _source.RemoveHook(WndProc);
+            }
+
             base.OnClosed(e);
         }
 
@@ -107,6 +115,14 @@ namespace Muses.Wpf.Controls
                 TitlebarControls = new ItemsControl();
             }
 
+            TitlebarControls.Focusable = false;
+
+            if (_source == null)
+            {
+                IntPtr hwnd = new WindowInteropHelper(this).EnsureHandle();
+                _source = HwndSource.FromHwnd(hwnd);
+                _source.AddHook(WndProc);
+            }
             // Find the window resize grip and hook up the necessary events.
             if (_grip == null)
             {
@@ -234,6 +250,30 @@ namespace Muses.Wpf.Controls
         private void OnRestoreWindow(object target, ExecutedRoutedEventArgs e)
         {
             SystemCommands.RestoreWindow(this);
+        }
+
+        private const int WM_DWMCOLORIZATIONCOLORCHANGED = 0x320;
+        private const int WM_DWMCOMPOSITIONCHANGED = 0x31A;
+        private const int WM_THEMECHANGED = 0x31E;
+
+        private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        {
+            switch (msg)
+            {
+                case WM_DWMCOLORIZATIONCOLORCHANGED:
+                case WM_DWMCOMPOSITIONCHANGED:
+                case WM_THEMECHANGED:
+                    // Re-evaluate the accent color if we are setup to use the
+                    // system accent color.
+                    if (ThemeHelper.UseSystemAccentColor)
+                    {
+                        ThemeHelper.SetSystemAccentColor();
+                    }
+                    return IntPtr.Zero;
+
+                default:
+                    return IntPtr.Zero;
+            }
         }
         #endregion
     }

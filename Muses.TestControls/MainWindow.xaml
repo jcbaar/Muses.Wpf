@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:muses="clr-namespace:Muses.Wpf.Controls;assembly=Muses.Wpf"
+        xmlns:theme="clr-namespace:Muses.Wpf.Themes;assembly=Muses.Wpf"
         xmlns:support="clr-namespace:Muses.Wpf.Controls.Support;assembly=Muses.Wpf"
         mc:Ignorable="d"
         Title="MainWindow with a longer title that should break" 
@@ -47,22 +48,28 @@
 
     </Window.Resources>
 
+
     <muses:BaseWindow.TitlebarControls>
         <ItemsControl>
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Focusable="False" Orientation="Horizontal">
                 <TextBox support:TextBoxSupport.Hint="Enter search term..." 
                          Width="150" Height="{Binding Source={x:Static SystemParameters.CaptionHeight}}"
                          Margin="0,1,4,1"
                          support:TextBoxSupport.SelectAllOnFocus="True"
                          KeyDown="TextBox_KeyDown"/>
-                <Button Style="{StaticResource WindowButtonStyle}" Height="28" Width="28">
+                <Button Style="{StaticResource MyWindowButton}" 
+                        Height="28" 
+                        Width="28" 
+                        ToolTip="Look at this... A custom button :)"
+                        Click="Button_Click_1">
                     <Button.Content>
                             <Ellipse Name="PART_Content"
                                      Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" 
-                                     StrokeThickness="3" 
-                                     Fill="Transparent"
+                                     StrokeThickness="2" 
+                                     Fill="{DynamicResource AccentColorBrush}"
                                  Width="14" Height="14"/>
                     </Button.Content>
+                    
                 </Button>
             </StackPanel>
         </ItemsControl>
@@ -94,6 +101,7 @@
 
                     <StackPanel Grid.Column="1" Orientation="Vertical" Margin="8,0,0,0" muses:Spacing.Vertical="4">
                         <CheckBox Style="{StaticResource FlatCheckBoxStyle}" Content="Title bar color" IsChecked="{Binding Path=FillTitleBar, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"></CheckBox>
+                        <CheckBox x:Name="SysAccent" Style="{StaticResource FlatCheckBoxStyle}" Content="System accent color" IsChecked="{Binding Source={x:Static theme:ThemeHelper.UseSystemAccentColor}, Mode=OneWay}" Checked="CheckBox_Checked" Unchecked="CheckBox_Checked"></CheckBox>
 
                         <Line Stroke="{DynamicResource AccentColorBrush}"
                               StrokeThickness="2"

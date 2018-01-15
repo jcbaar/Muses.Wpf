@@ -5,9 +5,39 @@ using System.Windows.Media;
 
 namespace Muses.Wpf.Themes
 {
+    /// <summary>
+    /// A static helper class for theme related functionality.
+    /// </summary>
     public static class ThemeHelper
     {
-        public static int _count = 0;
+        static object _lock = new object();
+        static int _count = 0;
+        static bool _sysAccent = false;
+
+        /// <summary>
+        /// Gets or sets if the theme uses the system defined accent color or not. When this is set to true
+        /// the color is set to <see cref="SystemParameters.WindowGlassColor"/>. Otherwise a selected accent 
+        /// color is used.
+        /// </summary>
+        public static bool UseSystemAccentColor
+        {
+            get
+            {
+                return _sysAccent;
+            }
+
+            set
+            {
+                lock(_lock)
+                {
+                    if(value != _sysAccent)
+                    {
+                        if (value) SetSystemAccentColor();
+                    }
+                    _sysAccent = value;
+                }
+            }
+        }
 
         /// <summary>
         /// Creates color with corrected brightness.
@@ -91,7 +121,8 @@ namespace Muses.Wpf.Themes
         }
 
         /// <summary>
-        /// Set the theme accent color. This will actually set the following colors.
+        /// Set the theme accent color and sets the <see cref="UseSystemAccentColor"/> property
+        /// to false. This will actually set the following colors.
         /// <list type="bullet">
         ///     <listheader> 
         ///         <term>Color name</term>
@@ -124,6 +155,31 @@ namespace Muses.Wpf.Themes
         /// <param name="accentHoverColor">True to also set the ControlHoverColor. False to skip setting
         /// this color (default).</param>
         public static void SetAccentColor(Color color, bool accentHoverColor = true)
+        {
+            UseSystemAccentColor = false;
+            SetAccentColorHelper(color, true);
+        }
+
+        /// <summary>
+        /// Changes the current theme accent color to <see cref="SystemParameters.WindowGlassColor"/> and
+        /// sets the <see cref="UseSystemAccentColor"/> property to true.
+        /// </summary>
+        internal static void SetSystemAccentColor()
+        {
+            lock(_lock)
+            {
+                SetAccentColorHelper(SystemParameters.WindowGlassColor);
+                _sysAccent = true;
+            }
+        }
+
+        /// <summary>
+        /// Set the theme accent color.
+        /// </summary>  
+        /// <param name="color">The color to set as accent color.</param>
+        /// <param name="accentHoverColor">True to also set the ControlHoverColor. False to skip setting
+        /// this color (default).</param>
+        internal static void SetAccentColorHelper(Color color, bool accentHoverColor = true)
         {
             BeginColorUpdate();
             UpdateColor("AccentColor", color);
