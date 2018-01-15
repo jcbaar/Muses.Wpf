@@ -36,7 +36,7 @@
 
                         <ScrollViewer x:Name="PART_ContentHost"
                                  Grid.Column="0"
-                                 Margin="1"
+                                 Margin="0"
                                  Foreground="{TemplateBinding Foreground}"
                                  Background="Transparent"
                                  BorderBrush="Transparent"

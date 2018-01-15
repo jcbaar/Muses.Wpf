@@ -64,12 +64,16 @@
                                 <AdornerDecorator>
                                     <Grid x:Name="LayoutRoot">
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="28" />
+                                            <RowDefinition MinHeight="28" 
+                                                           Height="{Binding Source={x:Static SystemParameters.WindowCaptionHeight}}" />
                                             <RowDefinition Height="*" />
-                                            <RowDefinition Height="20" />
+                                            <RowDefinition MinHeight="20"
+                                                           Height="20"/>
                                         </Grid.RowDefinitions>
                                         <ContentPresenter Grid.Row="1" Grid.RowSpan="2" Margin="0"/>
-                                        <Rectangle x:Name="HeaderBackground" Height="28" 
+                                        <Rectangle x:Name="HeaderBackground" 
+                                                   MinHeight="28" 
+                                                   Height="{Binding Source={x:Static SystemParameters.WindowCaptionHeight}}"
                                                    Fill="{DynamicResource BackgroundColorBrush}" 
                                                    VerticalAlignment="Top" 
                                                    Grid.Row="0">
@@ -82,48 +86,110 @@
                                             </Grid.ColumnDefinitions>
                                             
                                             <StackPanel Grid.Row="0" Grid.Column="1"  Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" WindowChrome.IsHitTestVisibleInChrome="True">
-                                                <Button 
-                                                    x:Name="Minimize" Command="{Binding Source={x:Static SystemCommands.MinimizeWindowCommand}}" 
+                                                <!-- User controls. -->
+                                                <ContentPresenter x:Name="PART_TitlebarControls" 
+                                                              VerticalAlignment="Top"
+                                                              Content="{Binding TitlebarControls, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                                              Focusable="False"/>
+                                                
+                                                <!-- The minimize button. -->
+                                                <Button x:Name="Minimize"
+                                                        Command="{Binding Source={x:Static SystemCommands.MinimizeWindowCommand}}" 
                                                         ToolTip="{x:Static p:Resources.Tip_Minimize}" 
-                                                        Style="{StaticResource WindowButtonStyle}">
+                                                        Style="{StaticResource WindowButtonStyle}"
+                                                        Focusable="False">
                                                     <Button.Content>
-                                                        <Border Width="30" Height="25">
-                                                            <Path Data="M0,6 L8,6 Z" Width="8" Height="7" VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                            Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" StrokeThickness="2"  />
+                                                        <Border Width="30" 
+                                                                Height="25">
+                                                            <Path Data="M0,6 L8,6 Z" 
+                                                                  Width="8" 
+                                                                  Height="7" 
+                                                                  VerticalAlignment="Center" 
+                                                                  HorizontalAlignment="Center"
+                                                                  RenderOptions.EdgeMode="Aliased"
+                                                                  Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" 
+                                                                  StrokeThickness="4"  />
                                                         </Border>
                                                     </Button.Content>
                                                 </Button>
                                                 <Grid>
-                                                    <Button x:Name="Restore" Command="{Binding Source={x:Static SystemCommands.RestoreWindowCommand}}" 
-                                                            ToolTip="{x:Static p:Resources.Tip_Restore}" Visibility="Collapsed" Style="{StaticResource WindowButtonStyle}">
+                                                    <!-- The restore button. -->
+                                                    <Button x:Name="Restore" 
+                                                            Command="{Binding Source={x:Static SystemCommands.RestoreWindowCommand}}" 
+                                                            ToolTip="{x:Static p:Resources.Tip_Restore}" 
+                                                            Visibility="Collapsed" 
+                                                            Style="{StaticResource WindowButtonStyle}"
+                                                            Focusable="False">
                                                         <Button.Content>
-                                                            <Grid Width="30" Height="25">
-                                                                <Path Data="M2,0 L8,0 L8,6 M0,3 L6,3 M0,2 L6,2 L6,8 L0,8 Z" Width="10" Height="9" VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                                Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" StrokeThickness="1"  />
-                                                            </Grid>
+                                                            <Border Width="30" 
+                                                                    Height="25">
+                                                                <Path Data="M2,0 L8,0 L8,6 M0,3 L6,3 M0,2 L6,2 L6,8 L0,8 Z" 
+                                                                      Width="10" 
+                                                                      Height="10" 
+                                                                      VerticalAlignment="Center" 
+                                                                      HorizontalAlignment="Center"
+                                                                      UseLayoutRounding="True"
+                                                                      RenderOptions.EdgeMode="Aliased"
+                                                                      Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" 
+                                                                      StrokeThickness="1"  />
+                                                            </Border>
                                                         </Button.Content>
                                                     </Button>
-                                                    <Button x:Name="Maximize" Command="{Binding Source={x:Static SystemCommands.MaximizeWindowCommand}}" 
-                                                            ToolTip="{x:Static p:Resources.Tip_Maximize}" Style="{StaticResource WindowButtonStyle}">
+                                                    
+                                                    <!-- The maximize button. -->
+                                                    <Button x:Name="Maximize" 
+                                                            Command="{Binding Source={x:Static SystemCommands.MaximizeWindowCommand}}" 
+                                                            ToolTip="{x:Static p:Resources.Tip_Maximize}" 
+                                                            Style="{StaticResource WindowButtonStyle}"
+                                                            Focusable="False">
                                                         <Button.Content>
-                                                            <Grid Width="31" Height="25">
-                                                                <Path Data="M0,1 L9,1 L9,8 L0,8 Z" Width="9" Height="8" VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                                Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" StrokeThickness="2"  />
-                                                            </Grid>
+                                                            <Border Width="30" 
+                                                                    Height="25">
+                                                                <Path Data="M0,1 L9,1 L9,2 L0,2 M9,2 L9,8 L0,8 L0,1 Z" 
+                                                                      Width="9" 
+                                                                      Height="11" 
+                                                                      UseLayoutRounding="True"
+                                                                      RenderOptions.EdgeMode="Aliased"
+                                                                      VerticalAlignment="Center" 
+                                                                      HorizontalAlignment="Center"
+                                                                      Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" 
+                                                                      StrokeThickness="1.1"  />
+                                                            </Border>
                                                         </Button.Content>
                                                     </Button>
                                                 </Grid>
-                                                <Button x:Name="Close" Command="{Binding Source={x:Static SystemCommands.CloseWindowCommand}}" 
-                                                        ToolTip="{x:Static p:Resources.Tip_Close}"  Style="{StaticResource WindowButtonStyle}">
+                                                <!-- The close button. -->
+                                                <Button x:Name="Close" 
+                                                        Command="{Binding Source={x:Static SystemCommands.CloseWindowCommand}}" 
+                                                        ToolTip="{x:Static p:Resources.Tip_Close}"  
+                                                        Style="{StaticResource WindowButtonStyle}"
+                                                        Focusable="False">
                                                     <Button.Content>
-                                                        <Border Width="30" Height="25" >
-                                                            <Path Data="M0,0 L8,8 M8,0 L0,8 Z" Width="8" Height="8" VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                            Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" StrokeThickness="1.5"  />
+                                                        <Border Width="30" 
+                                                                Height="25" >
+                                                            <Path Data="M0,0 L8,8 M8,0 L0,8 Z" 
+                                                                  Width="8" 
+                                                                  Height="8" 
+                                                                  VerticalAlignment="Center" 
+                                                                  HorizontalAlignment="Center"
+                                                                  Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" 
+                                                                  StrokeThickness="2"  />
                                                         </Border>
                                                     </Button.Content>
                                                 </Button>
                                             </StackPanel>
-                                            <TextBlock x:Name="WindowTitleTextBlock" Grid.Row="0" Grid.Column="0" Text="{TemplateBinding Title}" HorizontalAlignment="Left" TextTrimming="CharacterEllipsis" VerticalAlignment="Center"  Margin="8 -1 0 0"  FontSize="12"  Foreground="{TemplateBinding Foreground}"/>
+                                            
+                                            <!-- The window caption. -->
+                                            <TextBlock x:Name="WindowTitleTextBlock" 
+                                                       Grid.Row="0" 
+                                                       Grid.Column="0" 
+                                                       Text="{TemplateBinding Title}" 
+                                                       HorizontalAlignment="Left" 
+                                                       TextTrimming="CharacterEllipsis" 
+                                                       VerticalAlignment="Center"  
+                                                       Margin="8 -1 0 0"  
+                                                       FontSize="{Binding Source={x:Static SystemFonts.CaptionFontSize}}"  
+                                                       Foreground="{TemplateBinding Foreground}"/>
                                         </Grid>
 
                                         <Grid Grid.Row="2">

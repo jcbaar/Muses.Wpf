@@ -1,6 +1,7 @@
 ﻿using Muses.Wpf.Extensions;
 using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 
@@ -9,13 +10,28 @@ namespace Muses.Wpf.Controls
     /// <summary>
     /// Base class for themed windows.
     /// </summary>
+    [TemplatePart(Name = PART_TitlebarControls, Type = typeof(ContentPresenter))]
     public class BaseWindow : Window
     {
         #region Private fields
+        const string PART_TitlebarControls = "PART_TitlebarControls";
         Point _startPosition;
         bool _isResizing = false;
         private ResizeGrip _grip;
         #endregion
+
+        public static readonly DependencyProperty TitlebarControlsProperty = DependencyProperty.Register("TitlebarControls", typeof(ItemsControl), typeof(BaseWindow), new PropertyMetadata(null));
+
+        internal ContentPresenter TitlebarControlsPresenter { get; set; }
+
+        /// <summary>
+        /// Gets/sets the <see cref="ContentPresenter"/> that hosts the title bar controls.
+        /// </summary>
+        public ItemsControl TitlebarControls
+        {
+            get { return (ItemsControl)GetValue(TitlebarControlsProperty); }
+            set { SetValue(TitlebarControlsProperty, value); }
+        }
 
         #region Static constructor.
         /// <summary>
@@ -83,6 +99,13 @@ namespace Muses.Wpf.Controls
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
+
+            TitlebarControlsPresenter = GetTemplateChild(PART_TitlebarControls) as ContentPresenter;
+
+            if(TitlebarControls == null)
+            {
+                TitlebarControls = new ItemsControl();
+            }
 
             // Find the window resize grip and hook up the necessary events.
             if (_grip == null)

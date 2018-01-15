@@ -68,5 +68,17 @@ namespace Muses.TestControls
                 }
             }
         }
+
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                var tb = sender as TextBox;
+                if (tb != null && tb.Text.Trim().Length > 0)
+                {
+                    MessageBox.Show($"You have entered \"{tb.Text}\" as search term.", "Hi", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+        }
     }
 }
