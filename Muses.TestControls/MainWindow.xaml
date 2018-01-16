@@ -48,7 +48,6 @@
 
     </Window.Resources>
 
-
     <muses:BaseWindow.TitlebarControls>
         <ItemsControl>
             <StackPanel Focusable="False" Orientation="Horizontal">
@@ -74,13 +73,43 @@
             </StackPanel>
         </ItemsControl>
     </muses:BaseWindow.TitlebarControls>
-    
+
     <Grid FocusManager.FocusedElement="{Binding ElementName=FocusButton}">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <!--<RowDefinition Height="26"/>-->
         </Grid.RowDefinitions>
-        <muses:CloseableTabControl Grid.Row="0" Margin="10" Grid.ColumnSpan="2" ClosingTabItem="CloseableTabControl_ClosingTabItem">
+
+        <DockPanel Grid.Row="0">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Header="_New" />
+                    <MenuItem Header="_Open" />
+                    <MenuItem Header="_Save" />
+                    <MenuItem Header="Test">
+                        <MenuItem Header="Checkable unchecked" IsCheckable="True" IsChecked="False"/>
+                        <MenuItem Header="Checkable checked" IsCheckable="True" IsChecked="True"/>
+                        <MenuItem Header="With icon">
+                            <MenuItem.Icon>
+                                <Image Source="/Muses.TestControls;component/Assets/floppy.png" 
+                                       Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </MenuItem>
+                    <Separator />
+                    <MenuItem Header="_Exit" />
+                </MenuItem>
+
+                <MenuItem Header="A menu item which has a longer title than the popup will be">
+                    <MenuItem Header="Nice and short" />
+                </MenuItem>
+
+                <MenuItem Header="No sub-items"/>
+
+            </Menu>
+        </DockPanel>
+        
+        <muses:CloseableTabControl Grid.Row="1" Margin="10" Grid.ColumnSpan="2" ClosingTabItem="CloseableTabControl_ClosingTabItem">
             <muses:CloseableTabItem Header="Buttons" IsCloseable="False">
                 <Grid Margin="0,10,0,0">
                     <Grid.ColumnDefinitions>

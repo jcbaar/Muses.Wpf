@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Menu_Copy" xml:space="preserve">
+    <value>Kopiëren</value>
+  </data>
+  <data name="Menu_Cut" xml:space="preserve">
+    <value>Knippen</value>
+  </data>
+  <data name="Menu_Paste" xml:space="preserve">
+    <value>Plakken</value>
+  </data>
   <data name="Tip_Close" xml:space="preserve">
     <value>Sluiten</value>
   </data>

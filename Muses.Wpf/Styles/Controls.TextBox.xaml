@@ -1,10 +1,12 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:support="clr-namespace:Muses.Wpf.Controls.Support">
+                    xmlns:support="clr-namespace:Muses.Wpf.Controls.Support"
+                    xmlns:p="clr-namespace:Muses.Wpf.Properties">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Resources/Shared.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.ScrollViewer.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.Menu.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Name="FlatTextBoxStyle" TargetType="{x:Type TextBox}">
@@ -17,6 +19,15 @@
         <Setter Property="SelectionBrush" Value="{DynamicResource AccentColorBrush}" />
         <Setter Property="support:TextBoxSupport.Hint" Value="" />
         <Setter Property="support:TextBoxSupport.SelectAllOnFocus" Value="False" />
+        <Setter Property="ContextMenu">
+            <Setter.Value>
+                <ContextMenu>
+                    <MenuItem Header="{x:Static p:Resources.Menu_Cut}" Command="Cut"/>
+                    <MenuItem Header="{x:Static p:Resources.Menu_Copy}" Command="Copy"/>
+                    <MenuItem Header="{x:Static p:Resources.Menu_Paste}" Command="Paste"/>
+                </ContextMenu>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
@@ -81,6 +92,13 @@
         <Setter Property="SelectionBrush" Value="{DynamicResource AccentColorBrush}" />
         <Setter Property="support:TextBoxSupport.Hint" Value="" />
         <Setter Property="support:TextBoxSupport.SelectAllOnFocus" Value="True" />
+        <Setter Property="ContextMenu">
+            <Setter.Value>
+                <ContextMenu>
+                    <MenuItem Header="{x:Static p:Resources.Menu_Paste}" Command="Paste"/>
+                </ContextMenu>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type PasswordBox}">

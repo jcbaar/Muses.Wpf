@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    <Color x:Key="Background2Color">#FFEEEEF2</Color>
     <Color x:Key="BackgroundColor">#FFEEEEF2</Color>
     <Color x:Key="ForegroundColor">#FF000000</Color>
     <Color x:Key="ForegroundPressedColor">#FFFFFFFF</Color>
@@ -38,6 +39,7 @@
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.Label.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.ComboBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.Slider.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.Menu.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>
