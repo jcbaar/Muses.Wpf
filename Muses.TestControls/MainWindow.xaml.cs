@@ -96,5 +96,10 @@ namespace Muses.TestControls
             var ch = sender as CheckBox;
             if (ch != null) ThemeHelper.UseSystemAccentColor = ch.IsChecked.HasValue && ch.IsChecked.Value;
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

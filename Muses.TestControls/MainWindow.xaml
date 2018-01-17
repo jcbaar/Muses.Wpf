@@ -51,25 +51,24 @@
     <muses:BaseWindow.TitlebarControls>
         <ItemsControl>
             <StackPanel Focusable="False" Orientation="Horizontal">
-                <TextBox support:TextBoxSupport.Hint="Enter search term..." 
-                         Width="150" Height="{Binding Source={x:Static SystemParameters.CaptionHeight}}"
-                         Margin="0,1,4,1"
-                         support:TextBoxSupport.SelectAllOnFocus="True"
-                         KeyDown="TextBox_KeyDown"/>
                 <Button Style="{StaticResource MyWindowButton}" 
                         Height="28" 
                         Width="28" 
-                        ToolTip="Look at this... A custom button :)"
+                        ToolTip="Look at this... A custom button :) Click me to change the accent."
                         Click="Button_Click_1">
                     <Button.Content>
-                            <Ellipse Name="PART_Content"
-                                     Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" 
-                                     StrokeThickness="2" 
-                                     Fill="{DynamicResource AccentColorBrush}"
-                                 Width="14" Height="14"/>
+                        <Path Data="M0,0 L13,0 L5,7 L8,13 L7,13 L0,0 z"
+                              SnapsToDevicePixels="True"
+                              Stroke="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"
+                              StrokeThickness="1"/>
                     </Button.Content>
-                    
+
                 </Button>
+                <TextBox support:TextBoxSupport.Hint="Enter search term..." 
+                         Width="150" Height="{Binding Source={x:Static SystemParameters.CaptionHeight}}"
+                         Margin="4,1,4,1"
+                         support:TextBoxSupport.SelectAllOnFocus="True"
+                         KeyDown="TextBox_KeyDown"/>
             </StackPanel>
         </ItemsControl>
     </muses:BaseWindow.TitlebarControls>
@@ -95,9 +94,21 @@
                                        Width="16" Height="16"/>
                             </MenuItem.Icon>
                         </MenuItem>
+                        <MenuItem Header="With icon checkable unchecked" IsCheckable="True">
+                            <MenuItem.Icon>
+                                <Image Source="/Muses.TestControls;component/Assets/floppy.png" 
+                                       Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="With icon checkable checked" IsCheckable="True" IsChecked="True">
+                            <MenuItem.Icon>
+                                <Image Source="/Muses.TestControls;component/Assets/floppy.png" 
+                                       Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
                     </MenuItem>
                     <Separator />
-                    <MenuItem Header="_Exit" />
+                    <MenuItem Header="_Exit" Click="MenuItem_Click"/>
                 </MenuItem>
 
                 <MenuItem Header="A menu item which has a longer title than the popup will be">
