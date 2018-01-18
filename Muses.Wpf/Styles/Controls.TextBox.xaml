@@ -9,7 +9,7 @@
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.Menu.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style x:Name="FlatTextBoxStyle" TargetType="{x:Type TextBox}">
+    <Style x:Key="{x:Type TextBox}" TargetType="{x:Type TextBox}">
         <Setter Property="BorderBrush" Value="{DynamicResource BorderColorBrush}" />
         <Setter Property="Background" Value="{DynamicResource ControlFocusColorBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource ForegroundColorBrush}" />
@@ -47,7 +47,7 @@
 
                         <ScrollViewer x:Name="PART_ContentHost"
                                  Grid.Column="0"
-                                 Margin="0"
+                                 Margin="1"
                                  Foreground="{TemplateBinding Foreground}"
                                  Background="Transparent"
                                  BorderBrush="Transparent"
@@ -82,7 +82,7 @@
         </Setter>
     </Style>
 
-    <Style x:Name="FlatPasswordBoxStyle" TargetType="{x:Type PasswordBox}">
+    <Style x:Key="{x:Type PasswordBox}" TargetType="{x:Type PasswordBox}">
         <Setter Property="BorderBrush" Value="{DynamicResource BorderColorBrush}" />
         <Setter Property="Background" Value="{DynamicResource ControlFocusColorBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource ForegroundColorBrush}" />

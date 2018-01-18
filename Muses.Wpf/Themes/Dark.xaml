@@ -28,6 +28,7 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Resources/Brushes.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Resources/Assets.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/BaseWindow.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.GroupBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.ScrollBar.xaml" />
@@ -39,6 +40,7 @@
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.ComboBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.Slider.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.Menu.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.Toolbar.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

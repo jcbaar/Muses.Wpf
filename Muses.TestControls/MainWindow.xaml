@@ -14,6 +14,7 @@
                   Style="{StaticResource BaseWindowStyle}">
 
     <Window.Resources>
+        
         <VisualBrush x:Key="SliderBackH">
             <VisualBrush.Visual>
                 <Grid>
@@ -57,16 +58,16 @@
                         ToolTip="Look at this... A custom button :) Click me to change the accent."
                         Click="Button_Click_1">
                     <Button.Content>
-                        <Path Data="M0,0 L13,0 L5,7 L8,13 L7,13 L0,0 z"
+                        <Path Data="{StaticResource Muses.Wpf.Assets.FlagIcon}"
                               SnapsToDevicePixels="True"
                               Stroke="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"
                               StrokeThickness="1"/>
                     </Button.Content>
-
                 </Button>
                 <TextBox support:TextBoxSupport.Hint="Enter search term..." 
                          Width="150" Height="{Binding Source={x:Static SystemParameters.CaptionHeight}}"
                          Margin="4,1,4,1"
+                         FontSize="{x:Static SystemFonts.CaptionFontSize}"
                          support:TextBoxSupport.SelectAllOnFocus="True"
                          KeyDown="TextBox_KeyDown"/>
             </StackPanel>
@@ -118,6 +119,32 @@
                 <MenuItem Header="No sub-items"/>
 
             </Menu>
+
+            <ToolBarTray>
+                <ToolBar Band="1" BandIndex="1">
+                    <Button>
+                            <Grid Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Path Stretch="Uniform" Data="M15,9H5V5H15M12,19A3,3 0 0,1 9,16A3,3 0 0,1 12,13A3,3 0 0,1 15,16A3,3 0 0,1 12,19M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3Z" 
+                                    Stroke="{Binding RelativeSource={RelativeSource AncestorType={x:Type Button}}, Path=Foreground}" 
+                                      Fill="{Binding RelativeSource={RelativeSource AncestorType={x:Type Button}}, Path=Foreground}"
+                                      Width="12"
+                                      Height="12"/>
+                            </Grid>
+                    </Button>
+                    <TextBox Width="150"
+                             support:TextBoxSupport.Hint="A textbox in a toolbar..."/>
+                    <ToggleButton Content="Toggle button"/>
+                    <Separator/>
+                    <ComboBox MinWidth="150">
+                        <ComboBoxItem Content="Item 1"/>
+                        <ComboBoxItem Content="Item 2"/>
+                        <ComboBoxItem Content="Item 3"/>
+                    </ComboBox>
+                    <CheckBox ToolBar.OverflowMode="Always" Content="A checkbox" Margin="4,2"/>
+                    <RadioButton ToolBar.OverflowMode="Always" Content="A radio button" Margin="4,2"/>
+                    <Button ToolBar.OverflowMode="Always" Content="A button in the overflow..." Margin="4,2"/>
+                </ToolBar>
+            </ToolBarTray>
         </DockPanel>
         
         <muses:CloseableTabControl Grid.Row="1" Margin="10" Grid.ColumnSpan="2" ClosingTabItem="CloseableTabControl_ClosingTabItem">
@@ -133,34 +160,35 @@
                                 Grid.Row="0"
                                 Grid.Column="0"
                                 muses:Spacing.Vertical="8">
-                        <Button x:Name="FocusButton" Style="{StaticResource FlatButtonStyle}" Height="26" Click="Button_Click" Content="Focused"/>
-                        <Button Style="{StaticResource FlatButtonStyle}" Height="26" Content="Unfocused" Click="Button_Click_1"/>
-                        <Button Style="{StaticResource FlatButtonStyle}" Height="26" Content="Default" IsDefault="True"/>
-                        <Button Style="{StaticResource FlatButtonStyle}" Height="26" Content="Disabled" IsEnabled="False"/>
+                        <Button x:Name="FocusButton" Height="26" Click="Button_Click" Content="Focused"/>
+                        <Button Height="26" Content="Unfocused" Click="Button_Click_1"/>
+                        <Button Height="26" Content="Default" IsDefault="True"/>
+                        <ToggleButton Height="26" Content="Toggle"/>
+                        <Button Height="26" Content="Disabled" IsEnabled="False"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" Orientation="Vertical" Margin="8,0,0,0" muses:Spacing.Vertical="4">
-                        <CheckBox Style="{StaticResource FlatCheckBoxStyle}" Content="Title bar color" IsChecked="{Binding Path=FillTitleBar, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"></CheckBox>
-                        <CheckBox x:Name="SysAccent" Style="{StaticResource FlatCheckBoxStyle}" Content="System accent color" IsChecked="{Binding Source={x:Static theme:ThemeHelper.UseSystemAccentColor}, Mode=OneWay}" Checked="CheckBox_Checked" Unchecked="CheckBox_Checked"></CheckBox>
+                        <CheckBox Content="Title bar color" IsChecked="{Binding Path=FillTitleBar, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"></CheckBox>
+                        <CheckBox x:Name="SysAccent" Content="System accent color" IsChecked="{Binding Source={x:Static theme:ThemeHelper.UseSystemAccentColor}, Mode=OneWay}" Checked="CheckBox_Checked" Unchecked="CheckBox_Checked"></CheckBox>
 
                         <Line Stroke="{DynamicResource AccentColorBrush}"
                               StrokeThickness="2"
                               X1="0" Y1="0" X2="200" Y2="0"/>
 
-                        <CheckBox Style="{StaticResource FlatCheckBoxStyle}" Content="Unchecked" IsChecked="False"></CheckBox>
-                        <CheckBox Style="{StaticResource FlatCheckBoxStyle}" Content="Checked" IsChecked="True"></CheckBox>
-                        <CheckBox Style="{StaticResource FlatCheckBoxStyle}" Content="Indeterminate" IsThreeState="True" IsChecked="{x:Null}"></CheckBox>
+                        <CheckBox Content="Unchecked" IsChecked="False"></CheckBox>
+                        <CheckBox Content="Checked" IsChecked="True"></CheckBox>
+                        <CheckBox Content="Indeterminate" IsThreeState="True" IsChecked="{x:Null}"></CheckBox>
 
-                        <CheckBox Style="{StaticResource FlatCheckBoxStyle}" Content="Disabled" IsEnabled="False" IsChecked="False"></CheckBox>
-                        <CheckBox Style="{StaticResource FlatCheckBoxStyle}" Content="Disabled checked" IsEnabled="False" IsChecked="True"></CheckBox>
-                        <CheckBox Style="{StaticResource FlatCheckBoxStyle}" Content="Disabled indeterminate" IsThreeState="True" IsEnabled="False" IsChecked="{x:Null}"></CheckBox>
+                        <CheckBox Content="Disabled" IsEnabled="False" IsChecked="False"></CheckBox>
+                        <CheckBox Content="Disabled checked" IsEnabled="False" IsChecked="True"></CheckBox>
+                        <CheckBox Content="Disabled indeterminate" IsThreeState="True" IsEnabled="False" IsChecked="{x:Null}"></CheckBox>
                     </StackPanel>
                     <StackPanel Grid.Column="2" Orientation="Vertical" Margin="8,0,0,0" muses:Spacing.Vertical="4">
-                        <RadioButton Style="{StaticResource FlatRadioButtonStyle}" Content="Enabled" IsChecked="True" GroupName="A"/>
-                        <RadioButton Style="{StaticResource FlatRadioButtonStyle}" Content="Enabled" GroupName="A"/>
+                        <RadioButton Content="Enabled" IsChecked="True" GroupName="A"/>
+                        <RadioButton Content="Enabled" GroupName="A"/>
 
-                        <RadioButton Style="{StaticResource FlatRadioButtonStyle}" Content="Disabled" IsEnabled="False" IsChecked="True" GroupName="B"/>
-                        <RadioButton Style="{StaticResource FlatRadioButtonStyle}" Content="Disabled" IsEnabled="False" GroupName="B"/>
+                        <RadioButton Content="Disabled" IsEnabled="False" IsChecked="True" GroupName="B"/>
+                        <RadioButton Content="Disabled" IsEnabled="False" GroupName="B"/>
                     </StackPanel>
                 </Grid>
             </muses:CloseableTabItem>

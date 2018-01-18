@@ -3,6 +3,10 @@
                     xmlns:support="clr-namespace:Muses.Wpf.Controls.Support"
                     xmlns:p="clr-namespace:Muses.Wpf.Properties">
 
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Resources/Assets.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
     <!-- 
     The drop-down toggle button style.
     -->
@@ -33,7 +37,7 @@
                               Fill="{DynamicResource ForegroundColorBrush}"
                               HorizontalAlignment="Center"
                               VerticalAlignment="Center"
-                              Data="M1,3 L4,7 L7,3 L1,3 z" />
+                              Data="{StaticResource Muses.Wpf.Assets.ComboDownArrow}" />
                     </Grid>
                     <!--
                     TODO: There is a _lot_ of repetition here. There must be a way to simplify
@@ -116,7 +120,7 @@
     <!--
     The combo box style.
     -->
-    <Style x:Name="FlatComboBox" TargetType="{x:Type ComboBox}">
+    <Style x:Key="{x:Type ComboBox}" TargetType="{x:Type ComboBox}">
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
@@ -210,7 +214,7 @@
     </Style>
 
     <!-- Item style for FlatComboBox items. -->
-    <Style x:Name="FlatComboBoxItem" TargetType="{x:Type ComboBoxItem}">
+    <Style x:Key="{x:Type ComboBoxItem}" TargetType="{x:Type ComboBoxItem}">
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="Foreground" Value="{DynamicResource ForegroundColorBrush}"/>
         <Setter Property="OverridesDefaultStyle" Value="True"/>

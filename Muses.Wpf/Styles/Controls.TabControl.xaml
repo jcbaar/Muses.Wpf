@@ -5,6 +5,10 @@
                     xmlns:actions="clr-namespace:Muses.Wpf.Actions"
                     xmlns:controls="clr-namespace:Muses.Wpf.Controls">
 
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Resources/Assets.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
     <Style x:Key="TabButtonStyle" TargetType="{x:Type Button}">
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Template">
@@ -69,12 +73,12 @@
                                     SnapsToDevicePixels="True" 
                                     Width="8" 
                                     Height="8" 
-                                    Margin="4" 
+                                    Margin="4"
                                     HorizontalAlignment="Right" 
                                     VerticalAlignment="Center" 
-                                    Stretch="Fill" 
-                                    Fill="{DynamicResource AccentForegroundColorBrush}" 
-                                    Data="F1 M 26.9166,22.1667L 37.9999,33.25L 49.0832,22.1668L 53.8332,26.9168L 42.7499,38L 53.8332,49.0834L 49.0833,53.8334L 37.9999,42.75L 26.9166,53.8334L 22.1666,49.0833L 33.25,38L 22.1667,26.9167L 26.9166,22.1667 Z " />
+                                    Stroke="{DynamicResource AccentForegroundColorBrush}"
+                                    StrokeThickness="2"
+                                    Data="{StaticResource Muses.Wpf.Assets.CloseButton}" />
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Click">
                                         <actions:CloseTabAction CloseableTabControl="{Binding RelativeSource={RelativeSource AncestorType=controls:CloseableTabControl}}" CloseableTabItem="{Binding RelativeSource={RelativeSource AncestorType=controls:CloseableTabItem}}" />

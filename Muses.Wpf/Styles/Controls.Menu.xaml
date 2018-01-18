@@ -4,6 +4,7 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Resources/Shared.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Resources/Assets.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.ScrollBar.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
@@ -200,7 +201,7 @@
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Center"
                                     Fill="{TemplateBinding Foreground}" 
-                                    Data="M0,2 L0,4.8 L2.5,7.4 L7.1,2.8 L7.1,0 L2.5,4.6 z" 
+                                    Data="{StaticResource Muses.Wpf.Assets.CheckMark}" 
                                     FlowDirection="LeftToRight"/>
                         </Grid>
 
@@ -228,7 +229,7 @@
                                     HorizontalAlignment="Right" 
                                     VerticalAlignment="Center" 
                                     Fill="{TemplateBinding Foreground}" 
-                                    Data="M0,0 L0,8 L4,4 z"/>
+                                    Data="{StaticResource Muses.Wpf.Assets.SubMenuArrow}"/>
                         </Grid>
 
                         <Popup IsOpen="{Binding Path=IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}" 

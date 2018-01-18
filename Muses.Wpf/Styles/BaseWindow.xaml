@@ -7,6 +7,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.Buttons.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Resources/Shared.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Resources/Assets.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <!--
@@ -31,15 +32,18 @@
                               Height="12" 
                               Margin="1" 
                               HorizontalAlignment="Right"
-                              Stroke="{DynamicResource AccentColorBrush}" 
+                              Stroke="{DynamicResource InactiveColorBrush}" 
                               StrokeThickness="1" 
                               Stretch="None" 
-                              Data="F1 M1,10 L3,10 M5,10 L7,10 M9,10 L11,10 M2,9 L2,11 M6,9 L6,11 M10,9 L10,11 M5,6 L7,6 M9,6 L11,6 M6,5 L6,7 M10,5 L10,7 M9,2 L11,2 M10,1 L10,3" />
+                              Data="{StaticResource Muses.Wpf.Assets.ResizeGrip}" />
                     </Border>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="False">
                             <Setter TargetName="ResizeGrip" Property="Stroke" Value="{DynamicResource InactiveColorBrush}"  />
                         </DataTrigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ResizeGrip" Property="Stroke" Value="{DynamicResource AccentColorBrush}" />
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -101,7 +105,7 @@
                                                     <Button.Content>
                                                         <Border Width="30" 
                                                                 Height="25">
-                                                            <Path Data="M0,6 L8,6 Z" 
+                                                            <Path Data="{StaticResource Muses.Wpf.Assets.MinimizeButton}" 
                                                                   Width="8" 
                                                                   Height="7" 
                                                                   VerticalAlignment="Center" 
@@ -123,7 +127,7 @@
                                                         <Button.Content>
                                                             <Border Width="30" 
                                                                     Height="25">
-                                                                <Path Data="M2,0 L8,0 L8,6 M0,3 L6,3 M0,2 L6,2 L6,8 L0,8 Z" 
+                                                                <Path Data="{StaticResource Muses.Wpf.Assets.RestoreButton}" 
                                                                       Width="10" 
                                                                       Height="10" 
                                                                       VerticalAlignment="Center" 
@@ -145,7 +149,7 @@
                                                         <Button.Content>
                                                             <Border Width="30" 
                                                                     Height="25">
-                                                                <Path Data="M0,1 L9,1 L9,2 L0,2 M9,2 L9,8 L0,8 L0,1 Z" 
+                                                                <Path Data="{StaticResource Muses.Wpf.Assets.MaximizeButton}" 
                                                                       Width="9" 
                                                                       Height="11" 
                                                                       UseLayoutRounding="True"
@@ -167,7 +171,7 @@
                                                     <Button.Content>
                                                         <Border Width="30" 
                                                                 Height="25" >
-                                                            <Path Data="M0,0 L8,8 M8,0 L0,8 Z" 
+                                                            <Path Data="{StaticResource Muses.Wpf.Assets.CloseButton}" 
                                                                   Width="8" 
                                                                   Height="8" 
                                                                   VerticalAlignment="Center" 
