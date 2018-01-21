@@ -194,7 +194,7 @@
                                        Placement="Bottom"
                                        StaysOpen="false"
                                        Focusable="false"
-                                       PopupAnimation="Slide"
+                                       PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}"
                                        IsOpen="{Binding IsOverflowOpen, RelativeSource={RelativeSource TemplatedParent}}">
                                     <Grid Margin="0,0,8,8">
                                         <Border x:Name="DropDownBorder"

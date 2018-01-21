@@ -164,7 +164,7 @@
                                IsOpen="{TemplateBinding IsDropDownOpen}"
                                SnapsToDevicePixels="True"
                                Focusable="False"
-                               PopupAnimation="Slide">
+                               PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}">
 
                             <Grid Name="DropDown"
                                   MinWidth="{TemplateBinding ActualWidth}"
