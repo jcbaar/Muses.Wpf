@@ -88,6 +88,15 @@ namespace Muses.Wpf.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Caps Lock is on!.
+        /// </summary>
+        public static string Tip_CapsLock {
+            get {
+                return ResourceManager.GetString("Tip_CapsLock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         public static string Tip_Close {

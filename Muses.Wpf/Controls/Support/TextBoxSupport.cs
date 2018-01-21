@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Muses.Wpf.Controls.Support
 {
@@ -163,6 +164,104 @@ namespace Muses.Wpf.Controls.Support
         {
             if (sender is TextBox) ((TextBox)sender).SelectAll();
             else if (sender is PasswordBox) ((PasswordBox)sender).SelectAll();
+        }
+        #endregion
+
+        #region ShowCapsLockWarning property handling
+        /// <summary>
+        /// Dependency property for the CapsLockActive flag of a <see cref="PasswordBox"/>.
+        /// </summary>
+        public static readonly DependencyProperty CapsLockActiveProperty = DependencyProperty.RegisterAttached("CapsLockActive", typeof(bool), typeof(TextBoxSupport));
+
+        /// <summary>
+        /// Gets the flag indicating whether or not the caps-lock key is active. Note that this property
+        /// can only be true when the <see cref="PasswordBox"/> has keyboard focus.
+        /// </summary>
+        /// <param name="element">The <see cref="PasswordBox"/> to get the
+        /// flag from.</param>
+        /// <returns>The flag for CapsLockActive.</returns>
+        public static bool GetCapsLockActive(UIElement element) => (bool)element.GetValue(CapsLockActiveProperty);
+
+        /// <summary>
+        /// Sets the flag indicating whether or not the caps-lock key is active.
+        /// </summary>
+        /// <param name="element">The <see cref="PasswordBox"/> to get the
+        /// flag from.</param>
+        /// <returns>The flag for CapsLockActive.</returns>
+        internal static void SetCapsLockActive(UIElement element, bool value) => element.SetValue(CapsLockActiveProperty, value);
+
+        /// <summary>
+        /// Dependency property for the ShowCapsLockWarning flag of a <see cref="PasswordBox"/>.
+        /// </summary>
+        public static readonly DependencyProperty ShowCapsLockWarningProperty = DependencyProperty.RegisterAttached("ShowCapsLockWarning", typeof(bool), typeof(TextBoxSupport), new PropertyMetadata(false, ShowCapsLockWarningChanged));
+
+        /// <summary>
+        /// Gets the flag indicating whether or not a warning should be displayed when
+        /// caps-lock is activated.
+        /// </summary>
+        /// <param name="element">The <see cref="PasswordBox"/> to get the
+        /// flag from.</param>
+        /// <returns>The flag for ShowCapsLockWarning.</returns>
+        [AttachedPropertyBrowsableForType(typeof(PasswordBox))]
+        public static bool GetShowCapsLockWarning(UIElement element) => (bool)element.GetValue(ShowCapsLockWarningProperty);
+
+        /// <summary>
+        /// Sets the flag indicating whether or not a warning should be displayed when
+        /// caps-lock is activated.
+        /// </summary>
+        /// <param name="element">The <see cref="PasswordBox"/> to set the
+        /// flag for.</param>
+        /// <param name="value">The value for the ShowCapsLockWarning flag.</param>
+        [AttachedPropertyBrowsableForType(typeof(PasswordBox))]
+        public static void SetShowCapsLockWarning(UIElement element, bool value) => element.SetValue(ShowCapsLockWarningProperty, value);
+
+        /// <summary>
+        /// Called when the value of the <see cref="ShowCapsLockWarningProperty"/> was changed.
+        /// </summary>
+        /// <param name="d">The <see cref="DependencyObject"/> on which the <see cref="ShowCapsLockWarningProperty"/> was changed.</param>
+        /// <param name="e">The event arguments.</param>
+        private static void ShowCapsLockWarningChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            // We only support PasswordBox
+            if (d is PasswordBox)
+            {
+                var control = d as Control;
+                if ((bool)e.NewValue)
+                {
+                    control.GotKeyboardFocus += GotKeyboardFocus_CapsLock;
+                    control.GotMouseCapture += GotKeyboardFocus_CapsLock;
+                    control.LostKeyboardFocus += GotKeyboardFocus_CapsLock;
+                    control.LostMouseCapture += GotKeyboardFocus_CapsLock;
+                    control.PreviewKeyDown += GotKeyboardFocus_CapsLock;
+                }
+                else
+                {
+                    control.GotKeyboardFocus -= GotKeyboardFocus_CapsLock;
+                    control.GotMouseCapture -= GotKeyboardFocus_CapsLock;
+                    control.LostKeyboardFocus -= GotKeyboardFocus_CapsLock;
+                    control.LostMouseCapture -= GotKeyboardFocus_CapsLock;
+                    control.PreviewKeyDown -= GotKeyboardFocus_CapsLock;
+                }
+            }
+            else
+            {
+                throw new NotSupportedException($"{nameof(ShowCapsLockWarningProperty)} is not supported for {d.GetType()}");
+            }
+        }
+
+        /// <summary>
+        /// Called when the status of the <see cref="CapsLockActiveProperty"/> needs to be updated.
+        /// </summary>
+        /// <param name="sender">The object sending the event.</param>
+        /// <param name="e">The event parameters.</param>
+        private static void GotKeyboardFocus_CapsLock(object sender, RoutedEventArgs e)
+        {
+            if (sender is PasswordBox pb)
+            {
+                // Set the flag to true when the CapsLock key is active _and_
+                // the control has keyboard focus.
+                SetCapsLockActive(pb, Console.CapsLock && pb.IsKeyboardFocused);
+            }
         }
         #endregion
     }

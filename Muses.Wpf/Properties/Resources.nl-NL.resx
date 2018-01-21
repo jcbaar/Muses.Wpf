@@ -126,6 +126,9 @@
   <data name="Menu_Paste" xml:space="preserve">
     <value>Plakken</value>
   </data>
+  <data name="Tip_CapsLock" xml:space="preserve">
+    <value>Caps Lock is aan!</value>
+  </data>
   <data name="Tip_Close" xml:space="preserve">
     <value>Sluiten</value>
   </data>

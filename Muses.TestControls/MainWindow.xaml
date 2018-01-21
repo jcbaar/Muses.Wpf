@@ -144,6 +144,18 @@
                     <RadioButton ToolBar.OverflowMode="Always" Content="A radio button" Margin="4,2"/>
                     <Button ToolBar.OverflowMode="Always" Content="A button in the overflow..." Margin="4,2"/>
                 </ToolBar>
+                <ToolBar Band="1" BandIndex="1">
+                    <Button>
+                        <Grid Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Path Stretch="Uniform" Data="M15,9H5V5H15M12,19A3,3 0 0,1 9,16A3,3 0 0,1 12,13A3,3 0 0,1 15,16A3,3 0 0,1 12,19M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3Z" 
+                                    Stroke="{Binding RelativeSource={RelativeSource AncestorType={x:Type Button}}, Path=Foreground}" 
+                                      Fill="{Binding RelativeSource={RelativeSource AncestorType={x:Type Button}}, Path=Foreground}"
+                                      Width="12"
+                                      Height="12"/>
+                        </Grid>
+                    </Button>
+                </ToolBar>
+
             </ToolBarTray>
         </DockPanel>
         
@@ -209,6 +221,7 @@
                                 <TextBox support:TextBoxSupport.Hint="This is a hint... Yes. It really is!" 
                                                    support:TextBoxSupport.SelectAllOnFocus="False"/>
                                 <PasswordBox support:TextBoxSupport.Hint="This is a password box..." 
+                                             support:TextBoxSupport.ShowCapsLockWarning="True"
                                                    support:TextBoxSupport.SelectAllOnFocus="True"/>
                                 <TextBox HorizontalScrollBarVisibility="Auto"
                                          VerticalScrollBarVisibility="Auto"
@@ -229,6 +242,7 @@ vulputate et risus ac, fermentum consequat erat.</TextBox>
                                                  support:TextBoxSupport.SelectAllOnFocus="False"
                                                  IsEnabled="False"/>
                                         <PasswordBox support:TextBoxSupport.Hint="This is a password box..." 
+                                             support:TextBoxSupport.ShowCapsLockWarning="True"
                                                      support:TextBoxSupport.SelectAllOnFocus="True"
                                                      IsEnabled="False"/>
                                         <TextBox HorizontalScrollBarVisibility="Auto"

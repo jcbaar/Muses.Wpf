@@ -116,7 +116,13 @@
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"/>
 
-                        <ScrollViewer x:Name="PART_ContentHost"
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            
+                            <ScrollViewer x:Name="PART_ContentHost"
                                  Grid.Column="0"
                                  Padding="1"
                                  Foreground="{TemplateBinding Foreground}"
@@ -124,7 +130,7 @@
                                  BorderBrush="Transparent"
                                  BorderThickness="0"/>
 
-                        <TextBlock x:Name="PART_Hint"
+                            <TextBlock x:Name="PART_Hint"
                                    Grid.Column="0"
                                    Margin="{TemplateBinding Padding}" 
                                    Text="{Binding Path=(support:TextBoxSupport.Hint), RelativeSource={RelativeSource TemplatedParent}}" 
@@ -133,6 +139,21 @@
                                    IsHitTestVisible="False"
                                    VerticalAlignment="Center"
                                    Visibility="Collapsed" />
+
+                            <DockPanel Grid.Column="1">
+                                <Path x:Name="PART_Warning"  
+                                      Visibility="Collapsed"
+                                      ToolTip="{x:Static p:Resources.Tip_CapsLock}"
+                                      Margin="2" 
+                                      Stroke="Transparent"
+                                      Fill="{DynamicResource ForegroundColorBrush}"
+                                      DockPanel.Dock="Right"
+                                      Height="{Binding ActualHeight, ElementName=PART_Hint}"
+                                      Width="{Binding ActualHeight, ElementName=PART_Hint}"
+                                      Stretch="Uniform"
+                                      Data="{StaticResource Muses.Wpf.Assets.AlertIcon}" />
+                            </DockPanel>
+                        </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
@@ -150,6 +171,15 @@
                             <Setter TargetName="PART_Hint" Property="Foreground" Value="{DynamicResource InactiveColorBrush}"/>
                             <Setter Property="Foreground" Value="{DynamicResource InactiveColorBrush}"/>
                         </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="support:TextBoxSupport.ShowCapsLockWarning" Value="True" />
+                                <Condition Property="support:TextBoxSupport.CapsLockActive" Value="True" />
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="PART_Warning" Property="Visibility" Value="Visible" />
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
