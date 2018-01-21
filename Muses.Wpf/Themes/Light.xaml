@@ -27,6 +27,11 @@
     <Color x:Key="InactiveLightColor">#FFAFB3CD</Color>
     <Color x:Key="InactiveLightTextColor">#FF999999</Color>
 
+    <Color x:Key="VsNeutralColor">#FF1BA1E2</Color>
+    <Color x:Key="VsPositiveColor">#FF339933</Color>
+    <Color x:Key="VsNegativeColor">#FFE51400</Color>
+    <Color x:Key="VsWarningColor">#FFFFCC00</Color>
+
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Resources/Brushes.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Resources/Assets.xaml" />

@@ -141,17 +141,18 @@
                                    Visibility="Collapsed" />
 
                             <DockPanel Grid.Column="1">
-                                <Path x:Name="PART_Warning"  
-                                      Visibility="Collapsed"
-                                      ToolTip="{x:Static p:Resources.Tip_CapsLock}"
-                                      Margin="2" 
-                                      Stroke="Transparent"
-                                      Fill="{DynamicResource ForegroundColorBrush}"
+                                <Grid x:Name="PART_Warning"  
                                       DockPanel.Dock="Right"
-                                      Height="{Binding ActualHeight, ElementName=PART_Hint}"
-                                      Width="{Binding ActualHeight, ElementName=PART_Hint}"
-                                      Stretch="Uniform"
-                                      Data="{StaticResource Muses.Wpf.Assets.AlertIcon}" />
+                                      Height="{Binding ActualHeight, ElementName=PART_Border}"
+                                      Width="{Binding ActualHeight, ElementName=PART_Border}"
+                                      Visibility="Collapsed"
+                                      ToolTip="{x:Static p:Resources.Tip_CapsLock}">
+                                    <Path Margin="2"
+                                        SnapsToDevicePixels="True"
+                                        Fill="{DynamicResource VsWarningColorBrush}"
+                                        Stretch="Uniform"
+                                        Data="{StaticResource Muses.Wpf.Assets.WarningIcon}" />
+                                </Grid>
                             </DockPanel>
                         </Grid>
                     </Grid>

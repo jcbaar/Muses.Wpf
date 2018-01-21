@@ -172,14 +172,14 @@
                                 Grid.Row="0"
                                 Grid.Column="0"
                                 muses:Spacing.Vertical="8">
-                        <Button x:Name="FocusButton" Height="26" Click="Button_Click" Content="Focused"/>
-                        <Button Height="26" Content="Unfocused" Click="Button_Click_1"/>
-                        <Button Height="26" Content="Default" IsDefault="True"/>
-                        <ToggleButton Height="26" Content="Toggle"/>
-                        <Button Height="26" Content="Disabled" IsEnabled="False"/>
+                        <Button MinHeight="26" x:Name="FocusButton" Click="Button_Click" Content="Focused"/>
+                        <Button MinHeight="26" Content="Unfocused" Click="Button_Click_1"/>
+                        <Button MinHeight="26" Content="Default" IsDefault="True"/>
+                        <ToggleButton MinHeight="26" Content="Toggle"/>
+                        <Button MinHeight="26" Content="Disabled" IsEnabled="False"/>
                     </StackPanel>
 
-                    <StackPanel Grid.Column="1" Orientation="Vertical" Margin="8,0,0,0" muses:Spacing.Vertical="4">
+                    <StackPanel Grid.Column="1" Orientation="Vertical" Margin="8,0,0,0" muses:Spacing.Vertical="4" VerticalAlignment="Top">
                         <CheckBox Content="Title bar color" IsChecked="{Binding Path=FillTitleBar, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"></CheckBox>
                         <CheckBox x:Name="SysAccent" Content="System accent color" IsChecked="{Binding Source={x:Static theme:ThemeHelper.UseSystemAccentColor}, Mode=OneWay}" Checked="CheckBox_Checked" Unchecked="CheckBox_Checked"></CheckBox>
 

@@ -27,4 +27,9 @@
     <SolidColorBrush x:Key="InactiveColorLightBrush" Color="{DynamicResource InactiveLightColor}" po:Freeze="True"/>
     <SolidColorBrush x:Key="InactiveColorLightTextBrush" Color="{DynamicResource InactiveLightTextColor}" po:Freeze="True"/>
 
+    <SolidColorBrush x:Key="VsNeutralColorBrush" Color="{DynamicResource VsNeutralColor}"/>
+    <SolidColorBrush x:Key="VsPositiveColorBrush" Color="{DynamicResource VsPositiveColor}"/>
+    <SolidColorBrush x:Key="VsNegativeColorBrush" Color="{DynamicResource VsNegativeColor}"/>
+    <SolidColorBrush x:Key="VsWarningColorBrush" Color="{DynamicResource VsWarningColor}"/>
+
 </ResourceDictionary>
