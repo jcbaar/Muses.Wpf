@@ -127,14 +127,14 @@
                                       CornerRadius="0" 
                                       BorderBrush="{DynamicResource BorderColorBrush}"
                                       BorderThickness="1">
-                                <Path Width="12" 
+                                <controls:IconChromePack Kind="CheckMark" 
+                                                         Width="12" 
                                       Height="11"
                                       x:Name="CheckMark"
                                     Stroke="Transparent"
                                     Fill="{DynamicResource AccentColorBrush}"
                                       Stretch="Fill"
                                     StrokeThickness="1"
-                                  Data="{StaticResource Muses.Wpf.Assets.CheckMark}"
                                    />
                             </Border>
                         </BulletDecorator.Bullet>
@@ -151,7 +151,7 @@
                             <Setter TargetName="Border"  Property="BorderBrush" Value="{DynamicResource AccentColorBrush}"/>
                         </Trigger>
                         <Trigger Property="IsChecked" Value="{x:Null}">
-                            <Setter TargetName="CheckMark" Property="Data" Value="M 0 0 L 0 8 L 8 8 L 8 0" />
+                            <Setter TargetName="CheckMark" Property="Kind" Value="CheckMarkIndeterminate" />
                             <Setter TargetName="CheckMark" Property="Width" Value="10" />
                             <Setter TargetName="CheckMark" Property="Height" Value="10" />
                         </Trigger>

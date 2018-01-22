@@ -55,6 +55,11 @@
   <ItemGroup>
     <Compile Include="Actions\CloseTabAction.cs" />
     <Compile Include="Controls\ClosingTabEventArgs.cs" />
+    <Compile Include="Controls\IconChromePack.cs" />
+    <Compile Include="Controls\IconChromeFactory.cs" />
+    <Compile Include="Controls\IconChromeType.cs" />
+    <Compile Include="Controls\PathIconPackBase.cs" />
+    <Compile Include="Controls\IconChromeGeometryExtension.cs" />
     <Compile Include="Controls\Support\ComboBoxSupport.cs" />
     <Compile Include="Controls\Support\SliderSupport.cs" />
     <Compile Include="Controls\Support\TextBoxSupport.cs" />
@@ -93,6 +98,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\Controls.Menu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Controls.PackIcon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

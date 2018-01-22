@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:support="clr-namespace:Muses.Wpf.Controls.Support"
+                    xmlns:controls="clr-namespace:Muses.Wpf.Controls"
                     xmlns:p="clr-namespace:Muses.Wpf.Properties">
 
     <ResourceDictionary.MergedDictionaries>
@@ -32,12 +33,10 @@
                                 BorderBrush="{DynamicResource BorderColorBrush}"
                                 BorderThickness="1" 
                                 Visibility="Hidden"/>
-                        <Path x:Name="PART_Arrow"
-                              Grid.Column="1"     
-                              Fill="{DynamicResource ForegroundColorBrush}"
-                              HorizontalAlignment="Center"
-                              VerticalAlignment="Center"
-                              Data="{StaticResource Muses.Wpf.Assets.ComboDownArrow}" />
+                        <controls:IconChromePack Kind="ComboDownArrow" 
+                                                 x:Name="PART_Arrow"
+                                                 Grid.Column="1"     
+                                                 Fill="{DynamicResource ForegroundColorBrush}" />
                     </Grid>
                     <!--
                     TODO: There is a _lot_ of repetition here. There must be a way to simplify
@@ -164,7 +163,7 @@
                                IsOpen="{TemplateBinding IsDropDownOpen}"
                                SnapsToDevicePixels="True"
                                Focusable="False"
-                               PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}">
+                               PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxAnimationKey}}">
 
                             <Grid Name="DropDown"
                                   MinWidth="{TemplateBinding ActualWidth}"

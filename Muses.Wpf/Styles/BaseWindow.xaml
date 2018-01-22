@@ -27,15 +27,14 @@
                         SnapsToDevicePixels="True"
                         Width="16"
                         Height="16">
-                        <Path x:Name="ResizeGrip" 
-                              Width="13" 
-                              Height="12" 
-                              Margin="1" 
-                              HorizontalAlignment="Right"
-                              Stroke="{DynamicResource InactiveColorBrush}" 
-                              StrokeThickness="1" 
-                              Stretch="None" 
-                              Data="{StaticResource Muses.Wpf.Assets.ResizeGrip}" />
+                        <controls:IconChromePack x:Name="ResizeGrip" 
+                                                 Kind="ResizeGrip" 
+                                                 Width="12" 
+                                                 Height="13" 
+                                                 Stroke="{DynamicResource InactiveColorBrush}"
+                                                 Fill="{x:Null}"
+                                                 Stretch="None"
+                                                 Margin="1"/>
                     </Border>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="False">
@@ -105,14 +104,14 @@
                                                     <Button.Content>
                                                         <Border Width="30" 
                                                                 Height="25">
-                                                            <Path Data="{StaticResource Muses.Wpf.Assets.MinimizeButton}" 
-                                                                  Width="8" 
-                                                                  Height="7" 
-                                                                  VerticalAlignment="Center" 
-                                                                  HorizontalAlignment="Center"
-                                                                  RenderOptions.EdgeMode="Aliased"
-                                                                  Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" 
-                                                                  StrokeThickness="4"  />
+                                                            <controls:IconChromePack Kind="MinimizeButton"
+                                                                                     Width="8"
+                                                                                     Height="7"
+                                                                      UseLayoutRounding="True"
+                                                                      RenderOptions.EdgeMode="Aliased"
+                                                                  Fill="{x:Null}"
+                                                                  Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
+                                                                                     StrokeThickness="4"/>
                                                         </Border>
                                                     </Button.Content>
                                                 </Button>
@@ -127,11 +126,9 @@
                                                         <Button.Content>
                                                             <Border Width="30" 
                                                                     Height="25">
-                                                                <Path Data="{StaticResource Muses.Wpf.Assets.RestoreButton}" 
+                                                                <controls:IconChromePack Kind="RestoreButton" 
                                                                       Width="10" 
                                                                       Height="10" 
-                                                                      VerticalAlignment="Center" 
-                                                                      HorizontalAlignment="Center"
                                                                       UseLayoutRounding="True"
                                                                       RenderOptions.EdgeMode="Aliased"
                                                                       Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" 
@@ -149,13 +146,11 @@
                                                         <Button.Content>
                                                             <Border Width="30" 
                                                                     Height="25">
-                                                                <Path Data="{StaticResource Muses.Wpf.Assets.MaximizeButton}" 
+                                                                <controls:IconChromePack Kind="MaximizeButton" 
                                                                       Width="9" 
                                                                       Height="11" 
                                                                       UseLayoutRounding="True"
                                                                       RenderOptions.EdgeMode="Aliased"
-                                                                      VerticalAlignment="Center" 
-                                                                      HorizontalAlignment="Center"
                                                                       Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" 
                                                                       StrokeThickness="1.1"  />
                                                             </Border>
@@ -171,13 +166,13 @@
                                                     <Button.Content>
                                                         <Border Width="30" 
                                                                 Height="25" >
-                                                            <Path Data="{StaticResource Muses.Wpf.Assets.CloseButton}" 
-                                                                  Width="8" 
-                                                                  Height="8" 
-                                                                  VerticalAlignment="Center" 
-                                                                  HorizontalAlignment="Center"
-                                                                  Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" 
-                                                                  StrokeThickness="2"  />
+                                                            <controls:IconChromePack Kind="CloseButton" 
+                                                                                     Width="8" 
+                                                                                     Height="8"
+                                                                                     SnapsToDevicePixels="True"
+                                                                                     RenderOptions.EdgeMode="Aliased"
+                                                                                     Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" 
+                                                                                     StrokeThickness="2"  />
                                                         </Border>
                                                     </Button.Content>
                                                 </Button>

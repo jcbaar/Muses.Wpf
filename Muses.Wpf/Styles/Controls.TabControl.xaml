@@ -69,16 +69,15 @@
                                 Visibility="Hidden"
                                 Style="{StaticResource TabButtonStyle}" 
                                 DockPanel.Dock="Right">
-                                <Path x:Name="CloseTab" 
-                                    SnapsToDevicePixels="True" 
-                                    Width="8" 
-                                    Height="8" 
-                                    Margin="4"
-                                    HorizontalAlignment="Right" 
-                                    VerticalAlignment="Center" 
-                                    Stroke="{DynamicResource AccentForegroundColorBrush}"
-                                    StrokeThickness="2"
-                                    Data="{StaticResource Muses.Wpf.Assets.CloseButton}" />
+                                <controls:IconChromePack Kind="CloseButton"
+                                                         x:Name="CloseTab" 
+                                                         SnapsToDevicePixels="True" 
+                                                         Width="8" 
+                                                         Height="8" 
+                                                         Margin="4"
+                                                         HorizontalAlignment="Right" 
+                                                         Stroke="{DynamicResource AccentForegroundColorBrush}"
+                                                         StrokeThickness="2" />
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Click">
                                         <actions:CloseTabAction CloseableTabControl="{Binding RelativeSource={RelativeSource AncestorType=controls:CloseableTabControl}}" CloseableTabItem="{Binding RelativeSource={RelativeSource AncestorType=controls:CloseableTabItem}}" />
