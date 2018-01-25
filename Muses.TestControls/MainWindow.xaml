@@ -96,26 +96,22 @@
                         <MenuItem Header="Checkable checked" IsCheckable="True" IsChecked="True"/>
                         <MenuItem Header="With icon">
                             <MenuItem.Icon>
-                                <Image Source="/Muses.TestControls;component/Assets/floppy.png" 
-                                       Width="16" Height="16"/>
+                                <muses:IconChromePack Kind="CommandCut" Style="{StaticResource MenuItemPathIcon}"/>
                             </MenuItem.Icon>
                         </MenuItem>
                         <MenuItem Header="With icon checkable unchecked" IsCheckable="True">
                             <MenuItem.Icon>
-                                <Image Source="/Muses.TestControls;component/Assets/floppy.png" 
-                                       Width="16" Height="16"/>
+                                <muses:IconChromePack Kind="CommandCopy" Style="{StaticResource MenuItemPathIcon}"/>
                             </MenuItem.Icon>
                         </MenuItem>
                         <MenuItem Header="With icon checkable checked" IsCheckable="True" IsChecked="True">
                             <MenuItem.Icon>
-                                <Image Source="/Muses.TestControls;component/Assets/floppy.png" 
-                                       Width="16" Height="16"/>
+                                <muses:IconChromePack Kind="CommandPaste" Style="{StaticResource MenuItemPathIcon}"/>
                             </MenuItem.Icon>
                         </MenuItem>
                         <MenuItem Header="With icon checkable checked disabled" IsEnabled="False" IsCheckable="True" IsChecked="True">
                             <MenuItem.Icon>
-                                <Image Source="/Muses.TestControls;component/Assets/floppy.png" 
-                                       Width="16" Height="16"/>
+                                <muses:IconChromePack Kind="CommandPaste" Style="{StaticResource MenuItemPathIcon}"/>
                             </MenuItem.Icon>
                         </MenuItem>
                     </MenuItem>
