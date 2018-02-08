@@ -54,7 +54,7 @@
             <StackPanel Focusable="False" Orientation="Horizontal">
                 <Button Style="{StaticResource MyWindowButton}" 
                         Height="28" 
-                        Width="28" 
+                        Width="30" 
                         ToolTip="Look at this... A custom button :) Click me to change the accent."
                         Click="Button_Click_1">
                     <Button.Content>
@@ -62,6 +62,8 @@
                                               Width="16" 
                                               Height="16" 
                                               Fill="Transparent" 
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
                                               Stroke="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"/>
                     </Button.Content>
                 </Button>

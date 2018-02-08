@@ -274,15 +274,18 @@
                                 -->
                                 <Border x:Name="TransitionBorder" 
                                         Width="0"
-                                        Height="1" 
+                                        Height="2" 
                                         VerticalAlignment="Top" 
                                         HorizontalAlignment="Left" 
-                                        Background="Transparent" 
                                         SnapsToDevicePixels="True"
+                                        UseLayoutRounding="True"
                                         BorderThickness="1,0,1,0" 
-                                        BorderBrush="Transparent">
+                                        BorderBrush="{x:Null}">
                                     <!-- This border will actually "erase" the part of the pop-up border. -->
-                                    <Border BorderThickness="0,1,0,0"
+                                    <Border BorderThickness="1"
+                                            Height="2"
+                                            SnapsToDevicePixels="True"
+                                            UseLayoutRounding="True"
                                             BorderBrush="{DynamicResource Background2ColorBrush}"/>
                                 </Border>
                             </Grid>

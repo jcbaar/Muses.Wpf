@@ -147,7 +147,7 @@
                                                             <Border Width="30" 
                                                                     Height="25">
                                                                 <controls:IconChromePack Kind="MaximizeButton" 
-                                                                      Width="9" 
+                                                                      Width="10" 
                                                                       Height="11" 
                                                                       UseLayoutRounding="True"
                                                                       RenderOptions.EdgeMode="Aliased"

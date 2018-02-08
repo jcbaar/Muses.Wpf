@@ -118,7 +118,7 @@
                             <Rectangle.Fill>
                                 <DrawingBrush Viewport="0,0,4,4"
                                               ViewportUnits="Absolute"
-                                              Viewbox="0,0,8,8"
+                                              Viewbox="0,0,7,7"
                                               ViewboxUnits="Absolute"
                                               TileMode="Tile">
                                     <DrawingBrush.Drawing>
