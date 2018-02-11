@@ -132,7 +132,7 @@
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation To="0" Duration="0:0:0.1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="InnerThumb"/>
+                                        <DoubleAnimation To="0" Duration="0:0:0.2" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="InnerThumb"/>
                                         <DoubleAnimation To="1.3" Duration="0:0:0.1" Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="BorderScale"/>
                                         <DoubleAnimation To="1.3" Duration="0:0:0.1" Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="BorderScale"/>
                                     </Storyboard>
@@ -141,7 +141,7 @@
                             <Trigger.ExitActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation To="1" Duration="0:0:0.1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="InnerThumb"/>
+                                        <DoubleAnimation To="1" Duration="0:0:0.2" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="InnerThumb"/>
                                         <DoubleAnimation To="1" Duration="0:0:0.1" Storyboard.TargetProperty="ScaleX" Storyboard.TargetName="BorderScale"/>
                                         <DoubleAnimation To="1" Duration="0:0:0.1" Storyboard.TargetProperty="ScaleY" Storyboard.TargetName="BorderScale"/>
                                     </Storyboard>

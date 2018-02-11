@@ -15,7 +15,7 @@
         <Setter Property="Background" Value="{DynamicResource ControlFocusColorBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource ForegroundColorBrush}" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-        <Setter Property="Padding" Value="5,3" />
+        <Setter Property="Padding" Value="3,3" />
         <Setter Property="CaretBrush" Value="{DynamicResource ForegroundColorBrush}" />
         <Setter Property="SelectionBrush" Value="{DynamicResource AccentColorBrush}" />
         <Setter Property="support:TextBoxSupport.Hint" Value="" />
@@ -45,13 +45,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
                     <Grid Name="Container" Background="Transparent">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        
                         <Border x:Name="PART_Border" 
-                                Grid.Column="0"
-                                Grid.ColumnSpan="2"
                                 BorderThickness="1"
                                 SnapsToDevicePixels="True"
                                 UseLayoutRounding="True"
@@ -59,15 +53,10 @@
                                 BorderBrush="{TemplateBinding BorderBrush}"/>
 
                         <ScrollViewer x:Name="PART_ContentHost"
-                                 Grid.Column="0"
-                                 Margin="1"
-                                 Foreground="{TemplateBinding Foreground}"
-                                 Background="Transparent"
-                                 BorderBrush="Transparent"
-                                 BorderThickness="0" />
+                                 Foreground="{TemplateBinding Foreground}"/>
 
                         <TextBlock x:Name="PART_Hint"
-                                   Grid.Column="0"
+                                   Padding="1"
                                    Margin="{TemplateBinding Padding}" 
                                    Text="{Binding Path=(support:TextBoxSupport.Hint), RelativeSource={RelativeSource TemplatedParent}}" 
                                    TextTrimming="CharacterEllipsis"
@@ -100,7 +89,7 @@
         <Setter Property="Background" Value="{DynamicResource ControlFocusColorBrush}" />
         <Setter Property="Foreground" Value="{DynamicResource ForegroundColorBrush}" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-        <Setter Property="Padding" Value="5,3" />
+        <Setter Property="Padding" Value="3,3" />
         <Setter Property="CaretBrush" Value="{DynamicResource ForegroundColorBrush}" />
         <Setter Property="SelectionBrush" Value="{DynamicResource AccentColorBrush}" />
         <Setter Property="support:TextBoxSupport.Hint" Value="" />
@@ -120,13 +109,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type PasswordBox}">
                     <Grid Name="Container" Background="Transparent">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
                         <Border x:Name="PART_Border" 
-                                Grid.Column="0"
-                                Grid.ColumnSpan="2"
                                 BorderThickness="1"
                                 SnapsToDevicePixels="True"
                                 UseLayoutRounding="True"
@@ -143,12 +126,11 @@
                                  Grid.Column="0"
                                  Padding="1"
                                  Foreground="{TemplateBinding Foreground}"
-                                 Background="Transparent"
-                                 BorderBrush="Transparent"
-                                 BorderThickness="0"/>
+                                 Background="Transparent"/>
 
                             <TextBlock x:Name="PART_Hint"
                                    Grid.Column="0"
+                                   Padding="1"
                                    Margin="{TemplateBinding Padding}" 
                                    Text="{Binding Path=(support:TextBoxSupport.Hint), RelativeSource={RelativeSource TemplatedParent}}" 
                                    TextTrimming="CharacterEllipsis"
@@ -165,7 +147,7 @@
                                       Visibility="Collapsed"
                                       ToolTip="{x:Static p:Resources.Tip_CapsLock}">
                                     <controls:IconChromePack Kind="Warning"
-                                                             Margin="2"
+                                                             Margin="3"
                                                              SnapsToDevicePixels="True"
                                                              Fill="{DynamicResource VsWarningColorBrush}"
                                                              Stretch="Uniform" />

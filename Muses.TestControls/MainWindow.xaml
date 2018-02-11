@@ -69,7 +69,7 @@
                 </Button>
                 <TextBox support:TextBoxSupport.Hint="Enter search term..." 
                          Width="150" Height="{Binding Source={x:Static SystemParameters.CaptionHeight}}"
-                         Margin="4,1,4,1"
+                         Margin="4,0,4,1"
                          FontSize="{x:Static SystemFonts.CaptionFontSize}"
                          support:TextBoxSupport.SelectAllOnFocus="True"
                          KeyDown="TextBox_KeyDown"/>
@@ -119,6 +119,11 @@
                     </MenuItem>
                     <Separator />
                     <MenuItem Header="_Exit" Click="MenuItem_Click"/>
+                </MenuItem>
+
+                <MenuItem Header="View">
+                    <MenuItem x:Name="Dark" Header="Dark" IsCheckable="True" IsChecked="False" Click="Dark_Click"/>
+                    <MenuItem x:Name="Light" Header="Light" IsCheckable="False" IsChecked="True" Click="Dark_Click"/>
                 </MenuItem>
 
                 <MenuItem Header="A menu item which has a longer title than the popup will be">
@@ -181,8 +186,8 @@
                                 Grid.Row="0"
                                 Grid.Column="0"
                                 muses:Spacing.Vertical="8">
-                        <Button MinHeight="26" x:Name="FocusButton" Click="Button_Click" Content="Focused"/>
-                        <Button MinHeight="26" Content="Unfocused" Click="Button_Click_1"/>
+                        <Button MinHeight="26" x:Name="FocusButton" Content="Focused"/>
+                        <Button MinHeight="26" Content="Unfocused" />
                         <Button MinHeight="26" Content="Default" IsDefault="True"/>
                         <ToggleButton MinHeight="26" Content="Toggle"/>
                         <Button MinHeight="26" Content="Disabled" IsEnabled="False"/>
@@ -337,7 +342,7 @@ vulputate et risus ac, fermentum consequat erat.</TextBox>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Slider Margin="4" Grid.Row="0" Grid.Column="0" Style="{StaticResource FlatHorizontalSliderStyle}" Background="{StaticResource SliderBackH}" support:SliderSupport.ThumbBrush="DarkGray" support:SliderSupport.ThumbMouseOverBrush="Gray"/>
+                    <Slider Margin="4" Grid.Row="0" Grid.Column="0" Style="{StaticResource FlatHorizontalSliderStyle}" Background="{StaticResource SliderBackH}" support:SliderSupport.ThumbBrush="DarkGray" support:SliderSupport.ThumbMouseOverBrush="Gray" />
                     <Slider Margin="4" Grid.Row="1" Grid.Column="0" Style="{StaticResource FlatHorizontalSliderStyle}" />
                     <Slider Margin="4" Grid.Row="2" Grid.Column="0" Style="{StaticResource FlatHorizontalSliderStyle}" support:SliderSupport.FillBrush="Yellow" support:SliderSupport.ThumbBrush="Red" support:SliderSupport.ThumbMouseOverBrush="Pink"/>
 
@@ -351,9 +356,9 @@ vulputate et risus ac, fermentum consequat erat.</TextBox>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <Slider Grid.Column="0" Style="{StaticResource FlatVerticalSliderStyle}" Orientation="Vertical" Background="{StaticResource SliderBackV}" support:SliderSupport.ThumbBrush="DarkGray" support:SliderSupport.ThumbMouseOverBrush="Gray"/>
-                        <Slider Grid.Column="1" Style="{StaticResource FlatVerticalSliderStyle}" Orientation="Vertical"/>
-                        <Slider Grid.Column="2" Style="{StaticResource FlatVerticalSliderStyle}" Orientation="Vertical" support:SliderSupport.FillBrush="Yellow" support:SliderSupport.ThumbBrush="Red" support:SliderSupport.ThumbMouseOverBrush="Pink"/>
+                        <Slider Grid.Column="0" Margin="4" Style="{StaticResource FlatVerticalSliderStyle}" Orientation="Vertical" Background="{StaticResource SliderBackV}" support:SliderSupport.ThumbBrush="DarkGray" support:SliderSupport.ThumbMouseOverBrush="Gray"/>
+                        <Slider Grid.Column="1" Margin="4" Style="{StaticResource FlatVerticalSliderStyle}" Orientation="Vertical"/>
+                        <Slider Grid.Column="2" Margin="4" Style="{StaticResource FlatVerticalSliderStyle}" Orientation="Vertical" support:SliderSupport.FillBrush="Yellow" support:SliderSupport.ThumbBrush="Red" support:SliderSupport.ThumbMouseOverBrush="Pink"/>
                     </Grid>
 
                     <Grid Grid.Row="3" Grid.Column="1">
@@ -362,9 +367,9 @@ vulputate et risus ac, fermentum consequat erat.</TextBox>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <Slider Grid.Column="0" Style="{StaticResource FlatVerticalSliderStyle}" Orientation="Vertical" IsEnabled="False" Value="3" />
-                        <Slider Grid.Column="1" Style="{StaticResource FlatVerticalSliderStyle}" Orientation="Vertical" IsEnabled="False" Value="3" Background="{StaticResource SliderBackV}"/>
-                        <Slider Grid.Column="2" Style="{StaticResource FlatVerticalSliderStyle}" Orientation="Vertical" IsEnabled="False" Value="3" support:SliderSupport.FillBrush="Yellow" support:SliderSupport.ThumbBrush="Red" support:SliderSupport.ThumbMouseOverBrush="Pink"/>
+                        <Slider Grid.Column="0" Margin="4" Style="{StaticResource FlatVerticalSliderStyle}" Orientation="Vertical" IsEnabled="False" Value="3" />
+                        <Slider Grid.Column="1" Margin="4" Style="{StaticResource FlatVerticalSliderStyle}" Orientation="Vertical" IsEnabled="False" Value="3" Background="{StaticResource SliderBackV}"/>
+                        <Slider Grid.Column="2" Margin="4" Style="{StaticResource FlatVerticalSliderStyle}" Orientation="Vertical" IsEnabled="False" Value="3" support:SliderSupport.FillBrush="Yellow" support:SliderSupport.ThumbBrush="Red" support:SliderSupport.ThumbMouseOverBrush="Pink"/>
                     </Grid>
                 </Grid>
             </muses:CloseableTabItem>

@@ -64,6 +64,7 @@
     <Compile Include="Controls\Support\SliderSupport.cs" />
     <Compile Include="Controls\Support\TextBoxSupport.cs" />
     <Compile Include="Converters\NotNullConverter.cs" />
+    <Compile Include="Themes\Theme.cs" />
     <Compile Include="Themes\ThemeHelper.cs" />
     <Page Include="Resources\Assets.xaml">
       <SubType>Designer</SubType>
@@ -126,6 +127,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\Controls.Toolbar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Controls.Tooltip.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

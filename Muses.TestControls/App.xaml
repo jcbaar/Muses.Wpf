@@ -7,7 +7,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Themes/Dark.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Themes/Generic.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <Style x:Key="MyWindowButton" BasedOn="{StaticResource WindowButtonStyle}" TargetType="{x:Type Button}">

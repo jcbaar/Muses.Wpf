@@ -14,6 +14,30 @@ namespace Muses.Wpf.Themes
         static int _count = 0;
         static bool _sysAccent = false;
 
+        static Theme _theme = Theme.Light;
+
+        public static Theme Theme
+        {
+            get
+            {
+                return _theme;
+            }
+
+            set
+            {
+                lock (_lock)
+                {
+                    if (value != _theme)
+                    {
+                        _theme = value;
+                        ResourceDictionary dict = new ResourceDictionary();
+                        dict.Source = new Uri($"pack://application:,,,/Muses.Wpf;component/Themes/{value.ToString()}.xaml", UriKind.Absolute);
+                        Application.Current.Resources.MergedDictionaries.Clear();
+                        Application.Current.Resources.MergedDictionaries.Add(dict);
+                    }
+                }
+            }
+        }
         /// <summary>
         /// Gets or sets if the theme uses the system defined accent color or not. When this is set to true
         /// the color is set to <see cref="SystemParameters.WindowGlassColor"/>. Otherwise a selected accent 

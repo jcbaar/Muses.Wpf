@@ -29,24 +29,6 @@ namespace Muses.TestControls
             InitializeComponent();
         }
 
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            ResourceDictionary dict = new ResourceDictionary();
-
-            if(Application.Current.Resources.MergedDictionaries[0].Source.ToString().Contains("Light.xaml"))
-            {
-                dict.Source = new Uri("pack://application:,,,/Muses.Wpf;component/Themes/Dark.xaml", UriKind.Absolute);
-            }
-            else
-            {
-                dict.Source = new Uri("pack://application:,,,/Muses.Wpf;component/Themes/Light.xaml", UriKind.Absolute);
-            }
-
-            Application.Current.Resources.MergedDictionaries.Clear();
-            Application.Current.Resources.MergedDictionaries.Add(dict);
-        }
-
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             // Generate a random color...
@@ -83,8 +65,7 @@ namespace Muses.TestControls
         {
             if (e.Key == Key.Enter)
             {
-                var tb = sender as TextBox;
-                if (tb != null && tb.Text.Trim().Length > 0)
+                if (sender is TextBox tb && tb.Text.Trim().Length > 0)
                 {
                     MessageBox.Show($"You have entered \"{tb.Text}\" as search term.", "Hi", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
@@ -93,13 +74,31 @@ namespace Muses.TestControls
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            var ch = sender as CheckBox;
-            if (ch != null) ThemeHelper.UseSystemAccentColor = ch.IsChecked.HasValue && ch.IsChecked.Value;
+            if (sender is CheckBox ch)
+            {
+                ThemeHelper.UseSystemAccentColor = ch.IsChecked.HasValue && ch.IsChecked.Value;
+            }
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void Dark_Click(object sender, RoutedEventArgs e)
+        {
+            if(((MenuItem)sender) == Light)
+            {
+                Dark.IsChecked = false;
+                Light.IsChecked = true;
+                ThemeHelper.Theme = Theme.Light;
+            }
+            else
+            {
+                Dark.IsChecked = true;
+                Light.IsChecked = false;
+                ThemeHelper.Theme = Theme.Dark;
+            }
         }
     }
 }
