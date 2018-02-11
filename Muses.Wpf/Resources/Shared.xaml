@@ -3,6 +3,7 @@
                     xmlns:conv="clr-namespace:Muses.Wpf.Converters">
 
     <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
+    <conv:BooleanToVisibilityHiddenConverter x:Key="BoolToVisibilityHidden"/>
     <conv:NotNullConverter x:Key="NotNull" />
 
 </ResourceDictionary>

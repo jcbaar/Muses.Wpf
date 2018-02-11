@@ -56,14 +56,14 @@
                                  Foreground="{TemplateBinding Foreground}"/>
 
                         <TextBlock x:Name="PART_Hint"
-                                   Padding="1"
+                                   Padding="2,0"
                                    Margin="{TemplateBinding Padding}" 
                                    Text="{Binding Path=(support:TextBoxSupport.Hint), RelativeSource={RelativeSource TemplatedParent}}" 
                                    TextTrimming="CharacterEllipsis"
                                    Foreground="{DynamicResource InactiveColorLightTextBrush}"
                                    IsHitTestVisible="False"
                                    VerticalAlignment="Center"
-                                   Visibility="{Binding RelativeSource={RelativeSource AncestorType=TextBox}, Path=Text.IsEmpty, Converter={StaticResource BoolToVisibility}}" />
+                                   Visibility="{Binding RelativeSource={RelativeSource AncestorType=TextBox}, Path=Text.IsEmpty, Converter={StaticResource BoolToVisibilityHidden}}" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
@@ -130,14 +130,14 @@
 
                             <TextBlock x:Name="PART_Hint"
                                    Grid.Column="0"
-                                   Padding="1"
+                                   Padding="2,0"
                                    Margin="{TemplateBinding Padding}" 
                                    Text="{Binding Path=(support:TextBoxSupport.Hint), RelativeSource={RelativeSource TemplatedParent}}" 
                                    TextTrimming="CharacterEllipsis"
                                    Foreground="{DynamicResource InactiveColorLightTextBrush}"
                                    IsHitTestVisible="False"
                                    VerticalAlignment="Center"
-                                   Visibility="Collapsed" />
+                                   Visibility="Hidden" />
 
                             <DockPanel Grid.Column="1">
                                 <Grid x:Name="PART_Warning"  

@@ -63,6 +63,7 @@
     <Compile Include="Controls\Support\ComboBoxSupport.cs" />
     <Compile Include="Controls\Support\SliderSupport.cs" />
     <Compile Include="Controls\Support\TextBoxSupport.cs" />
+    <Compile Include="Converters\BooleanToVisibilityHiddenConverter.cs" />
     <Compile Include="Converters\NotNullConverter.cs" />
     <Compile Include="Themes\Theme.cs" />
     <Compile Include="Themes\ThemeHelper.cs" />
