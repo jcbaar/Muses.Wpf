@@ -51,7 +51,9 @@
 
     <muses:BaseWindow.TitlebarControls>
         <ItemsControl>
-            <StackPanel Focusable="False" Orientation="Horizontal">
+            <StackPanel Focusable="False" 
+                        Orientation="Horizontal"
+                        support:SpacingSupport.Horizontal="4">
                 <Button Style="{StaticResource MyWindowButton}" 
                         Height="28" 
                         Width="30" 
@@ -69,7 +71,7 @@
                 </Button>
                 <TextBox support:TextBoxSupport.Hint="Enter search term..." 
                          Width="150" Height="{Binding Source={x:Static SystemParameters.CaptionHeight}}"
-                         Margin="4,0,4,1"
+                         Margin="0,0,4,1"
                          FontSize="{x:Static SystemFonts.CaptionFontSize}"
                          support:TextBoxSupport.SelectAllOnFocus="True"
                          KeyDown="TextBox_KeyDown"/>

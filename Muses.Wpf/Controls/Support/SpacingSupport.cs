@@ -6,8 +6,8 @@ using System.Windows.Controls;
 namespace Muses.Wpf.Controls.Support
 {
     /// <summary>
-    /// Class containing attached properties supporting <see cref="Panel"/> and
-    /// derived classes.
+    /// Class containing attached properties supporting spacing of the items
+    /// contained by <see cref="Panel"/> or derived objects.
     /// </summary>
     public class SpacingSupport
     {
@@ -42,7 +42,6 @@ namespace Muses.Wpf.Controls.Support
             var obj = (DependencyObject)sender;
 
             SetMargin(obj, new Thickness(0, 0, space, 0));
-            SetLastItemMargin(obj, new Thickness(0));
         }
         #endregion
 
@@ -77,29 +76,7 @@ namespace Muses.Wpf.Controls.Support
             var obj = (DependencyObject)sender;
 
             SetMargin(obj, new Thickness(0, 0, 0, space));
-            SetLastItemMargin(obj, new Thickness(0));
         }
-        #endregion
-
-        #region LastItemMargin property.
-        /// <summary>
-        /// The LastItemMargin attached property.
-        /// </summary>
-        public static readonly DependencyProperty LastItemMarginProperty = DependencyProperty.RegisterAttached("LastItemMargin", typeof(Thickness), typeof(SpacingSupport), new UIPropertyMetadata(new Thickness(), MarginChangedCallback));
-
-        /// <summary>
-        /// Gets the value of the LastItemMargin property.
-        /// </summary>
-        /// <param name="element">The <see cref="DependencyObject"/> the property is attached to.</param>
-        /// <returns>The value of the attached property.</returns>
-        private static Thickness GetLastItemMargin(Panel obj) => (Thickness)obj.GetValue(LastItemMarginProperty);
-
-        /// <summary>
-        /// Sets the value of the LastItemMargin property.
-        /// </summary>
-        /// <param name="element">The <see cref="UIElement"/> the property is attached to.</param>
-        /// <param name="value">The value to set to the property.</param>
-        private static void SetLastItemMargin(DependencyObject obj, Thickness value) => obj.SetValue(LastItemMarginProperty, value);
         #endregion
 
         #region MarginProperty
@@ -121,12 +98,9 @@ namespace Muses.Wpf.Controls.Support
         /// <param name="element">The <see cref="UIElement"/> the property is attached to.</param>
         /// <param name="value">The value to set to the property.</param>
         private static void SetMargin(DependencyObject obj, Thickness value) => obj.SetValue(MarginProperty, value);
-        #endregion
 
-        #region Property callback handling.
         /// <summary>
-        /// Called when the <see cref="MarginProperty"/> or <see cref="LastItemMarginProperty"/>
-        /// value changed.
+        /// Called when the <see cref="MarginProperty"/> value changed.
         /// </summary>
         /// <param name="sender">The <see cref="DependencyObject"/> that generated the event.</param>
         /// <param name="e">The event arguments.</param>
@@ -155,14 +129,14 @@ namespace Muses.Wpf.Controls.Support
         private static void OnPanelLoaded(object sender, RoutedEventArgs e)
         {
             var panel = sender as Panel;
-            for (var i = 0; i < panel.Children.Count; i++)
+            for (var i = 0; i < panel.Children.Count-1; i++)
             {
                 UIElement child = panel.Children[i];
                 var fe = child as FrameworkElement;
                 if (fe == null) continue;
 
                 bool isLastItem = i == panel.Children.Count - 1;
-                fe.Margin = isLastItem ? GetLastItemMargin(panel) : GetMargin(panel);
+                fe.Margin = GetMargin(panel);
             }
         }
         #endregion
