@@ -17,12 +17,11 @@ namespace Muses.Wpf.Controls.Support
         {
             PropertyChangedCallback = (d, e) =>
             {
-                if (!(d is ComboBox))
+                if (!(d is ComboBox box))
                 {
                     throw new NotSupportedException($"MaxDropDownItems is not supported for {d.GetType()}");
                 }
 
-                var box = (ComboBox)d;
                 box.DropDownOpened += UpdateHeight;
                 if (box.IsDropDownOpen)
                 {

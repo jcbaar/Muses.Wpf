@@ -152,9 +152,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\Spacing.cs" />
+    <Compile Include="Controls\Support\SpacingSupport.cs" />
     <Compile Include="Extensions\Extensions.cs" />
-    <Compile Include="Controls\MarginSetter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

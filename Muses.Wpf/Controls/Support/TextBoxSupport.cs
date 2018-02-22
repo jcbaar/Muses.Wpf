@@ -68,9 +68,8 @@ namespace Muses.Wpf.Controls.Support
             // When this is a PasswordBox and the hint is set to a non-empty
             // string we need to update the PasswordLength property so that the
             // style can remove the hint when the length of the password is 0.
-            if (d is PasswordBox)
+            if (d is PasswordBox pb)
             {
-                var pb = d as PasswordBox;
                 pb.PasswordChanged -= PasswordChanged;
                 if (!String.IsNullOrEmpty((string)e.NewValue))
                 {

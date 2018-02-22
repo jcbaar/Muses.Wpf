@@ -185,7 +185,7 @@
                     <StackPanel Orientation="Vertical"
                                 Grid.Row="0"
                                 Grid.Column="0"
-                                muses:Spacing.Vertical="8">
+                                support:SpacingSupport.Vertical="8">
                         <Button MinHeight="26" x:Name="FocusButton" Content="Focused"/>
                         <Button MinHeight="26" Content="Unfocused" />
                         <Button MinHeight="26" Content="Default" IsDefault="True"/>
@@ -193,7 +193,7 @@
                         <Button MinHeight="26" Content="Disabled" IsEnabled="False"/>
                     </StackPanel>
 
-                    <StackPanel Grid.Column="1" Orientation="Vertical" Margin="8,0,0,0" muses:Spacing.Vertical="4" VerticalAlignment="Top">
+                    <StackPanel Grid.Column="1" Orientation="Vertical" Margin="8,0,0,0" support:SpacingSupport.Vertical="4" VerticalAlignment="Top">
                         <CheckBox Content="Title bar color" IsChecked="{Binding Path=FillTitleBar, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"></CheckBox>
                         <CheckBox x:Name="SysAccent" Content="System accent color" IsChecked="{Binding Source={x:Static theme:ThemeHelper.UseSystemAccentColor}, Mode=OneWay}" Checked="CheckBox_Checked" Unchecked="CheckBox_Checked"></CheckBox>
 
@@ -209,7 +209,7 @@
                         <CheckBox Content="Disabled checked" IsEnabled="False" IsChecked="True"></CheckBox>
                         <CheckBox Content="Disabled indeterminate" IsThreeState="True" IsEnabled="False" IsChecked="{x:Null}"></CheckBox>
                     </StackPanel>
-                    <StackPanel Grid.Column="2" Orientation="Vertical" Margin="8,0,0,0" muses:Spacing.Vertical="4">
+                    <StackPanel Grid.Column="2" Orientation="Vertical" Margin="8,0,0,0" support:SpacingSupport.Vertical="4">
                         <RadioButton Content="Enabled" IsChecked="True" GroupName="A"/>
                         <RadioButton Content="Enabled" GroupName="A"/>
 
@@ -231,7 +231,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             
-                            <StackPanel Grid.Column="0" Orientation="Vertical" muses:Spacing.Vertical="8" Margin="0,0,4,0">
+                            <StackPanel Grid.Column="0" Orientation="Vertical" support:SpacingSupport.Vertical="8" Margin="0,0,4,0">
                                 <TextBox support:TextBoxSupport.Hint="This is a hint... Yes. It really is!" 
                                                    support:TextBoxSupport.SelectAllOnFocus="False"/>
                                 <PasswordBox support:TextBoxSupport.Hint="This is a password box..." 
@@ -251,7 +251,7 @@ aliquet ex, at malesuada nisl. In ut pulvinar nisl, malesuada convallis augue. M
 at luctus neque. Vestibulum non iaculis lectus, ac ornare ex. Quisque orci velit,
 vulputate et risus ac, fermentum consequat erat.</TextBox>
                             </StackPanel>
-                            <StackPanel Grid.Column="1" Orientation="Vertical" muses:Spacing.Vertical="8" Margin="4,0,0,0">
+                            <StackPanel Grid.Column="1" Orientation="Vertical" support:SpacingSupport.Vertical="8" Margin="4,0,0,0">
                                         <TextBox support:TextBoxSupport.Hint="This is a hint... Yes. It really is!" 
                                                  support:TextBoxSupport.SelectAllOnFocus="False"
                                                  IsEnabled="False"/>
@@ -285,7 +285,7 @@ vulputate et risus ac, fermentum consequat erat.</TextBox>
                         <ColumnDefinition Width="120*"/>
                     </Grid.ColumnDefinitions>
 
-                    <StackPanel Orientation="Vertical" Grid.Column="0" muses:Spacing.Vertical="8" Margin="4,0,0,0">
+                    <StackPanel Orientation="Vertical" Grid.Column="0" support:SpacingSupport.Vertical="8" Margin="4,0,0,0">
                         <ComboBox>
                             <ComboBoxItem>Item #1</ComboBoxItem>
                             <ComboBoxItem>Item #2</ComboBoxItem>
@@ -311,7 +311,7 @@ vulputate et risus ac, fermentum consequat erat.</TextBox>
                             <ComboBoxItem>Item #5</ComboBoxItem>
                         </ComboBox>
                     </StackPanel>
-                    <StackPanel Orientation="Vertical" Grid.Column="1" muses:Spacing.Vertical="8" Margin="4,0,0,0">
+                    <StackPanel Orientation="Vertical" Grid.Column="1" support:SpacingSupport.Vertical="8" Margin="4,0,0,0">
                         <ComboBox IsEnabled="False">
                             <ComboBoxItem IsSelected="True">Item #1</ComboBoxItem>
                             <ComboBoxItem>Item #2</ComboBoxItem>
