@@ -125,13 +125,13 @@
                                       BorderThickness="1">
                                 <controls:IconChromePack Kind="CheckMark" 
                                                          Width="12" 
-                                      Height="11"
-                                      x:Name="CheckMark"
-                                    Stroke="Transparent"
-                                    Fill="{DynamicResource AccentColorBrush}"
-                                      Stretch="Fill"
-                                    StrokeThickness="1"
-                                   />
+                                                         Height="11"
+                                                         x:Name="CheckMark"
+                                                         Stroke="Transparent"
+                                                         Fill="{DynamicResource AccentColorBrush}"
+                                                         Stretch="Fill"
+                                                         StrokeThickness="1"
+                                                         SnapsToDevicePixels="True"/>
                             </Border>
                         </BulletDecorator.Bullet>
                         <ContentPresenter x:Name="Content" Margin="8,0,0,0"

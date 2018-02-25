@@ -152,7 +152,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\Support\SpacingSupport.cs" />
+    <Compile Include="Controls\Support\StackPanelSupport.cs" />
     <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

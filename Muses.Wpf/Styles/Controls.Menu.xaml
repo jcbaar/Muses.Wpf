@@ -186,6 +186,7 @@
                                 BorderThickness="1"
                                 BorderBrush="{DynamicResource AccentColorBrush}"
                                 Background="{DynamicResource ControlHoveredColorBrush}"
+                                Margin="0,1"
                                 Visibility="Hidden"/>
                             <ContentPresenter Margin="4,6" 
                                               VerticalAlignment="Center" 

@@ -65,8 +65,7 @@ namespace Muses.Wpf.Actions
                 else
                 {
                     // if ItemsSource is something we cannot work with, bail out
-                    var collection = CloseableTabControl.ItemsSource as IList;
-                    if (collection == null)
+                    if(!(CloseableTabControl.ItemsSource is IList collection))
                     {
                         return;
                     }
