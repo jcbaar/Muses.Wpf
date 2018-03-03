@@ -56,7 +56,8 @@
                         support:StackPanelSupport.Spacing="4">
                 <Button Style="{StaticResource MyWindowButton}" 
                         Height="28" 
-                        Width="30" 
+                        Width="36"
+                        Padding="3,0,0,0"
                         ToolTip="Look at this... A custom button :) Click me to change the accent."
                         Click="Button_Click_1">
                     <Button.Content>

@@ -5,10 +5,6 @@
                     xmlns:actions="clr-namespace:Muses.Wpf.Actions"
                     xmlns:controls="clr-namespace:Muses.Wpf.Controls">
 
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Resources/Assets.xaml" />
-    </ResourceDictionary.MergedDictionaries>
-
     <Style x:Key="TabButtonStyle" TargetType="{x:Type Button}">
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Template">

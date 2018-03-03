@@ -67,10 +67,6 @@
     <Compile Include="Converters\NotNullConverter.cs" />
     <Compile Include="Themes\Theme.cs" />
     <Compile Include="Themes\ThemeHelper.cs" />
-    <Page Include="Resources\Assets.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Resources\Brushes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

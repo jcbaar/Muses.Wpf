@@ -4,10 +4,6 @@
                     xmlns:controls="clr-namespace:Muses.Wpf.Controls"
                     xmlns:p="clr-namespace:Muses.Wpf.Properties">
 
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Resources/Assets.xaml" />
-    </ResourceDictionary.MergedDictionaries>
-
     <!-- 
     The drop-down toggle button style.
     -->
