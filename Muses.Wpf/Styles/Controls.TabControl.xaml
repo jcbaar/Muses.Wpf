@@ -157,6 +157,7 @@
 
     <Style x:Name="CloseableTabControlStyle" TargetType="controls:CloseableTabControl">
         <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="TabTransition" Value="{x:Static controls:TransitionType.None}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:CloseableTabControl">
@@ -182,7 +183,8 @@
                             <!--
                                 The second row of the grid will host the content of the selected tab.
                             -->
-                            <ContentPresenter ContentSource="SelectedContent" />
+                            <controls:TransitioningContentControl Content="{TemplateBinding SelectedContent}" 
+                                                                  Transition="{TemplateBinding TabTransition}" />
 
                             <!--
                                 This makes sure the control border will get the correct color for

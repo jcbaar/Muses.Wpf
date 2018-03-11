@@ -1,4 +1,5 @@
-﻿using Muses.Wpf.Controls;
+﻿using Muses.Wpf;
+using Muses.Wpf.Controls;
 using Muses.Wpf.Themes;
 using System;
 using System.Collections.Generic;
@@ -23,10 +24,17 @@ namespace Muses.TestControls
     public partial class MainWindow : BaseWindow
     {
         Random _rnd = new Random();
+        bool is1 = true;
 
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+            Transition.Content = FindResource("Trans1");
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -99,6 +107,14 @@ namespace Muses.TestControls
                 Light.IsChecked = false;
                 ThemeHelper.Theme = Theme.Dark;
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            is1 = !is1;
+            int t = is1 ? 1 : 2;
+            Transition.Transition = is1 ? TransitionType.Right : TransitionType.Left;
+            Transition.Content = FindResource($"Trans{t}");
         }
     }
 }

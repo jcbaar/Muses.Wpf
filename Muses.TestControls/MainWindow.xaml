@@ -47,6 +47,32 @@
             </VisualBrush.Visual>
         </VisualBrush>
 
+        <Grid x:Key="Trans1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Hello" Click="Button_Click" Grid.Column="0"/>
+            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                <Slider Margin="4" Grid.Row="0" Grid.Column="0" Style="{StaticResource FlatHorizontalSliderStyle}" Background="{StaticResource SliderBackH}" support:SliderSupport.ThumbBrush="DarkGray" support:SliderSupport.ThumbMouseOverBrush="Gray" />
+                <Slider Margin="4" Grid.Row="1" Grid.Column="0" Style="{StaticResource FlatHorizontalSliderStyle}" />
+                <Slider Margin="4" Grid.Row="2" Grid.Column="0" Style="{StaticResource FlatHorizontalSliderStyle}" support:SliderSupport.FillBrush="Yellow" support:SliderSupport.ThumbBrush="Red" support:SliderSupport.ThumbMouseOverBrush="Pink"/>
+            </StackPanel>
+        </Grid>
+        
+        <Grid x:Key="Trans2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Hello" Click="Button_Click" Grid.Column="1"/>
+            <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                <Slider Margin="4" Grid.Row="0" Grid.Column="0" Style="{StaticResource FlatHorizontalSliderStyle}" Background="{StaticResource SliderBackH}" support:SliderSupport.ThumbBrush="DarkGray" support:SliderSupport.ThumbMouseOverBrush="Gray" />
+                <Slider Margin="4" Grid.Row="1" Grid.Column="0" Style="{StaticResource FlatHorizontalSliderStyle}" />
+                <Slider Margin="4" Grid.Row="2" Grid.Column="0" Style="{StaticResource FlatHorizontalSliderStyle}" support:SliderSupport.FillBrush="Yellow" support:SliderSupport.ThumbBrush="Red" support:SliderSupport.ThumbMouseOverBrush="Pink"/>
+            </StackPanel>
+        </Grid>
+        
     </Window.Resources>
 
     <muses:BaseWindow.TitlebarControls>
@@ -176,7 +202,7 @@
             </ToolBarTray>
         </DockPanel>
         
-        <muses:CloseableTabControl Grid.Row="1" Margin="10" Grid.ColumnSpan="2" ClosingTabItem="CloseableTabControl_ClosingTabItem">
+        <muses:CloseableTabControl TabTransition="Fade" Grid.Row="1" Margin="10" Grid.ColumnSpan="2" ClosingTabItem="CloseableTabControl_ClosingTabItem">
             <muses:CloseableTabItem Header="Buttons" IsCloseable="False">
                 <Grid Margin="0,10,0,0">
                     <Grid.ColumnDefinitions>
@@ -375,6 +401,14 @@ vulputate et risus ac, fermentum consequat erat.</TextBox>
                         <Slider Grid.Column="2" Margin="4" Style="{StaticResource FlatVerticalSliderStyle}" Orientation="Vertical" IsEnabled="False" Value="3" support:SliderSupport.FillBrush="Yellow" support:SliderSupport.ThumbBrush="Red" support:SliderSupport.ThumbMouseOverBrush="Pink"/>
                     </Grid>
                 </Grid>
+            </muses:CloseableTabItem>
+            <muses:CloseableTabItem Header="Content transitioning" IsCloseable="False">
+                <muses:TransitioningContentControl x:Name="Transition" Transition="{x:Static muses:TransitionType.Fade}"
+                                                   Margin="10">
+
+                    
+
+                </muses:TransitioningContentControl>
             </muses:CloseableTabItem>
             <muses:CloseableTabItem x:Name="CantClose" Header="Closeable 1 (or not...?)"/>
             <muses:CloseableTabItem Header="Closeable 2"/>

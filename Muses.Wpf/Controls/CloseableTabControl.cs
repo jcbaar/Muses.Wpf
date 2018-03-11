@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Muses.Wpf.Controls
@@ -24,5 +25,22 @@ namespace Muses.Wpf.Controls
             add { AddHandler(CloseTabItemEvent, value); }
             remove { RemoveHandler(CloseTabItemEvent, value); }
         }
+
+
+        #region TabTransition dependency property
+        /// <summary>
+        /// The TabTransition dependency property.
+        /// </summary>
+        public static readonly DependencyProperty TabTransitionProperty = DependencyProperty.Register("TabTransition", typeof(TransitionType), typeof(CloseableTabControl), new PropertyMetadata(TransitionType.None));
+
+        /// <summary>
+        /// Gets/sets the value of the TabTransition property.
+        /// </summary>
+        public TransitionType TabTransition
+        {
+            get => (TransitionType)GetValue(TabTransitionProperty);
+            set => SetValue(TabTransitionProperty, value);
+        }
+        #endregion
     }
 }
