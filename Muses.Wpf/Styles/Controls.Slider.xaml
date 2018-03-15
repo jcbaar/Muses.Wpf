@@ -15,7 +15,12 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="RepeatButton">
-                    <Border x:Name="Increase"  SnapsToDevicePixels="True" BorderThickness="0,4" BorderBrush="Transparent" Background="{DynamicResource InactiveColorBrush}" Height="13"/>
+                    <Border x:Name="Increase"  
+                            SnapsToDevicePixels="True" 
+                            BorderThickness="0,4" 
+                            BorderBrush="Transparent" 
+                            Background="{DynamicResource InactiveColorBrush}" 
+                            Height="13"/>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Slider}}, Path=Background, Converter={StaticResource NotNull}}" Value="True">
                             <Setter TargetName="Increase" Property="Background" Value="Transparent" />

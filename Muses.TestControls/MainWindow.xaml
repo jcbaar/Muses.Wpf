@@ -10,7 +10,7 @@
         Title="MainWindow with a longer title that should break" 
                   ResizeMode="CanResizeWithGrip" 
                   Height="350" 
-                  Width="720" 
+                  Width="900" 
                   Style="{StaticResource BaseWindowStyle}">
 
     <Window.Resources>
@@ -403,12 +403,24 @@ vulputate et risus ac, fermentum consequat erat.</TextBox>
                 </Grid>
             </muses:CloseableTabItem>
             <muses:CloseableTabItem Header="Content transitioning" IsCloseable="False">
-                <muses:TransitioningContentControl x:Name="Transition" Transition="{x:Static muses:TransitionType.Fade}"
-                                                   Margin="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
                     
+                    <muses:TransitioningContentControl x:Name="Transition" 
+                                                       Transition="Fade"
+                                                       Grid.Row="1"
+                                                       Grid.ColumnSpan="2"
+                                                       Margin="10"/>
 
-                </muses:TransitioningContentControl>
+                </Grid>
             </muses:CloseableTabItem>
             <muses:CloseableTabItem x:Name="CantClose" Header="Closeable 1 (or not...?)"/>
             <muses:CloseableTabItem Header="Closeable 2"/>

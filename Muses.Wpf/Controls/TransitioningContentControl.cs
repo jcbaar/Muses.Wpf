@@ -7,7 +7,6 @@
 
 using Muses.Wpf.Controls.Tools;
 using System;
-using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -196,23 +195,6 @@ namespace Muses.Wpf.Controls
         }
         #endregion
 
-        #region TransitionTime dependency property
-        /// <summary>
-        /// The TransitionTime dependency property.
-        /// </summary>
-        public static readonly DependencyProperty TransitionTimeProperty = DependencyProperty.Register("TransitionTime", typeof(Duration), typeof(TransitioningContentControl), new PropertyMetadata(new Duration(new TimeSpan(0,0,0,0,300))));
-
-        /// <summary>
-        /// Gets/sets the value of the TransitionTime property.
-        /// </summary>
-        public Duration TransitionTime
-        {
-            get => (Duration)GetValue(TransitionTimeProperty);
-            set => SetValue(TransitionTimeProperty, value);
-        }
-        #endregion
-
-
         #region RestartTransitionOnContentChange dependency property.
         /// <summary>
         /// Identifies the RestartTransitionOnContentChange dependency property.
@@ -284,7 +266,6 @@ namespace Muses.Wpf.Controls
             CurrentTransition = transition;
             if (transition == null)
             {
-                TransitionType invalidTransition = Transition;
                 // Revert to default
                 Transition = TransitionType.Fade;
             }

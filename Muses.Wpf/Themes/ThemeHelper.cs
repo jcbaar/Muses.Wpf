@@ -30,8 +30,10 @@ namespace Muses.Wpf.Themes
                     if (value != _theme)
                     {
                         _theme = value;
-                        ResourceDictionary dict = new ResourceDictionary();
-                        dict.Source = new Uri($"pack://application:,,,/Muses.Wpf;component/Themes/{value.ToString()}.xaml", UriKind.Absolute);
+                        ResourceDictionary dict = new ResourceDictionary
+                        {
+                            Source = new Uri($"pack://application:,,,/Muses.Wpf;component/Themes/{value.ToString()}.xaml", UriKind.Absolute)
+                        };
                         Application.Current.Resources.MergedDictionaries.Clear();
                         Application.Current.Resources.MergedDictionaries.Add(dict);
                     }

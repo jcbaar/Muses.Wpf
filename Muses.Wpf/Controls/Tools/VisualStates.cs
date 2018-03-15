@@ -19,6 +19,7 @@ namespace Muses.Wpf.Controls.Tools
             switch(type)
             {
                 case TransitionType.Custom: return String.Empty;
+                case TransitionType.None: return "Normal";
                 case TransitionType.Down: return "DownTransition";
                 case TransitionType.DownReplace: return "DownReplaceTransition";
                 case TransitionType.Fade: return "DefaultTransition";
@@ -28,36 +29,9 @@ namespace Muses.Wpf.Controls.Tools
                 case TransitionType.RightReplace: return "RightReplaceTransition";
                 case TransitionType.Up: return "UpTransition";
                 case TransitionType.UpReplace: return "UpReplaceTransition";
-                default: return "Normal";
-            }
-        }
-
-        /// <summary>
-        /// Use VisualStateManager to change the visual state of the control.
-        /// </summary>
-        /// <param name="control">
-        /// Control whose visual state is being changed.
-        /// </param>
-        /// <param name="useTransitions">
-        /// A value indicating whether to use transitions when updating the
-        /// visual state, or to snap directly to the new visual state.
-        /// </param>
-        /// <param name="stateNames">
-        /// Ordered list of state names and fallback states to transition into.
-        /// Only the first state to be found will be used.
-        /// </param>
-        public static void GoToState(Control control, bool useTransitions, params string[] stateNames)
-        {
-            Debug.Assert(control != null, "control should not be null!");
-            Debug.Assert(stateNames != null, "stateNames should not be null!");
-            Debug.Assert(stateNames.Length > 0, "stateNames should not be empty!");
-
-            foreach (string name in stateNames)
-            {
-                if (VisualStateManager.GoToState(control, name, useTransitions))
-                {
-                    break;
-                }
+                default:
+                    Debug.Assert(false, "Unknown TransitionType");
+                    return "Normal";
             }
         }
 

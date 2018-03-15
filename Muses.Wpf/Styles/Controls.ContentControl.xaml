@@ -11,6 +11,8 @@
                     xmlns:controls="clr-namespace:Muses.Wpf.Controls">
 
 
+    <KeyTime x:Key="AnimationDuration">00:00:00.200</KeyTime>
+    
     <Style TargetType="controls:TransitioningContentControl">
         <Setter Property="IsTabStop" Value="True" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -32,7 +34,7 @@
                                                                        Storyboard.TargetProperty="(UIElement.Opacity)">
                                             <SplineDoubleKeyFrame KeyTime="00:00:00"
                                                                   Value="0" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300"
+                                            <SplineDoubleKeyFrame KeyTime="{StaticResource AnimationDuration}"
                                                                   Value="1" />
                                         </DoubleAnimationUsingKeyFrames>
                                         <DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
@@ -40,7 +42,7 @@
                                                                        Storyboard.TargetProperty="(UIElement.Opacity)">
                                             <SplineDoubleKeyFrame KeyTime="00:00:00"
                                                                   Value="1" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300"
+                                            <SplineDoubleKeyFrame KeyTime="{StaticResource AnimationDuration}"
                                                                   Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
@@ -65,7 +67,7 @@
                                                                        Storyboard.TargetProperty="(UIElement.Opacity)">
                                             <SplineDoubleKeyFrame KeyTime="00:00:00"
                                                                   Value="0" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300"
+                                            <SplineDoubleKeyFrame KeyTime="{StaticResource AnimationDuration}"
                                                                   Value="1" />
                                         </DoubleAnimationUsingKeyFrames>
 
@@ -74,7 +76,7 @@
                                                                        Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
                                             <SplineDoubleKeyFrame KeyTime="00:00:00"
                                                                   Value="30" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300"
+                                            <SplineDoubleKeyFrame KeyTime="{StaticResource AnimationDuration}"
                                                                   Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
 
@@ -83,7 +85,7 @@
                                                                        Storyboard.TargetProperty="(UIElement.Opacity)">
                                             <SplineDoubleKeyFrame KeyTime="00:00:00"
                                                                   Value="1" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300"
+                                            <SplineDoubleKeyFrame KeyTime="{StaticResource AnimationDuration}"
                                                                   Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
 
@@ -92,7 +94,7 @@
                                                                        Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
                                             <SplineDoubleKeyFrame KeyTime="00:00:00"
                                                                   Value="0" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300"
+                                            <SplineDoubleKeyFrame KeyTime="{StaticResource AnimationDuration}"
                                                                   Value="-30" />
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
@@ -104,7 +106,7 @@
                                                                        Storyboard.TargetProperty="(UIElement.Opacity)">
                                             <SplineDoubleKeyFrame KeyTime="00:00:00"
                                                                   Value="0" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300"
+                                            <SplineDoubleKeyFrame KeyTime="{StaticResource AnimationDuration}"
                                                                   Value="1" />
                                         </DoubleAnimationUsingKeyFrames>
 
@@ -113,7 +115,7 @@
                                                                        Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
                                             <SplineDoubleKeyFrame KeyTime="00:00:00"
                                                                   Value="-40" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300"
+                                            <SplineDoubleKeyFrame KeyTime="{StaticResource AnimationDuration}"
                                                                   Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
 
@@ -122,7 +124,7 @@
                                                                        Storyboard.TargetProperty="(UIElement.Opacity)">
                                             <SplineDoubleKeyFrame KeyTime="00:00:00"
                                                                   Value="1" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300"
+                                            <SplineDoubleKeyFrame KeyTime="{StaticResource AnimationDuration}"
                                                                   Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
 
@@ -131,7 +133,7 @@
                                                                        Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
                                             <SplineDoubleKeyFrame KeyTime="00:00:00"
                                                                   Value="0" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300"
+                                            <SplineDoubleKeyFrame KeyTime="{StaticResource AnimationDuration}"
                                                                   Value="40" />
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
@@ -143,7 +145,7 @@
                                                                        Storyboard.TargetProperty="(UIElement.Opacity)">
                                             <SplineDoubleKeyFrame KeyTime="00:00:00"
                                                                   Value="0" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300"
+                                            <SplineDoubleKeyFrame KeyTime="{StaticResource AnimationDuration}"
                                                                   Value="1" />
                                         </DoubleAnimationUsingKeyFrames>
 
@@ -152,7 +154,7 @@
                                                                        Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
                                             <SplineDoubleKeyFrame KeyTime="00:00:00"
                                                                   Value="-40" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300"
+                                            <SplineDoubleKeyFrame KeyTime="{StaticResource AnimationDuration}"
                                                                   Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
 
@@ -161,7 +163,7 @@
                                                                        Storyboard.TargetProperty="(UIElement.Opacity)">
                                             <SplineDoubleKeyFrame KeyTime="00:00:00"
                                                                   Value="1" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300"
+                                            <SplineDoubleKeyFrame KeyTime="{StaticResource AnimationDuration}"
                                                                   Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
 
@@ -170,7 +172,7 @@
                                                                        Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
                                             <SplineDoubleKeyFrame KeyTime="00:00:00"
                                                                   Value="0" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300"
+                                            <SplineDoubleKeyFrame KeyTime="{StaticResource AnimationDuration}"
                                                                   Value="40" />
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
@@ -182,7 +184,7 @@
                                                                        Storyboard.TargetProperty="(UIElement.Opacity)">
                                             <SplineDoubleKeyFrame KeyTime="00:00:00"
                                                                   Value="0" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300"
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.000"
                                                                   Value="1" />
                                         </DoubleAnimationUsingKeyFrames>
 
@@ -191,7 +193,7 @@
                                                                        Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
                                             <SplineDoubleKeyFrame KeyTime="00:00:00"
                                                                   Value="40" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300"
+                                            <SplineDoubleKeyFrame KeyTime="{StaticResource AnimationDuration}"
                                                                   Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
 
@@ -200,7 +202,7 @@
                                                                        Storyboard.TargetProperty="(UIElement.Opacity)">
                                             <SplineDoubleKeyFrame KeyTime="00:00:00"
                                                                   Value="1" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300"
+                                            <SplineDoubleKeyFrame KeyTime="{StaticResource AnimationDuration}"
                                                                   Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
 
@@ -209,7 +211,7 @@
                                                                        Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
                                             <SplineDoubleKeyFrame KeyTime="00:00:00"
                                                                   Value="0" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300"
+                                            <SplineDoubleKeyFrame KeyTime="{StaticResource AnimationDuration}"
                                                                   Value="-40" />
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
@@ -221,7 +223,7 @@
                                                                        Storyboard.TargetProperty="(UIElement.Opacity)">
                                             <SplineDoubleKeyFrame KeyTime="00:00:00"
                                                                   Value="0" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300"
+                                            <SplineDoubleKeyFrame KeyTime="{StaticResource AnimationDuration}"
                                                                   Value="1" />
                                         </DoubleAnimationUsingKeyFrames>
 
@@ -230,7 +232,7 @@
                                                                        Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
                                             <SplineDoubleKeyFrame KeyTime="00:00:00"
                                                                   Value="-40" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300"
+                                            <SplineDoubleKeyFrame KeyTime="{StaticResource AnimationDuration}"
                                                                   Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
 
@@ -239,7 +241,7 @@
                                                                        Storyboard.TargetProperty="(UIElement.Opacity)">
                                             <SplineDoubleKeyFrame KeyTime="00:00:00"
                                                                   Value="1" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300"
+                                            <SplineDoubleKeyFrame KeyTime="{StaticResource AnimationDuration}"
                                                                   Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
@@ -251,7 +253,7 @@
                                                                        Storyboard.TargetProperty="(UIElement.Opacity)">
                                             <SplineDoubleKeyFrame KeyTime="00:00:00"
                                                                   Value="0" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300"
+                                            <SplineDoubleKeyFrame KeyTime="{StaticResource AnimationDuration}"
                                                                   Value="1" />
                                         </DoubleAnimationUsingKeyFrames>
 
@@ -260,7 +262,7 @@
                                                                        Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
                                             <SplineDoubleKeyFrame KeyTime="00:00:00"
                                                                   Value="40" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300"
+                                            <SplineDoubleKeyFrame KeyTime="{StaticResource AnimationDuration}"
                                                                   Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
 
@@ -269,7 +271,7 @@
                                                                        Storyboard.TargetProperty="(UIElement.Opacity)">
                                             <SplineDoubleKeyFrame KeyTime="00:00:00"
                                                                   Value="1" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300"
+                                            <SplineDoubleKeyFrame KeyTime="{StaticResource AnimationDuration}"
                                                                   Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
@@ -281,7 +283,7 @@
                                                                        Storyboard.TargetProperty="(UIElement.Opacity)">
                                             <SplineDoubleKeyFrame KeyTime="00:00:00"
                                                                   Value="0" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300"
+                                            <SplineDoubleKeyFrame KeyTime="{StaticResource AnimationDuration}"
                                                                   Value="1" />
                                         </DoubleAnimationUsingKeyFrames>
 
@@ -290,7 +292,7 @@
                                                                        Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
                                             <SplineDoubleKeyFrame KeyTime="00:00:00"
                                                                   Value="-40" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300"
+                                            <SplineDoubleKeyFrame KeyTime="{StaticResource AnimationDuration}"
                                                                   Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
 
@@ -299,7 +301,7 @@
                                                                        Storyboard.TargetProperty="(UIElement.Opacity)">
                                             <SplineDoubleKeyFrame KeyTime="00:00:00"
                                                                   Value="1" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300"
+                                            <SplineDoubleKeyFrame KeyTime="{StaticResource AnimationDuration}"
                                                                   Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
@@ -311,7 +313,7 @@
                                                                        Storyboard.TargetProperty="(UIElement.Opacity)">
                                             <SplineDoubleKeyFrame KeyTime="00:00:00"
                                                                   Value="0" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300"
+                                            <SplineDoubleKeyFrame KeyTime="{StaticResource AnimationDuration}"
                                                                   Value="1" />
                                         </DoubleAnimationUsingKeyFrames>
 
@@ -320,7 +322,7 @@
                                                                        Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
                                             <SplineDoubleKeyFrame KeyTime="00:00:00"
                                                                   Value="40" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300"
+                                            <SplineDoubleKeyFrame KeyTime="{StaticResource AnimationDuration}"
                                                                   Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
 
@@ -329,7 +331,7 @@
                                                                        Storyboard.TargetProperty="(UIElement.Opacity)">
                                             <SplineDoubleKeyFrame KeyTime="00:00:00"
                                                                   Value="1" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300"
+                                            <SplineDoubleKeyFrame KeyTime="{StaticResource AnimationDuration}"
                                                                   Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
@@ -368,7 +370,6 @@
                                 </ContentPresenter.RenderTransform>
                             </ContentPresenter>
                         </Grid>
-
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
