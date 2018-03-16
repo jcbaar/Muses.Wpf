@@ -5,9 +5,8 @@
 // Please see http://go.microsoft.com/fwlink/?LinkID=131993 for details.
 // All other rights reserved.
 
-using Muses.Wpf.Controls.Tools;
+using Muses.Wpf.Extensions;
 using System;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
@@ -16,19 +15,6 @@ namespace Muses.Wpf.Controls
 {
     public class TransitioningContentControl : ContentControl
     {
-        #region Visual state names
-        /// <summary>
-        /// The name of the group that holds the presentation states.
-        /// </summary>
-        private const string PresentationGroup = "PresentationStates";
-
-        /// <summary>
-        /// The name of the state that represents a normal situation where no
-        /// transition is currently being used.
-        /// </summary>
-        private const string NormalState = "Normal";
-        #endregion Visual state names
-
         #region Template part names
         /// <summary>
         /// The name of the control that will display the previous content.
@@ -64,7 +50,7 @@ namespace Muses.Wpf.Controls
         /// </summary>
         /// <value>The previous content presentation site.</value>
         private ContentPresenter PreviousContentPresentationSite { get; set; }
-        #endregion TemplateParts
+        #endregion
 
         #region IsTransitioning dependency property.
         /// <summary>
@@ -172,26 +158,7 @@ namespace Muses.Wpf.Controls
                 source.AbortTransition();
             }
 
-            // Find new transition.
-            var newStoryboard = source.GetStoryboard(VisualStates.TransitionTypeToString(newTransition));
-            if (newStoryboard == null)
-            {
-                // Could be during initialization of XAML that presentation groups was not yet defined
-                if (VisualStates.TryGetVisualStateGroup(source, PresentationGroup) == null)
-                {
-                    // Will delay check
-                    source.CurrentTransition = null;
-                }
-                else
-                {
-                    // Revert to old value
-                    source.SetValue(TransitionProperty, VisualStates.TransitionTypeToString(oldTransition));
-                }
-            }
-            else
-            {
-                source.CurrentTransition = newStoryboard;
-            }
+            source.CurrentTransition = source.GetStoryboard(); 
         }
         #endregion
 
@@ -232,6 +199,22 @@ namespace Muses.Wpf.Controls
         }
         #endregion
 
+        #region TransitionDuration dependency property
+        /// <summary>
+        /// The TransitionDuration dependency property.
+        /// </summary>
+        public static readonly DependencyProperty TransitionDurationProperty = DependencyProperty.Register("TransitionDuration", typeof(TimeSpan), typeof(TransitioningContentControl), new PropertyMetadata(new TimeSpan(0,0,0,0,200)));   
+
+        /// <summary>
+        /// Gets/sets the value of the TransitionDuration property.
+        /// </summary>
+        public TimeSpan TransitionDuration
+        {
+            get => (TimeSpan)GetValue(TransitionDurationProperty);
+            set => SetValue(TransitionDurationProperty, value);
+        }
+        #endregion
+
         #region Events
         /// <summary>
         /// Occurs when the current transition has completed.
@@ -262,14 +245,13 @@ namespace Muses.Wpf.Controls
             }
 
             // Hookup current transition
-            Storyboard transition = GetStoryboard(VisualStates.TransitionTypeToString(Transition));
-            CurrentTransition = transition;
-            if (transition == null)
+            void eh(object sender, RoutedEventArgs e)
             {
-                // Revert to default
-                Transition = TransitionType.Fade;
+                CurrentTransition = GetStoryboard();
+                this.Loaded -= eh;
             }
-            VisualStateManager.GoToState(this, NormalState, false);
+
+            this.Loaded += eh;
         }
 
         /// <summary>
@@ -280,7 +262,7 @@ namespace Muses.Wpf.Controls
         protected override void OnContentChanged(object oldContent, object newContent)
         {
             base.OnContentChanged(oldContent, newContent);
-
+            
             StartTransition(oldContent, newContent);
         }
 
@@ -304,7 +286,7 @@ namespace Muses.Wpf.Controls
         public void AbortTransition()
         {
             // Go to normal state and release our hold on the old content.
-            VisualStateManager.GoToState(this, NormalState, false);
+            CurrentTransition?.Stop();
             IsTransitioning = false;
             if (PreviousContentPresentationSite != null)
             {
@@ -331,8 +313,7 @@ namespace Muses.Wpf.Controls
                 if (!IsTransitioning || RestartTransitionOnContentChange)
                 {
                     IsTransitioning = true;
-                    VisualStateManager.GoToState(this, NormalState, false);
-                    VisualStateManager.GoToState(this, VisualStates.TransitionTypeToString(Transition), true);
+                    CurrentTransition?.Begin(this);
                 }
             }
         }
@@ -342,19 +323,162 @@ namespace Muses.Wpf.Controls
         /// </summary>
         /// <param name="newTransition">The new transition.</param>
         /// <returns>A storyboard or null, if no storyboard was found.</returns>
-        private Storyboard GetStoryboard(string newTransition)
+        private Storyboard GetStoryboard()
         {
-            VisualStateGroup presentationGroup = VisualStates.TryGetVisualStateGroup(this, PresentationGroup);
-            Storyboard newStoryboard = null;
-            if (presentationGroup != null)
+            switch(Transition)
             {
-                newStoryboard = presentationGroup.States
-                    .OfType<VisualState>()
-                    .Where(state => state.Name == newTransition)
-                    .Select(state => state.Storyboard)
-                    .FirstOrDefault();
+                case TransitionType.Fade:
+                    return GetFadeTransition();
+                case TransitionType.Up:
+                    return GetUpTransition();
+                case TransitionType.Down:
+                    return GetDownTransition();
+                case TransitionType.Left:
+                    return GetLeftTransition();
+                case TransitionType.Right:
+                    return GetRightTransition();
+                case TransitionType.UpReplace:
+                    return GetUpReplaceTransition();
+                case TransitionType.DownReplace:
+                    return GetDownReplaceTransition();
+                case TransitionType.LeftReplace:
+                    return GetLeftReplaceTransition();
+                case TransitionType.RightReplace:
+                    return GetRightReplaceTransition();
+                default:
+                    return GetNoneTransition();
             }
-            return newStoryboard;
+        }
+
+        /// <summary>
+        /// Creates a <see cref="TransitionType.None"/>transition.
+        /// </summary>
+        /// <returns>The transition <see cref="Storyboard"/></returns>
+        private Storyboard GetNoneTransition()
+        {
+            var sb = new Storyboard();
+            sb.AddObjectCollapseAnimation(TimeSpan.FromSeconds(0), PreviousContentPresentationSite);
+            return sb;
+        }
+
+        /// <summary>
+        /// Creates a <see cref="TransitionType.Fade"/>transition.
+        /// </summary>
+        /// <returns>The transition <see cref="Storyboard"/></returns>
+        private Storyboard GetFadeTransition()
+        {
+            var sb = new Storyboard();
+            sb.AddFadeInAnimation(TransitionDuration, CurrentContentPresentationSite);
+            sb.AddFadeOutAnimation(TransitionDuration, PreviousContentPresentationSite);
+            return sb;
+        }
+
+        /// <summary>
+        /// Creates a <see cref="TransitionType.Up"/>transition.
+        /// </summary>
+        /// <returns>The transition <see cref="Storyboard"/></returns>
+        private Storyboard GetUpTransition()
+        {
+            var sb = new Storyboard();
+            sb.AddFadeInAnimation(TransitionDuration, CurrentContentPresentationSite);
+            sb.AddFadeOutAnimation(TransitionDuration, PreviousContentPresentationSite);
+            sb.AddSlideInFromBelow(TransitionDuration, 40, 0.5, CurrentContentPresentationSite);
+            sb.AddSlideOutToAbove(TransitionDuration, 40, 0.5, PreviousContentPresentationSite);
+            return sb;
+        }
+
+        /// <summary>
+        /// Creates a <see cref="TransitionType.Down"/>transition.
+        /// </summary>
+        /// <returns>The transition <see cref="Storyboard"/></returns>
+        private Storyboard GetDownTransition()
+        {
+            var sb = new Storyboard();
+            sb.AddFadeInAnimation(TransitionDuration, CurrentContentPresentationSite);
+            sb.AddFadeOutAnimation(TransitionDuration, PreviousContentPresentationSite);
+            sb.AddSlideInFromAbove(TransitionDuration, 40, 0.5, CurrentContentPresentationSite);
+            sb.AddSlideOutToBelow(TransitionDuration, 40, 0.5, PreviousContentPresentationSite);
+            return sb;
+        }
+
+        /// <summary>
+        /// Creates a <see cref="TransitionType.Left"/>transition.
+        /// </summary>
+        /// <returns>The transition <see cref="Storyboard"/></returns>
+        private Storyboard GetLeftTransition()
+        {
+            var sb = new Storyboard();
+            sb.AddFadeInAnimation(TransitionDuration, CurrentContentPresentationSite);
+            sb.AddFadeOutAnimation(TransitionDuration, PreviousContentPresentationSite);
+            sb.AddSlideInFromRight(TransitionDuration, 40, 0.5, CurrentContentPresentationSite);
+            sb.AddSlideOutToLeft(TransitionDuration, 40, 0.5, PreviousContentPresentationSite);
+            return sb;
+        }
+
+        /// <summary>
+        /// Creates a <see cref="TransitionType.Right"/>transition.
+        /// </summary>
+        /// <returns>The transition <see cref="Storyboard"/></returns>
+        private Storyboard GetRightTransition()
+        {
+            var sb = new Storyboard();
+            sb.AddFadeInAnimation(TransitionDuration, CurrentContentPresentationSite);
+            sb.AddFadeOutAnimation(TransitionDuration, PreviousContentPresentationSite);
+            sb.AddSlideInFromLeft(TransitionDuration, 40, 0.5, CurrentContentPresentationSite);
+            sb.AddSlideOutToRight(TransitionDuration, 40, 0.5, PreviousContentPresentationSite);
+            return sb;
+        }
+
+        /// <summary>
+        /// Creates a <see cref="TransitionType.UpReplace"/>transition.
+        /// </summary>
+        /// <returns>The transition <see cref="Storyboard"/></returns>
+        private Storyboard GetUpReplaceTransition()
+        {
+            var sb = new Storyboard();
+            sb.AddFadeInAnimation(TransitionDuration, CurrentContentPresentationSite);
+            sb.AddFadeOutAnimation(TransitionDuration, PreviousContentPresentationSite);
+            sb.AddSlideInFromBelow(TransitionDuration, 40, 0.5, CurrentContentPresentationSite);
+            return sb;
+        }
+
+        /// <summary>
+        /// Creates a <see cref="TransitionType.DownReplace"/>transition.
+        /// </summary>
+        /// <returns>The transition <see cref="Storyboard"/></returns>
+        private Storyboard GetDownReplaceTransition()
+        {
+            var sb = new Storyboard();
+            sb.AddFadeInAnimation(TransitionDuration, CurrentContentPresentationSite);
+            sb.AddFadeOutAnimation(TransitionDuration, PreviousContentPresentationSite);
+            sb.AddSlideInFromAbove(TransitionDuration, 40, 0.5, CurrentContentPresentationSite);
+            return sb;
+        }
+
+        /// <summary>
+        /// Creates a <see cref="TransitionType.LeftReplace"/>transition.
+        /// </summary>
+        /// <returns>The transition <see cref="Storyboard"/></returns>
+        private Storyboard GetLeftReplaceTransition()
+        {
+            var sb = new Storyboard();
+            sb.AddFadeInAnimation(TransitionDuration, CurrentContentPresentationSite);
+            sb.AddFadeOutAnimation(TransitionDuration, PreviousContentPresentationSite);
+            sb.AddSlideInFromRight(TransitionDuration, 40, 0.5, CurrentContentPresentationSite);
+            return sb;
+        }
+
+        /// <summary>
+        /// Creates a <see cref="TransitionType.RightReplace"/>transition.
+        /// </summary>
+        /// <returns>The transition <see cref="Storyboard"/></returns>
+        private Storyboard GetRightReplaceTransition()
+        {
+            var sb = new Storyboard();
+            sb.AddFadeInAnimation(TransitionDuration, CurrentContentPresentationSite);
+            sb.AddFadeOutAnimation(TransitionDuration, PreviousContentPresentationSite);
+            sb.AddSlideInFromLeft(TransitionDuration, 40, 0.5, CurrentContentPresentationSite);
+            return sb;
         }
         #endregion
     }

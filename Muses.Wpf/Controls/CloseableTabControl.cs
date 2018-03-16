@@ -42,5 +42,22 @@ namespace Muses.Wpf.Controls
             set => SetValue(TabTransitionProperty, value);
         }
         #endregion
+
+        #region TabTransitionDuration dependency property
+        /// <summary>
+        /// The TabTransitionDuration dependency property.
+        /// </summary>
+        public static readonly DependencyProperty TabTransitionDurationProperty = DependencyProperty.Register("TabTransitionDuration", typeof(TimeSpan), typeof(CloseableTabControl), new PropertyMetadata(new TimeSpan(0,0,0,0,200))); 
+
+        /// <summary>
+        /// Gets/sets the value of the TabTransitionDuration property.
+        /// </summary>
+        public TimeSpan TabTransitionDuration
+        {
+            get => (TimeSpan)GetValue(TabTransitionDurationProperty);
+            set => SetValue(TabTransitionDurationProperty, value);
+        }
+        #endregion
+
     }
 }

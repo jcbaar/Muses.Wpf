@@ -11,7 +11,6 @@
         UpReplace,
         DownReplace,
         LeftReplace,
-        RightReplace,
-        Custom
+        RightReplace
     }
 }

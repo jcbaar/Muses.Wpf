@@ -103,7 +103,7 @@ namespace Muses.TestControls
         {
             is1 = !is1;
             int t = is1 ? 1 : 2;
-            Transition.Transition = is1 ? TransitionType.Right : TransitionType.Left;
+            Transition.Transition = is1 ? TransitionType.RightReplace : TransitionType.LeftReplace;
             Transition.Content = FindResource($"Trans{t}");
         }
     }
