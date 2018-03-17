@@ -253,14 +253,17 @@
                         <ColumnDefinition Width="120*"/>
                     </Grid.ColumnDefinitions>
 
-                    <GroupBox Style="{StaticResource FlatGroupBoxStyle}" Header="A couple of text boxes in a GroupBox!">
+                    <GroupBox Header="A couple of text boxes in a GroupBox!">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             
-                            <StackPanel Grid.Column="0" Orientation="Vertical" support:StackPanelSupport.Spacing="8" Margin="0,0,4,0">
+                            <StackPanel Grid.Column="0" 
+                                        Orientation="Vertical" 
+                                        support:StackPanelSupport.Spacing="8" 
+                                        Margin="0,0,8,0">
                                 <TextBox support:TextBoxSupport.Hint="This is a hint... Yes. It really is!" 
                                                    support:TextBoxSupport.SelectAllOnFocus="False"/>
                                 <PasswordBox support:TextBoxSupport.Hint="This is a password box..." 
@@ -280,7 +283,10 @@ aliquet ex, at malesuada nisl. In ut pulvinar nisl, malesuada convallis augue. M
 at luctus neque. Vestibulum non iaculis lectus, ac ornare ex. Quisque orci velit,
 vulputate et risus ac, fermentum consequat erat.</TextBox>
                             </StackPanel>
-                            <StackPanel Grid.Column="1" Orientation="Vertical" support:StackPanelSupport.Spacing="8" Margin="4,0,0,0">
+                            <StackPanel Grid.Column="1" 
+                                        Orientation="Vertical" 
+                                        support:StackPanelSupport.Spacing="8" 
+                                        Margin="8,0,0,0">
                                         <TextBox support:TextBoxSupport.Hint="This is a hint... Yes. It really is!" 
                                                  support:TextBoxSupport.SelectAllOnFocus="False"
                                                  IsEnabled="False"/>
@@ -422,6 +428,20 @@ vulputate et risus ac, fermentum consequat erat.</TextBox>
                                                        Margin="10"/>
 
                 </Grid>
+            </muses:CloseableTabItem>
+            <muses:CloseableTabItem Header="Listbox" IsCloseable="False">
+                <ListBox Margin="10" SelectionMode="Extended"> 
+                    <ListBoxItem>Item #1</ListBoxItem>
+                    <ListBoxItem>Item #2</ListBoxItem>
+                    <ListBoxItem>Item #3</ListBoxItem>
+                    <ListBoxItem>Item #4</ListBoxItem>
+                    <ListBoxItem>Item #5</ListBoxItem>
+                    <ListBoxItem>Item #6</ListBoxItem>
+                    <ListBoxItem>Item #7</ListBoxItem>
+                    <ListBoxItem>Item #8</ListBoxItem>
+                    <ListBoxItem>Item #9</ListBoxItem>
+                    <ListBoxItem>Item #10</ListBoxItem>
+                </ListBox>
             </muses:CloseableTabItem>
             <muses:CloseableTabItem x:Name="CantClose" Header="Closeable 1 (or not...?)"/>
             <muses:CloseableTabItem Header="Closeable 2"/>
