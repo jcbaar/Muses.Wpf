@@ -106,5 +106,13 @@ namespace Muses.TestControls
             Transition.Transition = is1 ? TransitionType.RightReplace : TransitionType.LeftReplace;
             Transition.Content = FindResource($"Trans{t}");
         }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (tab.TabTransition == TransitionType.Down)
+                tab.TabTransition = TransitionType.Up;
+            else
+                tab.TabTransition = TransitionType.Down;
+        }
     }
 }

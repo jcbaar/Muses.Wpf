@@ -54,7 +54,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actions\CloseTabAction.cs" />
-    <Compile Include="Controls\Animations\Transitions.cs" />
     <Compile Include="Controls\ClosingTabEventArgs.cs" />
     <Compile Include="Controls\IconChromePack.cs" />
     <Compile Include="Controls\IconChromeFactory.cs" />

@@ -1,4 +1,4 @@
-﻿// Basically a copy of the TransitioningContentControl found at:
+﻿// Largely based on the TransitioningContentControl found at:
 // https://github.com/jenspettersson/WPF-Controls
 // (c) Copyright Microsoft Corporation.
 // This source is subject to the Microsoft Public License (Ms-PL).
@@ -368,8 +368,8 @@ namespace Muses.Wpf.Controls
         private Storyboard GetFadeTransition()
         {
             var sb = new Storyboard();
-            sb.AddFadeInAnimation(TransitionDuration, CurrentContentPresentationSite);
-            sb.AddFadeOutAnimation(TransitionDuration, PreviousContentPresentationSite);
+            sb.AddDoubleAnimation(TransitionDuration, 0.0, 1.0, "Opacity", CurrentContentPresentationSite);
+            sb.AddDoubleAnimation(TransitionDuration, 1.0, 0.0, "Opacity", PreviousContentPresentationSite);
             return sb;
         }
 
@@ -380,10 +380,10 @@ namespace Muses.Wpf.Controls
         private Storyboard GetUpTransition()
         {
             var sb = new Storyboard();
-            sb.AddFadeInAnimation(TransitionDuration, CurrentContentPresentationSite);
-            sb.AddFadeOutAnimation(TransitionDuration, PreviousContentPresentationSite);
-            sb.AddSlideInFromBelow(TransitionDuration, 40, 0.5, CurrentContentPresentationSite);
-            sb.AddSlideOutToAbove(TransitionDuration, 40, 0.5, PreviousContentPresentationSite);
+            sb.AddDoubleAnimation(TransitionDuration, 0.0, 1.0, "Opacity", CurrentContentPresentationSite);
+            sb.AddDoubleAnimation(TransitionDuration, 1.0, 0.0, "Opacity", PreviousContentPresentationSite);
+            sb.AddThicknessAnimation(TransitionDuration, new Thickness(0, 40, 0, -40), new Thickness(0), 0.5, "Margin", CurrentContentPresentationSite);
+            sb.AddThicknessAnimation(TransitionDuration, new Thickness(0), new Thickness(0, -40, 0, 40), 0.5, "Margin", PreviousContentPresentationSite);
             return sb;
         }
 
@@ -394,10 +394,10 @@ namespace Muses.Wpf.Controls
         private Storyboard GetDownTransition()
         {
             var sb = new Storyboard();
-            sb.AddFadeInAnimation(TransitionDuration, CurrentContentPresentationSite);
-            sb.AddFadeOutAnimation(TransitionDuration, PreviousContentPresentationSite);
-            sb.AddSlideInFromAbove(TransitionDuration, 40, 0.5, CurrentContentPresentationSite);
-            sb.AddSlideOutToBelow(TransitionDuration, 40, 0.5, PreviousContentPresentationSite);
+            sb.AddDoubleAnimation(TransitionDuration, 0.0, 1.0, "Opacity", CurrentContentPresentationSite);
+            sb.AddDoubleAnimation(TransitionDuration, 1.0, 0.0, "Opacity", PreviousContentPresentationSite);
+            sb.AddThicknessAnimation(TransitionDuration, new Thickness(0, -40, 0, 40), new Thickness(0), 0.5, "Margin", CurrentContentPresentationSite);
+            sb.AddThicknessAnimation(TransitionDuration, new Thickness(0), new Thickness(0, 40, 0, -40), 0.5, "Margin", PreviousContentPresentationSite);
             return sb;
         }
 
@@ -408,10 +408,10 @@ namespace Muses.Wpf.Controls
         private Storyboard GetLeftTransition()
         {
             var sb = new Storyboard();
-            sb.AddFadeInAnimation(TransitionDuration, CurrentContentPresentationSite);
-            sb.AddFadeOutAnimation(TransitionDuration, PreviousContentPresentationSite);
-            sb.AddSlideInFromRight(TransitionDuration, 40, 0.5, CurrentContentPresentationSite);
-            sb.AddSlideOutToLeft(TransitionDuration, 40, 0.5, PreviousContentPresentationSite);
+            sb.AddDoubleAnimation(TransitionDuration, 0.0, 1.0, "Opacity", CurrentContentPresentationSite);
+            sb.AddDoubleAnimation(TransitionDuration, 1.0, 0.0, "Opacity", PreviousContentPresentationSite);
+            sb.AddThicknessAnimation(TransitionDuration, new Thickness(40, 0, -40, 0), new Thickness(0), 0.5, "Margin", CurrentContentPresentationSite);
+            sb.AddThicknessAnimation(TransitionDuration, new Thickness(0), new Thickness(-40, 0, 40, 0), 0.5, "Margin", PreviousContentPresentationSite);
             return sb;
         }
 
@@ -422,10 +422,10 @@ namespace Muses.Wpf.Controls
         private Storyboard GetRightTransition()
         {
             var sb = new Storyboard();
-            sb.AddFadeInAnimation(TransitionDuration, CurrentContentPresentationSite);
-            sb.AddFadeOutAnimation(TransitionDuration, PreviousContentPresentationSite);
-            sb.AddSlideInFromLeft(TransitionDuration, 40, 0.5, CurrentContentPresentationSite);
-            sb.AddSlideOutToRight(TransitionDuration, 40, 0.5, PreviousContentPresentationSite);
+            sb.AddDoubleAnimation(TransitionDuration, 0.0, 1.0, "Opacity", CurrentContentPresentationSite);
+            sb.AddDoubleAnimation(TransitionDuration, 1.0, 0.0, "Opacity", PreviousContentPresentationSite);
+            sb.AddThicknessAnimation(TransitionDuration, new Thickness(-40, 0, 40, 0), new Thickness(0), 0.5, "Margin", CurrentContentPresentationSite);
+            sb.AddThicknessAnimation(TransitionDuration, new Thickness(0), new Thickness(40, 0, -40, 0), 0.5, "Margin", PreviousContentPresentationSite);
             return sb;
         }
 
@@ -436,9 +436,9 @@ namespace Muses.Wpf.Controls
         private Storyboard GetUpReplaceTransition()
         {
             var sb = new Storyboard();
-            sb.AddFadeInAnimation(TransitionDuration, CurrentContentPresentationSite);
-            sb.AddFadeOutAnimation(TransitionDuration, PreviousContentPresentationSite);
-            sb.AddSlideInFromBelow(TransitionDuration, 40, 0.5, CurrentContentPresentationSite);
+            sb.AddDoubleAnimation(TransitionDuration, 0.0, 1.0, "Opacity", CurrentContentPresentationSite);
+            sb.AddDoubleAnimation(TransitionDuration, 1.0, 0.0, "Opacity", PreviousContentPresentationSite);
+            sb.AddThicknessAnimation(TransitionDuration, new Thickness(0, 40, 0, -40), new Thickness(0), 0.5, "Margin", CurrentContentPresentationSite);
             return sb;
         }
 
@@ -449,9 +449,9 @@ namespace Muses.Wpf.Controls
         private Storyboard GetDownReplaceTransition()
         {
             var sb = new Storyboard();
-            sb.AddFadeInAnimation(TransitionDuration, CurrentContentPresentationSite);
-            sb.AddFadeOutAnimation(TransitionDuration, PreviousContentPresentationSite);
-            sb.AddSlideInFromAbove(TransitionDuration, 40, 0.5, CurrentContentPresentationSite);
+            sb.AddDoubleAnimation(TransitionDuration, 0.0, 1.0, "Opacity", CurrentContentPresentationSite);
+            sb.AddDoubleAnimation(TransitionDuration, 1.0, 0.0, "Opacity", PreviousContentPresentationSite);
+            sb.AddThicknessAnimation(TransitionDuration, new Thickness(0, -40, 0, 40), new Thickness(0), 0.5, "Margin", CurrentContentPresentationSite);
             return sb;
         }
 
@@ -462,9 +462,9 @@ namespace Muses.Wpf.Controls
         private Storyboard GetLeftReplaceTransition()
         {
             var sb = new Storyboard();
-            sb.AddFadeInAnimation(TransitionDuration, CurrentContentPresentationSite);
-            sb.AddFadeOutAnimation(TransitionDuration, PreviousContentPresentationSite);
-            sb.AddSlideInFromRight(TransitionDuration, 40, 0.5, CurrentContentPresentationSite);
+            sb.AddDoubleAnimation(TransitionDuration, 0.0, 1.0, "Opacity", CurrentContentPresentationSite);
+            sb.AddDoubleAnimation(TransitionDuration, 1.0, 0.0, "Opacity", PreviousContentPresentationSite);
+            sb.AddThicknessAnimation(TransitionDuration, new Thickness(40, 0, -40, 0), new Thickness(0), 0.5, "Margin", CurrentContentPresentationSite);
             return sb;
         }
 
@@ -475,9 +475,9 @@ namespace Muses.Wpf.Controls
         private Storyboard GetRightReplaceTransition()
         {
             var sb = new Storyboard();
-            sb.AddFadeInAnimation(TransitionDuration, CurrentContentPresentationSite);
-            sb.AddFadeOutAnimation(TransitionDuration, PreviousContentPresentationSite);
-            sb.AddSlideInFromLeft(TransitionDuration, 40, 0.5, CurrentContentPresentationSite);
+            sb.AddDoubleAnimation(TransitionDuration, 0.0, 1.0, "Opacity", CurrentContentPresentationSite);
+            sb.AddDoubleAnimation(TransitionDuration, 1.0, 0.0, "Opacity", PreviousContentPresentationSite);
+            sb.AddThicknessAnimation(TransitionDuration, new Thickness(-40, 0, 40, 0), new Thickness(0), 0.5, "Margin", CurrentContentPresentationSite);
             return sb;
         }
         #endregion

@@ -314,6 +314,14 @@
                             <Setter Property="Visibility" Value="Collapsed" TargetName="ArrowPanel"/>
                         </Trigger>
 
+                        <!-- 
+                        Just in case of right handedness settings. Alignment of the transition
+                        border still has issues when the pop-up is moved when we are close at the screen though...
+                        -->
+                        <DataTrigger Binding="{Binding Source={x:Static SystemParameters.MenuDropAlignment}}" Value="True">
+                                <Setter Property="HorizontalAlignment" Value="Right" TargetName="TransitionBorder" />
+                        </DataTrigger>
+                        
                         <!-- Role = TopLevelHeader : Sub menu open appearance -->
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
