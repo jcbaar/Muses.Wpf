@@ -110,53 +110,54 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type PasswordBox}">
-                    <Border x:Name="PART_Border" 
-                                BorderThickness="1"
-                                SnapsToDevicePixels="True"
-                                Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}">
-                        <Grid Name="Container" Background="Transparent">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
+                    <Grid Name="Container" Background="Transparent">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
 
-                                <ScrollViewer x:Name="PART_ContentHost"
-                                 Grid.Column="0"
-                                 Padding="1"
-                                 Foreground="{TemplateBinding Foreground}"
-                                 Background="Transparent"/>
+                            <Border x:Name="PART_Border"
+                                    BorderThickness="1"
+                                    SnapsToDevicePixels="True"
+                                    Grid.ColumnSpan="2"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"/>
 
-                                <TextBlock x:Name="PART_Hint"
-                                   Grid.Column="0"
-                                   Padding="2,0"
-                                   Margin="{TemplateBinding Padding}" 
-                                   Text="{Binding Path=(support:TextBoxSupport.Hint), RelativeSource={RelativeSource TemplatedParent}}" 
-                                   TextTrimming="CharacterEllipsis"
-                                   Foreground="{DynamicResource InactiveColorLightTextBrush}"
-                                   Background="Transparent"
-                                   IsHitTestVisible="False"
-                                   VerticalAlignment="Center"
-                                   Visibility="Hidden" />
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                Grid.Column="0"
+                                Padding="1"
+                                Foreground="{TemplateBinding Foreground}"
+                                Background="Transparent"/>
 
-                                <DockPanel Grid.Column="1">
-                                    <Grid x:Name="PART_Warning"  
-                                      DockPanel.Dock="Right"
-                                      Height="{Binding ActualHeight, ElementName=PART_Border}"
-                                      Width="{Binding ActualHeight, ElementName=PART_Border}"
-                                      Visibility="Collapsed"
-                                      ToolTip="{x:Static p:Resources.Tip_CapsLock}">
-                                        <controls:IconChromePack Kind="Warning"
-                                                             Margin="3"
-                                                             SnapsToDevicePixels="True"
-                                                             Fill="{DynamicResource VsWarningColorBrush}"
-                                                             Stretch="Uniform" />
-                                    </Grid>
-                                </DockPanel>
-                            </Grid>
+                            <TextBlock x:Name="PART_Hint"
+                                Grid.Column="0"
+                                Padding="2,0"
+                                Margin="{TemplateBinding Padding}" 
+                                Text="{Binding Path=(support:TextBoxSupport.Hint), RelativeSource={RelativeSource TemplatedParent}}" 
+                                TextTrimming="CharacterEllipsis"
+                                Foreground="{DynamicResource InactiveColorLightTextBrush}"
+                                Background="Transparent"
+                                IsHitTestVisible="False"
+                                VerticalAlignment="Center"
+                                Visibility="Hidden" />
+
+                            <DockPanel Grid.Column="1">
+                                <Grid x:Name="PART_Warning"  
+                                    DockPanel.Dock="Right"
+                                    Height="{Binding ActualHeight, ElementName=PART_Border}"
+                                    Width="{Binding ActualHeight, ElementName=PART_Border}"
+                                    Visibility="Collapsed"
+                                    ToolTip="{x:Static p:Resources.Tip_CapsLock}">
+                                    <controls:IconChromePack Kind="Warning"
+                                                            Margin="3"
+                                                            SnapsToDevicePixels="True"
+                                                            Fill="{DynamicResource VsWarningColorBrush}"
+                                                            Stretch="Uniform" />
+                                </Grid>
+                            </DockPanel>
                         </Grid>
-                    </Border>
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="BorderBrush" Value="{DynamicResource AccentColorBrush}"/>
