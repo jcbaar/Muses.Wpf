@@ -47,7 +47,6 @@
                     <Border x:Name="PART_Border" 
                                 BorderThickness="1"
                                 SnapsToDevicePixels="True"
-                                RenderOptions.EdgeMode="Aliased"
                                 Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}">
                         <Grid Name="Container" Background="Transparent">
@@ -125,10 +124,9 @@
                                     BorderBrush="{TemplateBinding BorderBrush}"/>
 
                             <ScrollViewer x:Name="PART_ContentHost"
+                                          Margin="0,1"
                                 Grid.Column="0"
-                                Padding="1"
-                                Foreground="{TemplateBinding Foreground}"
-                                Background="Transparent"/>
+                                Foreground="{TemplateBinding Foreground}"/>
 
                             <TextBlock x:Name="PART_Hint"
                                 Grid.Column="0"
@@ -150,7 +148,7 @@
                                     Visibility="Collapsed"
                                     ToolTip="{x:Static p:Resources.Tip_CapsLock}">
                                     <controls:IconChromePack Kind="Warning"
-                                                            Margin="3"
+                                                            Margin="0,3,3,3"
                                                             SnapsToDevicePixels="True"
                                                             Fill="{DynamicResource VsWarningColorBrush}"
                                                             Stretch="Uniform" />

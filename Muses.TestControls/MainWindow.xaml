@@ -84,8 +84,14 @@
                         Height="28" 
                         Width="36"
                         Padding="3,0,0,0"
-                        ToolTip="Look at this... A custom button :) Click me to change the accent."
                         Click="Button_Click_1">
+                    <Button.ToolTip>
+                        <TextBlock>
+                            <Run Text="Look at this... A custom button :)"/>
+                            <LineBreak/>
+                            <Run Text="Click me to change the accent color." FontWeight="Bold"/>
+                        </TextBlock>
+                    </Button.ToolTip>
                     <Button.Content>
                         <muses:IconChromePack Kind="Flag" 
                                               Width="16" 
@@ -429,19 +435,69 @@ vulputate et risus ac, fermentum consequat erat.</TextBox>
 
                 </Grid>
             </muses:CloseableTabItem>
-            <muses:CloseableTabItem Header="Listbox" IsCloseable="False">
-                <ListBox Margin="10" SelectionMode="Extended"> 
-                    <ListBoxItem>Item #1</ListBoxItem>
-                    <ListBoxItem>Item #2</ListBoxItem>
-                    <ListBoxItem>Item #3</ListBoxItem>
-                    <ListBoxItem>Item #4</ListBoxItem>
-                    <ListBoxItem>Item #5</ListBoxItem>
-                    <ListBoxItem>Item #6</ListBoxItem>
-                    <ListBoxItem>Item #7</ListBoxItem>
-                    <ListBoxItem>Item #8</ListBoxItem>
-                    <ListBoxItem>Item #9</ListBoxItem>
-                    <ListBoxItem>Item #10</ListBoxItem>
-                </ListBox>
+            <muses:CloseableTabItem Header="Listbox and TreeView" IsCloseable="False">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <ListBox Grid.Row="0" Margin="10" SelectionMode="Extended">
+                            <ListBoxItem>Item #1</ListBoxItem>
+                            <ListBoxItem IsSelected="True">Item #2</ListBoxItem>
+                            <ListBoxItem>Item #3</ListBoxItem>
+                            <ListBoxItem>Item #4</ListBoxItem>
+                            <ListBoxItem>Item #5</ListBoxItem>
+                            <ListBoxItem>Item #6</ListBoxItem>
+                            <ListBoxItem>Item #7</ListBoxItem>
+                            <ListBoxItem>Item #8</ListBoxItem>
+                            <ListBoxItem>Item #9</ListBoxItem>
+                            <ListBoxItem>Item #10</ListBoxItem>
+                        </ListBox>
+                        <ListBox Grid.Row="1" IsEnabled="False" Margin="10" SelectionMode="Extended">
+                            <ListBoxItem>Item #1</ListBoxItem>
+                            <ListBoxItem IsSelected="True">Item #2</ListBoxItem>
+                            <ListBoxItem>Item #3</ListBoxItem>
+                            <ListBoxItem>Item #4</ListBoxItem>
+                            <ListBoxItem>Item #5</ListBoxItem>
+                            <ListBoxItem>Item #6</ListBoxItem>
+                            <ListBoxItem>Item #7</ListBoxItem>
+                            <ListBoxItem>Item #8</ListBoxItem>
+                            <ListBoxItem>Item #9</ListBoxItem>
+                            <ListBoxItem>Item #10</ListBoxItem>
+                        </ListBox>
+                    </Grid>
+
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <TreeView Grid.Row="0" Margin="10">
+                            <TreeViewItem Header="Root #1" IsExpanded="True">
+                                <TreeViewItem Header="Sub #1" IsSelected="True"/>
+                                <TreeViewItem Header="Sub #2"/>
+                                <TreeViewItem Header="Sub #3"/>
+                                <TreeViewItem Header="Sub #4"/>
+                            </TreeViewItem>
+                        </TreeView>
+
+                        <TreeView Grid.Row="1" IsEnabled="False" Margin="10">
+                            <TreeViewItem Header="Root #1" IsExpanded="True">
+                                <TreeViewItem Header="Sub #1" IsSelected="True"/>
+                                <TreeViewItem Header="Sub #2"/>
+                                <TreeViewItem Header="Sub #3"/>
+                                <TreeViewItem Header="Sub #4"/>
+                            </TreeViewItem>
+                        </TreeView>
+                    </Grid>
+                </Grid>
             </muses:CloseableTabItem>
             <muses:CloseableTabItem x:Name="CantClose" Header="Closeable 1 (or not...?)"/>
             <muses:CloseableTabItem Header="Closeable 2"/>

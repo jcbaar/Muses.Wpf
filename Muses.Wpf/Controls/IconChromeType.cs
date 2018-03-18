@@ -31,6 +31,8 @@
         ScrollBarLeftArrow,
         ScrollBarRightArrow,
 
+        TreeViewExpando,
+
         CommandCut,
         CommandCopy,
         CommandPaste
