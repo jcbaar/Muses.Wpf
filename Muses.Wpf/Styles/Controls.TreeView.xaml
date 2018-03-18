@@ -125,6 +125,7 @@
         <Setter Property="Padding" Value="1,0,0,0"/>
         <Setter Property="Foreground" Value="{DynamicResource ForegroundColorBrush}"/>
         <Setter Property="FocusVisualStyle" Value="{StaticResource TreeViewItemFocusVisual}"/>
+        <Setter Property="BorderThickness" Value="1" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TreeViewItem}">
@@ -148,11 +149,13 @@
                                 BorderBrush="{TemplateBinding BorderBrush}" 
                                 BorderThickness="{TemplateBinding BorderThickness}" 
                                 Background="{TemplateBinding Background}" 
-                                Grid.Column="1" 
+                                Grid.Column="1"
+                                Grid.ColumnSpan="2"
                                 Padding="{TemplateBinding Padding}" 
                                 SnapsToDevicePixels="true">
                             <ContentPresenter x:Name="PART_Header" 
                                               ContentSource="Header" 
+                                              Margin="4,2"
                                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                         </Border>
@@ -168,18 +171,25 @@
                         <Trigger Property="HasItems" Value="false">
                             <Setter Property="Visibility" TargetName="Expander" Value="Hidden"/>
                         </Trigger>
+                        <DataTrigger Binding="{Binding IsMouseOver, ElementName=Bd}" Value="true">
+                            <Setter TargetName="Bd" Property="Background" Value="{DynamicResource ControlHoveredColorBrush}"/>
+                            <Setter TargetName="Bd" Property="BorderBrush" Value="{DynamicResource AccentColorBrush}"/>
+                        </DataTrigger>
                         <Trigger Property="IsSelected" Value="true">
                             <Setter Property="Background" TargetName="Bd" Value="{DynamicResource AccentColorBrush}"/>
+                            <Setter Property="BorderBrush" TargetName="Bd" Value="{DynamicResource AccentColorBrush}"/>
                             <Setter Property="Foreground" Value="{DynamicResource ForegroundPressedColorBrush}"/>
                         </Trigger>
-                        <MultiTrigger>
+                        <!-- For now we do not show inactive selections... -->
+                        <!--<MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsSelected" Value="true"/>
                                 <Condition Property="IsSelectionActive" Value="false"/>
                             </MultiTrigger.Conditions>
-                            <Setter Property="Background" TargetName="Bd" Value="{DynamicResource AccentColorBrush}"/>
-                            <Setter Property="Foreground" Value="{DynamicResource ForegroundPressedColorBrush}"/>
-                        </MultiTrigger>
+                            <Setter Property="Background" TargetName="Bd" Value="{DynamicResource InactiveColorBrush}"/>
+                            <Setter Property="BorderBrush" TargetName="Bd" Value="{DynamicResource InactiveColorBrush}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource InactiveLightTextColorBrush}"/>
+                        </MultiTrigger>-->
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Foreground" Value="{DynamicResource DisabledColorBrush}"/>
                         </Trigger>

@@ -481,7 +481,11 @@ vulputate et risus ac, fermentum consequat erat.</TextBox>
 
                         <TreeView Grid.Row="0" Margin="10">
                             <TreeViewItem Header="Root #1" IsExpanded="True">
-                                <TreeViewItem Header="Sub #1" IsSelected="True"/>
+                                <TreeViewItem Header="Sub #1" IsSelected="True">
+                                    <TreeViewItem Header="SubSub #1"/>
+                                    <TreeViewItem Header="SubSub #2"/>
+                                    <TreeViewItem Header="SubSub #3"/>
+                                </TreeViewItem>
                                 <TreeViewItem Header="Sub #2"/>
                                 <TreeViewItem Header="Sub #3"/>
                                 <TreeViewItem Header="Sub #4"/>
@@ -490,7 +494,11 @@ vulputate et risus ac, fermentum consequat erat.</TextBox>
 
                         <TreeView Grid.Row="1" IsEnabled="False" Margin="10">
                             <TreeViewItem Header="Root #1" IsExpanded="True">
-                                <TreeViewItem Header="Sub #1" IsSelected="True"/>
+                                <TreeViewItem Header="Sub #1" IsSelected="True">
+                                    <TreeViewItem Header="SubSub #1"/>
+                                    <TreeViewItem Header="SubSub #2"/>
+                                    <TreeViewItem Header="SubSub #3"/>
+                                </TreeViewItem>
                                 <TreeViewItem Header="Sub #2"/>
                                 <TreeViewItem Header="Sub #3"/>
                                 <TreeViewItem Header="Sub #4"/>
