@@ -345,6 +345,14 @@ namespace Muses.Wpf.Controls
                     return GetLeftReplaceTransition();
                 case TransitionType.RightReplace:
                     return GetRightReplaceTransition();
+                case TransitionType.LeftSlideScale:
+                    return GetLeftSlideScaleTransition();
+                case TransitionType.RightSlideScale:
+                    return GetRightSlideScaleTransition();
+                case TransitionType.UpSlideScale:
+                    return GetUpSlideScaleTransition();
+                case TransitionType.DownSlideScale:
+                    return GetDownSlideScaleTransition();
                 default:
                     return GetNoneTransition();
             }
@@ -478,6 +486,78 @@ namespace Muses.Wpf.Controls
             sb.AddDoubleAnimation(TransitionDuration, 0.0, 1.0, "Opacity", CurrentContentPresentationSite);
             sb.AddDoubleAnimation(TransitionDuration, 1.0, 0.0, "Opacity", PreviousContentPresentationSite);
             sb.AddThicknessAnimation(TransitionDuration, new Thickness(-40, 0, 40, 0), new Thickness(0), 0.5, "Margin", CurrentContentPresentationSite);
+            return sb;
+        }
+
+        /// <summary>
+        /// Creates a <see cref="TransitionType.UpSlideScale"/>transition.
+        /// </summary>
+        /// <returns>The transition <see cref="Storyboard"/></returns>
+        private Storyboard GetUpSlideScaleTransition()
+        {
+            var sb = new Storyboard();
+            sb.AddDoubleAnimation(TransitionDuration, 0.0, 1.0, "Opacity", CurrentContentPresentationSite);
+            sb.AddDoubleAnimation(TransitionDuration, 1.0, 0.0, "Opacity", PreviousContentPresentationSite);
+            sb.AddScaleTransform(TransitionDuration, 0.8, 1.0, CurrentContentPresentationSite);
+            sb.AddScaleTransform(TransitionDuration, 1.0, 0.8, PreviousContentPresentationSite);
+
+            double size = ActualHeight;
+            sb.AddThicknessAnimation(TransitionDuration, new Thickness(0, size, 0, -size), new Thickness(0), 0.5, "Margin", CurrentContentPresentationSite);
+            sb.AddThicknessAnimation(TransitionDuration, new Thickness(0), new Thickness(0, -size, 0, size), 0.5, "Margin", PreviousContentPresentationSite);
+            return sb;
+        }
+
+        /// <summary>
+        /// Creates a <see cref="TransitionType.DownSlideScale"/>transition.
+        /// </summary>
+        /// <returns>The transition <see cref="Storyboard"/></returns>
+        private Storyboard GetDownSlideScaleTransition()
+        {
+            var sb = new Storyboard();
+            sb.AddDoubleAnimation(TransitionDuration, 0.0, 1.0, "Opacity", CurrentContentPresentationSite);
+            sb.AddDoubleAnimation(TransitionDuration, 1.0, 0.0, "Opacity", PreviousContentPresentationSite);
+            sb.AddScaleTransform(TransitionDuration, 0.8, 1.0, CurrentContentPresentationSite);
+            sb.AddScaleTransform(TransitionDuration, 1.0, 0.8, PreviousContentPresentationSite);
+
+            double size = ActualHeight;
+            sb.AddThicknessAnimation(TransitionDuration, new Thickness(0, -size, 0, size), new Thickness(0), 0.5, "Margin", CurrentContentPresentationSite);
+            sb.AddThicknessAnimation(TransitionDuration, new Thickness(0), new Thickness(0, size, 0, -size), 0.5, "Margin", PreviousContentPresentationSite);
+            return sb;
+        }
+
+        /// <summary>
+        /// Creates a <see cref="TransitionType.LeftSlideScale"/>transition.
+        /// </summary>
+        /// <returns>The transition <see cref="Storyboard"/></returns>
+        private Storyboard GetLeftSlideScaleTransition()
+        {
+            var sb = new Storyboard();
+            sb.AddDoubleAnimation(TransitionDuration, 0.0, 1.0, "Opacity", CurrentContentPresentationSite);
+            sb.AddDoubleAnimation(TransitionDuration, 1.0, 0.0, "Opacity", PreviousContentPresentationSite);
+            sb.AddScaleTransform(TransitionDuration, 0.8, 1.0, CurrentContentPresentationSite);
+            sb.AddScaleTransform(TransitionDuration, 1.0, 0.8, PreviousContentPresentationSite);
+
+            double size = ActualWidth;
+            sb.AddThicknessAnimation(TransitionDuration, new Thickness(size, 0, -size, 0), new Thickness(0), 0.5, "Margin", CurrentContentPresentationSite);
+            sb.AddThicknessAnimation(TransitionDuration, new Thickness(0), new Thickness(-size, 0, size, 0), 0.5, "Margin", PreviousContentPresentationSite);
+            return sb;
+        }
+
+        /// <summary>
+        /// Creates a <see cref="TransitionType.RightSlideScale"/>transition.
+        /// </summary>
+        /// <returns>The transition <see cref="Storyboard"/></returns>
+        private Storyboard GetRightSlideScaleTransition()
+        {
+            var sb = new Storyboard();
+            sb.AddDoubleAnimation(TransitionDuration, 0.0, 1.0, "Opacity", CurrentContentPresentationSite);
+            sb.AddDoubleAnimation(TransitionDuration, 1.0, 0.0, "Opacity", PreviousContentPresentationSite);
+            sb.AddScaleTransform(TransitionDuration, 0.8, 1.0, CurrentContentPresentationSite);
+            sb.AddScaleTransform(TransitionDuration, 1.0, 0.8, PreviousContentPresentationSite);
+
+            double size = ActualWidth;
+            sb.AddThicknessAnimation(TransitionDuration, new Thickness(-size, 0, size, 0), new Thickness(0), 0.5, "Margin", CurrentContentPresentationSite);
+            sb.AddThicknessAnimation(TransitionDuration, new Thickness(0), new Thickness(size, 0, -size, 0), 0.5, "Margin", PreviousContentPresentationSite);
             return sb;
         }
         #endregion

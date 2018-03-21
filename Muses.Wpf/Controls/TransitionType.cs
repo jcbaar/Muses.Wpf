@@ -11,6 +11,11 @@
         UpReplace,
         DownReplace,
         LeftReplace,
-        RightReplace
+        RightReplace,
+
+        UpSlideScale,
+        DownSlideScale,
+        LeftSlideScale,
+        RightSlideScale
     }
 }
