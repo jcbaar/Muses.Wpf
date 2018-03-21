@@ -345,6 +345,8 @@ namespace Muses.Wpf.Controls
                     return GetLeftReplaceTransition();
                 case TransitionType.RightReplace:
                     return GetRightReplaceTransition();
+                case TransitionType.FadeScale:
+                    return GetFadeScaleTransition();
                 case TransitionType.LeftSlideScale:
                     return GetLeftSlideScaleTransition();
                 case TransitionType.RightSlideScale:
@@ -490,6 +492,20 @@ namespace Muses.Wpf.Controls
         }
 
         /// <summary>
+        /// Creates a <see cref="TransitionType.FadeScale"/>transition.
+        /// </summary>
+        /// <returns>The transition <see cref="Storyboard"/></returns>
+        private Storyboard GetFadeScaleTransition()
+        {
+            var sb = new Storyboard();
+            sb.AddDoubleAnimation(TransitionDuration, 0.0, 1.0, "Opacity", CurrentContentPresentationSite);
+            sb.AddDoubleAnimation(TransitionDuration, 1.0, 0.0, "Opacity", PreviousContentPresentationSite);
+            sb.AddScaleTransform(TransitionDuration, 0.95, 1.0, CurrentContentPresentationSite);
+            sb.AddScaleTransform(TransitionDuration, 1.0, 0.95, PreviousContentPresentationSite);
+            return sb;
+        }
+
+        /// <summary>
         /// Creates a <see cref="TransitionType.UpSlideScale"/>transition.
         /// </summary>
         /// <returns>The transition <see cref="Storyboard"/></returns>
@@ -498,8 +514,8 @@ namespace Muses.Wpf.Controls
             var sb = new Storyboard();
             sb.AddDoubleAnimation(TransitionDuration, 0.0, 1.0, "Opacity", CurrentContentPresentationSite);
             sb.AddDoubleAnimation(TransitionDuration, 1.0, 0.0, "Opacity", PreviousContentPresentationSite);
-            sb.AddScaleTransform(TransitionDuration, 0.8, 1.0, CurrentContentPresentationSite);
-            sb.AddScaleTransform(TransitionDuration, 1.0, 0.8, PreviousContentPresentationSite);
+            sb.AddScaleTransform(TransitionDuration, 0.95, 1.0, CurrentContentPresentationSite);
+            sb.AddScaleTransform(TransitionDuration, 1.0, 0.95, PreviousContentPresentationSite);
 
             double size = ActualHeight;
             sb.AddThicknessAnimation(TransitionDuration, new Thickness(0, size, 0, -size), new Thickness(0), 0.5, "Margin", CurrentContentPresentationSite);
@@ -516,8 +532,8 @@ namespace Muses.Wpf.Controls
             var sb = new Storyboard();
             sb.AddDoubleAnimation(TransitionDuration, 0.0, 1.0, "Opacity", CurrentContentPresentationSite);
             sb.AddDoubleAnimation(TransitionDuration, 1.0, 0.0, "Opacity", PreviousContentPresentationSite);
-            sb.AddScaleTransform(TransitionDuration, 0.8, 1.0, CurrentContentPresentationSite);
-            sb.AddScaleTransform(TransitionDuration, 1.0, 0.8, PreviousContentPresentationSite);
+            sb.AddScaleTransform(TransitionDuration, 0.95, 1.0, CurrentContentPresentationSite);
+            sb.AddScaleTransform(TransitionDuration, 1.0, 0.95, PreviousContentPresentationSite);
 
             double size = ActualHeight;
             sb.AddThicknessAnimation(TransitionDuration, new Thickness(0, -size, 0, size), new Thickness(0), 0.5, "Margin", CurrentContentPresentationSite);
@@ -534,8 +550,8 @@ namespace Muses.Wpf.Controls
             var sb = new Storyboard();
             sb.AddDoubleAnimation(TransitionDuration, 0.0, 1.0, "Opacity", CurrentContentPresentationSite);
             sb.AddDoubleAnimation(TransitionDuration, 1.0, 0.0, "Opacity", PreviousContentPresentationSite);
-            sb.AddScaleTransform(TransitionDuration, 0.8, 1.0, CurrentContentPresentationSite);
-            sb.AddScaleTransform(TransitionDuration, 1.0, 0.8, PreviousContentPresentationSite);
+            sb.AddScaleTransform(TransitionDuration, 0.95, 1.0, CurrentContentPresentationSite);
+            sb.AddScaleTransform(TransitionDuration, 1.0, 0.95, PreviousContentPresentationSite);
 
             double size = ActualWidth;
             sb.AddThicknessAnimation(TransitionDuration, new Thickness(size, 0, -size, 0), new Thickness(0), 0.5, "Margin", CurrentContentPresentationSite);
@@ -552,8 +568,8 @@ namespace Muses.Wpf.Controls
             var sb = new Storyboard();
             sb.AddDoubleAnimation(TransitionDuration, 0.0, 1.0, "Opacity", CurrentContentPresentationSite);
             sb.AddDoubleAnimation(TransitionDuration, 1.0, 0.0, "Opacity", PreviousContentPresentationSite);
-            sb.AddScaleTransform(TransitionDuration, 0.8, 1.0, CurrentContentPresentationSite);
-            sb.AddScaleTransform(TransitionDuration, 1.0, 0.8, PreviousContentPresentationSite);
+            sb.AddScaleTransform(TransitionDuration, 0.95, 1.0, CurrentContentPresentationSite);
+            sb.AddScaleTransform(TransitionDuration, 1.0, 0.95, PreviousContentPresentationSite);
 
             double size = ActualWidth;
             sb.AddThicknessAnimation(TransitionDuration, new Thickness(-size, 0, size, 0), new Thickness(0), 0.5, "Margin", CurrentContentPresentationSite);

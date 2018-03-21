@@ -208,7 +208,7 @@
             </ToolBarTray>
         </DockPanel>
         
-        <muses:CloseableTabControl x:Name="tab" TabTransition="DownSlideScale" TabTransitionDuration="00:00:00.200" Grid.Row="1" Margin="10" Grid.ColumnSpan="2" ClosingTabItem="CloseableTabControl_ClosingTabItem">
+        <muses:CloseableTabControl x:Name="tab" TabTransition="FadeScale" TabTransitionDuration="00:00:00.200" Grid.Row="1" Margin="10" Grid.ColumnSpan="2" ClosingTabItem="CloseableTabControl_ClosingTabItem">
             <muses:CloseableTabItem Header="Buttons" IsCloseable="False">
                 <Grid Margin="0,10,0,0">
                     <Grid.ColumnDefinitions>

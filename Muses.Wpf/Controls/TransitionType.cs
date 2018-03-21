@@ -13,6 +13,7 @@
         LeftReplace,
         RightReplace,
 
+        FadeScale,
         UpSlideScale,
         DownSlideScale,
         LeftSlideScale,
