@@ -75,6 +75,29 @@
         
     </Window.Resources>
 
+    <muses:BaseWindow.Statusbar>
+        <StatusBar Background="{DynamicResource AccentColorBrush}" Foreground="{DynamicResource AccentForegroundColorBrush}">
+            <StatusBarItem Content="Hello world!" />
+            <Separator Background="{DynamicResource AccentForegroundColorBrush}"/>
+            <StatusBarItem>
+                <StackPanel Orientation="Horizontal"
+                            support:StackPanelSupport.Spacing="5">
+                    <muses:IconChromePack Kind="Warning"
+                                          Width="16"
+                                          Height="16"
+                                          Fill="{Binding RelativeSource={RelativeSource AncestorType=StatusBar}, Path=Foreground}"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          Stretch="Uniform"
+                                          Stroke="Transparent"/>
+                    <TextBlock VerticalAlignment="Center">And a status item with an icon...</TextBlock>
+                </StackPanel>
+            </StatusBarItem>
+            <Separator Background="{DynamicResource AccentForegroundColorBrush}"/>
+            <StatusBarItem />
+        </StatusBar>
+    </muses:BaseWindow.Statusbar>
+
     <muses:BaseWindow.TitlebarControls>
         <ItemsControl>
             <StackPanel Focusable="False" 
@@ -208,7 +231,7 @@
             </ToolBarTray>
         </DockPanel>
         
-        <muses:CloseableTabControl x:Name="tab" TabTransition="FadeScale" TabTransitionDuration="00:00:00.200" Grid.Row="1" Margin="10" Grid.ColumnSpan="2" ClosingTabItem="CloseableTabControl_ClosingTabItem">
+        <muses:CloseableTabControl x:Name="tab" TabTransition="FadeScale" TabTransitionDuration="00:00:00.200" Grid.Row="1" Margin="10,10,10,5" Grid.ColumnSpan="2" ClosingTabItem="CloseableTabControl_ClosingTabItem">
             <muses:CloseableTabItem Header="Buttons" IsCloseable="False">
                 <Grid Margin="0,10,0,0">
                     <Grid.ColumnDefinitions>

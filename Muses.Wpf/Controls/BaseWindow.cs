@@ -4,6 +4,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Interop;
 
@@ -13,16 +14,39 @@ namespace Muses.Wpf.Controls
     /// Base class for themed windows.
     /// </summary>
     [TemplatePart(Name = PART_TitlebarControls, Type = typeof(ContentPresenter))]
+    [TemplatePart(Name = PART_Statusbar, Type = typeof(ContentPresenter))]
+    [TemplatePart(Name = PART_StatusbarBackground, Type = typeof(Grid))]
     public class BaseWindow : Window
     {
         #region Private fields
         const string PART_TitlebarControls = "PART_TitlebarControls";
+        const string PART_Statusbar = "PART_Statusbar";
+        const string PART_StatusbarBackground = "PART_StatusbarBackground";
         Point _startPosition;
         bool _isResizing = false;
         ResizeGrip _grip;
         HwndSource _source;
         #endregion
 
+        #region StatusBar dependency property
+        internal ContentPresenter StatusbarPresenter { get; set; }
+
+        /// <summary>
+        /// The StatusBar dependency property.
+        /// </summary>
+        public static readonly DependencyProperty StatusBarProperty = DependencyProperty.Register("StatusBar", typeof(StatusBar), typeof(BaseWindow), new PropertyMetadata(null));
+
+        /// <summary>
+        /// Gets/sets the value of the StatusBar property.
+        /// </summary>
+        public StatusBar Statusbar
+        {
+            get => (StatusBar)GetValue(StatusBarProperty);
+            set => SetValue(StatusBarProperty, value);
+        }
+        #endregion
+
+        #region TitlebarControls dependency property.
         public static readonly DependencyProperty TitlebarControlsProperty = DependencyProperty.Register("TitlebarControls", typeof(ItemsControl), typeof(BaseWindow), new PropertyMetadata(null));
 
         internal ContentPresenter TitlebarControlsPresenter { get; set; }
@@ -35,6 +59,7 @@ namespace Muses.Wpf.Controls
             get { return (ItemsControl)GetValue(TitlebarControlsProperty); }
             set { SetValue(TitlebarControlsProperty, value); }
         }
+        #endregion
 
         #region Static constructor.
         /// <summary>
@@ -108,14 +133,35 @@ namespace Muses.Wpf.Controls
         {
             base.OnApplyTemplate();
 
+            StatusbarPresenter = GetTemplateChild(PART_Statusbar) as ContentPresenter;
+
+            if(Statusbar == null)
+            {
+                Statusbar = new StatusBar();
+            }
+            Statusbar.Focusable = false;
+
             TitlebarControlsPresenter = GetTemplateChild(PART_TitlebarControls) as ContentPresenter;
 
             if(TitlebarControls == null)
             {
                 TitlebarControls = new ItemsControl();
             }
-
             TitlebarControls.Focusable = false;
+
+            // Make sure the background of the whole status bar including
+            // the resize grip is updated properly...
+            if (GetTemplateChild(PART_StatusbarBackground) is Grid status)
+            {
+                Binding backBinding = new Binding
+                {
+                    Source = Statusbar,
+                    Path = new PropertyPath("Background"),
+                    Mode = BindingMode.OneWay,
+                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                };
+                BindingOperations.SetBinding(status, StatusBar.BackgroundProperty, backBinding);
+            }
 
             if (_source == null)
             {
@@ -123,12 +169,24 @@ namespace Muses.Wpf.Controls
                 _source = HwndSource.FromHwnd(hwnd);
                 _source.AddHook(WndProc);
             }
+
             // Find the window resize grip and hook up the necessary events.
             if (_grip == null)
             {
                 _grip = this.FindChild<ResizeGrip>();
                 if (_grip != null)
                 {
+                    // Make sure the grip foreground color stays up to date
+                    // with the status bar foreground color.
+                    var foreBinding = new Binding
+                    {
+                        Source = Statusbar,
+                        Path = new PropertyPath("Foreground"),
+                        Mode = BindingMode.OneWay,
+                        UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                    };
+                    BindingOperations.SetBinding(_grip, StatusBar.ForegroundProperty, foreBinding);
+
                     _grip.PreviewMouseLeftButtonDown += _grip_PreviewMouseLeftButtonDown;
                     _grip.PreviewMouseMove += _grip_PreviewMouseMove;
                     _grip.PreviewMouseLeftButtonUp += _grip_PreviewMouseLeftButtonUp;

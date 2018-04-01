@@ -16,6 +16,7 @@
     <Style x:Key="ResizeGripStyle" TargetType="{x:Type ResizeGrip}">
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundColorBrush}" />
         <Setter Property="Cursor" Value="SizeNWSE" />
         <Setter Property="Visibility" Value="Collapsed" />
         <Setter Property="Focusable" Value="False" />
@@ -30,19 +31,19 @@
                                                  Kind="ResizeGrip" 
                                                  Width="12" 
                                                  Height="13" 
-                                                 Stroke="{DynamicResource InactiveColorBrush}"
+                                                 Stroke="{TemplateBinding Foreground}"
                                                  Fill="{x:Null}"
                                                  Stretch="None"
                                                  Margin="1"/>
                     </Border>
-                    <ControlTemplate.Triggers>
+                    <!--<ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=IsActive}" Value="False">
                             <Setter TargetName="ResizeGrip" Property="Stroke" Value="{DynamicResource InactiveColorBrush}"  />
                         </DataTrigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="ResizeGrip" Property="Stroke" Value="{DynamicResource AccentColorBrush}" />
                         </Trigger>
-                    </ControlTemplate.Triggers>
+                    </ControlTemplate.Triggers>-->
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -70,9 +71,10 @@
                                                            Height="{Binding Source={x:Static SystemParameters.WindowCaptionHeight}}" />
                                             <RowDefinition Height="*" />
                                             <RowDefinition MinHeight="20"
-                                                           Height="20"/>
+                                                           Height="Auto"/>
                                         </Grid.RowDefinitions>
-                                        <ContentPresenter Grid.Row="1" Grid.RowSpan="2" Margin="0"/>
+                                        <ContentPresenter Grid.Row="1" Margin="0"/>
+                                        
                                         <Rectangle x:Name="HeaderBackground" 
                                                    MinHeight="28" 
                                                    Height="{Binding Source={x:Static SystemParameters.WindowCaptionHeight}}"
@@ -191,10 +193,22 @@
                                         </Grid>
 
                                         <Grid Grid.Row="2">
-                                            <ResizeGrip x:Name="ResizeGrip"
-                                                        HorizontalAlignment="Right"
-                                                        VerticalAlignment="Bottom"
-                                                        Style="{StaticResource ResizeGripStyle}" />
+                                            <Grid x:Name="PART_StatusbarBackground">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+                                    
+                                                <ContentPresenter x:Name="PART_StatusBar" 
+                                                              Content="{Binding StatusBar, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                                              Focusable="False"/>
+
+                                                <ResizeGrip x:Name="ResizeGrip"
+                                                            Grid.Column="1"
+                                                            HorizontalAlignment="Right"
+                                                            VerticalAlignment="Bottom"
+                                                            Style="{StaticResource ResizeGripStyle}" />
+                                            </Grid>
                                         </Grid>
                                     </Grid>
                                 </AdornerDecorator>

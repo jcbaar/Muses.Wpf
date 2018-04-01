@@ -50,6 +50,7 @@
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.ContentControl.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.ListBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.TreeView.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.Statusbar.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>
