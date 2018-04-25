@@ -530,6 +530,28 @@ vulputate et risus ac, fermentum consequat erat.</TextBox>
                     </Grid>
                 </Grid>
             </muses:CloseableTabItem>
+            <muses:CloseableTabItem IsCloseable="False" Header="ProgressBar">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" 
+                                Orientation="Horizontal"
+                            support:StackPanelSupport.Spacing="8"
+                            Margin="10">
+                        <ProgressBar Minimum="0" Maximum="100" Value="75" Width="16" Orientation="Vertical"/>
+                        <ProgressBar Minimum="0" Maximum="100" IsIndeterminate="True" Width="16" Orientation="Vertical"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" 
+                                Orientation="Vertical"
+                            support:StackPanelSupport.Spacing="8"
+                            Margin="10">
+                    <ProgressBar Minimum="0" Maximum="100" Value="75" Height="16"/>
+                    <ProgressBar Minimum="0" Maximum="100" IsIndeterminate="True" Height="16"/>
+                </StackPanel>
+                </Grid>
+            </muses:CloseableTabItem>
             <muses:CloseableTabItem x:Name="CantClose" Header="Closeable 1 (or not...?)"/>
             <muses:CloseableTabItem Header="Closeable 2"/>
             <muses:CloseableTabItem Header="Closeable 3"/>

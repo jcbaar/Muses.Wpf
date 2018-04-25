@@ -31,6 +31,8 @@
     <Color x:Key="VsNegativeColor">#FFE51400</Color>
     <Color x:Key="VsWarningColor">#FFFFCC00</Color>
 
+    <Color x:Key="ProgressColor">#FF06B025</Color>
+    
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Resources/Brushes.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/BaseWindow.xaml" />
@@ -51,6 +53,7 @@
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.ListBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.TreeView.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.Statusbar.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.ProgressBar.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

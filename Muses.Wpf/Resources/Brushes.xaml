@@ -32,4 +32,6 @@
     <SolidColorBrush x:Key="VsNegativeColorBrush" Color="{DynamicResource VsNegativeColor}" po:Freeze="True"/>
     <SolidColorBrush x:Key="VsWarningColorBrush" Color="{DynamicResource VsWarningColor}" po:Freeze="True"/>
 
+    <SolidColorBrush x:Key="ProgressColorBrush" Color="{DynamicResource ProgressColor}" po:Freeze="True" />
+
 </ResourceDictionary>

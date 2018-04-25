@@ -215,8 +215,7 @@
                             </Border>
                             <Border x:Name="PART_Border"
                                     BorderBrush="{DynamicResource AccentColorBrush}" 
-                                    BorderThickness="1" 
-                                    Visibility="{Binding IsActive, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Converter={StaticResource BoolToVisibility}}" />
+                                    BorderThickness="1"/>
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -227,6 +226,10 @@
                             <Setter TargetName="Maximize" Property="Foreground" Value="{DynamicResource AccentForegroundColorBrush}" />
                             <Setter TargetName="Restore" Property="Foreground" Value="{DynamicResource AccentForegroundColorBrush}" />
                             <Setter TargetName="Close" Property="Foreground" Value="{DynamicResource AccentForegroundColorBrush}" />
+                        </Trigger>
+
+                        <Trigger Property="IsActive" Value="False">
+                            <Setter TargetName="PART_Border" Property="BorderBrush" Value="{DynamicResource InactiveColorBrush}" />
                         </Trigger>
                         
                         <MultiTrigger>
