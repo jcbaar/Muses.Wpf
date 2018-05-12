@@ -56,6 +56,7 @@
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.TreeView.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.Statusbar.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.ProgressBar.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.GridSplitter.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

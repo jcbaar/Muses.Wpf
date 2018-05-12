@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Title="MainWindow with a longer title that should break" 
                   ResizeMode="CanResizeWithGrip" 
-                  Height="350" 
+                  Height="400" 
                   Width="900" 
                   Style="{StaticResource BaseWindowStyle}">
 
@@ -531,7 +531,7 @@ vulputate et risus ac, fermentum consequat erat.</TextBox>
                 </Grid>
             </muses:CloseableTabItem>
             <muses:CloseableTabItem IsCloseable="False" Header="ProgressBar">
-                <Grid>
+                <Grid UseLayoutRounding="True">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
@@ -540,15 +540,16 @@ vulputate et risus ac, fermentum consequat erat.</TextBox>
                                 Orientation="Horizontal"
                             support:StackPanelSupport.Spacing="8"
                             Margin="10">
-                        <ProgressBar Minimum="0" Maximum="100" Value="75" Width="16" Orientation="Vertical"/>
-                        <ProgressBar Minimum="0" Maximum="100" IsIndeterminate="True" Width="16" Orientation="Vertical"/>
+                        <ProgressBar Minimum="0" Maximum="100" Value="75" Width="20" Orientation="Vertical"/>
+                        <ProgressBar Minimum="0" Maximum="100" IsIndeterminate="True" Width="20" Orientation="Vertical" Foreground="MediumPurple"/>
                     </StackPanel>
                     <StackPanel Grid.Column="1" 
                                 Orientation="Vertical"
+                                VerticalAlignment="Center"
                             support:StackPanelSupport.Spacing="8"
                             Margin="10">
-                    <ProgressBar Minimum="0" Maximum="100" Value="75" Height="16"/>
-                    <ProgressBar Minimum="0" Maximum="100" IsIndeterminate="True" Height="16"/>
+                    <ProgressBar Minimum="0" Maximum="100" Value="75" Height="20"/>
+                    <ProgressBar Minimum="0" Maximum="100" IsIndeterminate="True" Height="20" Foreground="MediumPurple"/>
                 </StackPanel>
                 </Grid>
             </muses:CloseableTabItem>
