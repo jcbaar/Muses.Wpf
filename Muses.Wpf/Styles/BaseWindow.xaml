@@ -107,12 +107,10 @@
                                                                 Height="25">
                                                             <controls:IconChromePack Kind="MinimizeButton"
                                                                                      Width="8"
-                                                                                     Height="7"
-                                                                      UseLayoutRounding="True"
-                                                                      RenderOptions.EdgeMode="Aliased"
-                                                                  Fill="{x:Null}"
-                                                                  Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
-                                                                                     StrokeThickness="4"/>
+                                                                                     Height="6"
+                                                                                     Fill="{x:Null}"
+                                                                                     Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
+                                                                                     StrokeThickness="2"/>
                                                         </Border>
                                                     </Button.Content>
                                                 </Button>
@@ -128,10 +126,8 @@
                                                             <Border Width="30" 
                                                                     Height="25">
                                                                 <controls:IconChromePack Kind="RestoreButton" 
-                                                                      Width="10" 
-                                                                      Height="10" 
-                                                                      UseLayoutRounding="True"
-                                                                      RenderOptions.EdgeMode="Aliased"
+                                                                      Width="9" 
+                                                                      Height="8" 
                                                                       Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" 
                                                                       StrokeThickness="1"  />
                                                             </Border>
@@ -148,12 +144,10 @@
                                                             <Border Width="30" 
                                                                     Height="25">
                                                                 <controls:IconChromePack Kind="MaximizeButton" 
-                                                                      Width="10" 
-                                                                      Height="11" 
-                                                                      UseLayoutRounding="True"
-                                                                      RenderOptions.EdgeMode="Aliased"
+                                                                      Width="9" 
+                                                                      Height="8" 
                                                                       Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" 
-                                                                      StrokeThickness="1.1"  />
+                                                                      StrokeThickness="1"  />
                                                             </Border>
                                                         </Button.Content>
                                                     </Button>
@@ -168,10 +162,8 @@
                                                         <Border Width="30" 
                                                                 Height="25" >
                                                             <controls:IconChromePack Kind="CloseButton" 
-                                                                                     Width="8" 
-                                                                                     Height="8"
-                                                                                     SnapsToDevicePixels="True"
-                                                                                     RenderOptions.EdgeMode="Aliased"
+                                                                                     Width="9" 
+                                                                                     Height="9" 
                                                                                      Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" 
                                                                                      StrokeThickness="2"  />
                                                         </Border>
