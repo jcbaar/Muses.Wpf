@@ -5,5 +5,9 @@
     <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
     <conv:BooleanToVisibilityHiddenConverter x:Key="BoolToVisibilityHidden"/>
     <conv:NotNullConverter x:Key="NotNull" />
-
+    <conv:DoubleToColorComponentConverter x:Key="ColorComponentConverter" />
+    <conv:DoubleToPercentageConverter x:Key="ColorValueConverter" />
+    <conv:HueToColorConverter x:Key="HueToColorConverter" />
+    <conv:HsvToColorConverter x:Key="HsvToColorConverter" />
+    
 </ResourceDictionary>

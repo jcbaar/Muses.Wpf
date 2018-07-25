@@ -61,6 +61,87 @@ namespace Muses.Wpf.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A.
+        /// </summary>
+        public static string ColorEditor_Alpha {
+            get {
+                return ResourceManager.GetString("ColorEditor_Alpha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to B.
+        /// </summary>
+        public static string ColorEditor_Blue {
+            get {
+                return ResourceManager.GetString("ColorEditor_Blue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to G.
+        /// </summary>
+        public static string ColorEditor_Green {
+            get {
+                return ResourceManager.GetString("ColorEditor_Green", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to H.
+        /// </summary>
+        public static string ColorEditor_Hue {
+            get {
+                return ResourceManager.GetString("ColorEditor_Hue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Original.
+        /// </summary>
+        public static string ColorEditor_OriginalColor {
+            get {
+                return ResourceManager.GetString("ColorEditor_OriginalColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to R.
+        /// </summary>
+        public static string ColorEditor_Red {
+            get {
+                return ResourceManager.GetString("ColorEditor_Red", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to S.
+        /// </summary>
+        public static string ColorEditor_Saturation {
+            get {
+                return ResourceManager.GetString("ColorEditor_Saturation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current.
+        /// </summary>
+        public static string ColorEditor_SelectedColor {
+            get {
+                return ResourceManager.GetString("ColorEditor_SelectedColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to V.
+        /// </summary>
+        public static string ColorEditor_Value {
+            get {
+                return ResourceManager.GetString("ColorEditor_Value", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copy.
         /// </summary>
         public static string Menu_Copy {

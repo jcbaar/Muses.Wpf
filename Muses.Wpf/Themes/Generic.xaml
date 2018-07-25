@@ -5,5 +5,4 @@
         <!-- The generic theme is the light theme... -->
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Themes/Light.xaml" />
     </ResourceDictionary.MergedDictionaries>
-
 </ResourceDictionary>

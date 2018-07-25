@@ -6,6 +6,19 @@
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Resources/Shared.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
+    <!-- Focus style for the thumbs. -->
+    <Style x:Key="SliderThumbFocus">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Ellipse Margin="-3" 
+                             StrokeThickness="1" 
+                             Stroke="{DynamicResource AccentColorBrush}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!-- Increase button for the horizontal slider. -->
     <Style x:Key="HSliderIncrease" TargetType="RepeatButton">
         <Setter Property="SnapsToDevicePixels" Value="true" />
@@ -38,6 +51,8 @@
     <Style x:Key="HSliderDecrease" TargetType="RepeatButton">
         <Setter Property="SnapsToDevicePixels" Value="true" />
         <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="IsTabStop" Value="false" />
+        <Setter Property="Focusable" Value="false" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="RepeatButton">
@@ -87,6 +102,8 @@
     <Style x:Key="VSliderDecrease" TargetType="RepeatButton">
         <Setter Property="SnapsToDevicePixels" Value="true" />
         <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="IsTabStop" Value="false" />
+        <Setter Property="Focusable" Value="false" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="RepeatButton">
@@ -113,6 +130,9 @@
     <Style x:Key="SliderThumb" TargetType="Thumb">
         <Setter Property="SnapsToDevicePixels" Value="true" />
         <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="IsTabStop" Value="true" />
+        <Setter Property="Focusable" Value="true" />
+        <Setter Property="FocusVisualStyle" Value="{StaticResource SliderThumbFocus}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Thumb">
@@ -173,7 +193,7 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Border x:Name="Background" Grid.Row="1" BorderBrush="Transparent" BorderThickness="1,5" Background="{TemplateBinding Background}"/>
-            <Track Grid.Row="1" x:Name="PART_Track">
+            <Track Grid.Row="1" x:Name="PART_Track" Focusable="False">
                 <Track.DecreaseRepeatButton>
                     <RepeatButton Style="{StaticResource HSliderDecrease}"  Command="Slider.DecreaseLarge" />
                 </Track.DecreaseRepeatButton>
@@ -201,7 +221,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Border x:Name="Background" Grid.Column="1" BorderBrush="Transparent" BorderThickness="5,1" Background="{TemplateBinding Background}"/>
-            <Track Grid.Column="1" x:Name="PART_Track"  Orientation="Vertical" >
+            <Track Grid.Column="1" x:Name="PART_Track"  Orientation="Vertical" Focusable="False">
                 <Track.DecreaseRepeatButton>
                     <RepeatButton Style="{StaticResource VSliderDecrease}"  Command="Slider.DecreaseLarge" />
                 </Track.DecreaseRepeatButton>
@@ -222,18 +242,18 @@
 
     <!-- Horizontal slider. -->
     <Style x:Key="FlatHorizontalSliderStyle" TargetType="Slider">
-        <Setter Property="Focusable" Value="False"/>
         <Setter Property="SnapsToDevicePixels" Value="true" />
         <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="true" />
         <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="Focusable" Value="False" />
         <Setter Property="support:SliderSupport.ThumbBrush" Value="{DynamicResource AccentColorBrush}"/>
         <Setter Property="support:SliderSupport.ThumbMouseOverBrush" Value="{DynamicResource AccentLightColorBrush}"/>
         <Setter Property="support:SliderSupport.FillBrush" Value="{DynamicResource AccentDarkColorBrush}"/>
         <Style.Triggers>
             <Trigger Property="Orientation" Value="Horizontal">
                 <Setter Property="MinHeight" Value="15" />
-                <Setter Property="MinWidth" Value="104" />
+                <!--<Setter Property="MinWidth" Value="104" />-->
                 <Setter Property="Template" Value="{StaticResource HSlider}" />
             </Trigger>
         </Style.Triggers>
@@ -241,20 +261,21 @@
 
     <!-- Vertical slider. -->
     <Style x:Key="FlatVerticalSliderStyle" TargetType="Slider">
-        <Setter Property="Focusable" Value="False"/>
         <Setter Property="SnapsToDevicePixels" Value="true" />
         <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="true" />
         <Setter Property="Background" Value="{x:Null}" />
+        <Setter Property="Focusable" Value="False" />
         <Setter Property="support:SliderSupport.ThumbBrush" Value="{DynamicResource AccentColorBrush}"/>
         <Setter Property="support:SliderSupport.ThumbMouseOverBrush" Value="{DynamicResource AccentLightColorBrush}"/>
         <Setter Property="support:SliderSupport.FillBrush" Value="{DynamicResource AccentDarkColorBrush}"/>
         <Style.Triggers>
             <Trigger Property="Orientation" Value="Vertical">
                 <Setter Property="MinWidth" Value="15" />
-                <Setter Property="MinHeight" Value="104" />
+                <!--<Setter Property="MinHeight" Value="104" />-->
                 <Setter Property="Template" Value="{StaticResource VSlider}" />
             </Trigger>
         </Style.Triggers>
     </Style>
+
 </ResourceDictionary>

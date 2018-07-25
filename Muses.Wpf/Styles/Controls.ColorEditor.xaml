@@ -1,0 +1,481 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Muses.Wpf.Controls.Custom"
+                    xmlns:support="clr-namespace:Muses.Wpf.Controls.Support"
+                    xmlns:p="clr-namespace:Muses.Wpf.Properties">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.Slider.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.BoxSlider.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    
+    <!-- Fully saturated vertical hue brush (bottom-to-top) -->
+    <VisualBrush x:Key="VerticalHueSliderBackground">
+        <VisualBrush.Visual>
+            <Grid>
+                <Rectangle Width="1" Height="1" RenderOptions.EdgeMode="Aliased">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush StartPoint="0,1" EndPoint="0,0" >
+                            <GradientStop Color="#FF0000" Offset="0" />
+                            <GradientStop Color="#FFFF00" Offset="0.167" />
+                            <GradientStop Color="#00FF00" Offset="0.333" />
+                            <GradientStop Color="#00FFFF" Offset="0.500" />
+                            <GradientStop Color="#0000FF" Offset="0.667" />
+                            <GradientStop Color="#FF00FF" Offset="0.834" />
+                            <GradientStop Color="#FF0000" Offset="1" />
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Grid>
+        </VisualBrush.Visual>
+    </VisualBrush>
+
+    <!-- Fully saturated horizontal hue brush (left-to-right) -->
+    <VisualBrush x:Key="HorizontalHueSliderBackground">
+        <VisualBrush.Visual>
+            <Grid>
+                <Rectangle Width="1" Height="1" RenderOptions.EdgeMode="Aliased">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0" >
+                            <GradientStop Color="#FF0000" Offset="0" />
+                            <GradientStop Color="#FFFF00" Offset="0.167" />
+                            <GradientStop Color="#00FF00" Offset="0.333" />
+                            <GradientStop Color="#00FFFF" Offset="0.500" />
+                            <GradientStop Color="#0000FF" Offset="0.667" />
+                            <GradientStop Color="#FF00FF" Offset="0.834" />
+                            <GradientStop Color="#FF0000" Offset="1" />
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Grid>
+        </VisualBrush.Visual>
+    </VisualBrush>
+
+    <!-- Background for the transparent colors. -->
+    <DrawingBrush x:Key="TransparencyBackground" TileMode="Tile" Viewport="0,0,16,16" ViewportUnits="Absolute" RenderOptions.EdgeMode="Aliased">
+        <DrawingBrush.Drawing>
+            <GeometryDrawing Geometry="M0,0 H4 V4 H8 V8 H4 V4 H0Z" Brush="#C0C0C0"/>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <!-- Focus style for the thumbs. -->
+    <Style x:Key="CThumbFocus">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle Margin="-2" 
+                               StrokeThickness="1" 
+                               Stroke="{DynamicResource AccentColorBrush}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <!-- Thumb for the Horizontal color sliders. -->
+    <Style x:Key="HColorSliderThumb" TargetType="Thumb">
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="IsTabStop" Value="True" />
+        <Setter Property="Focusable" Value="True" />
+        <Setter Property="FocusVisualStyle" Value="{StaticResource CThumbFocus}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Thumb">
+                    <Border Width="14" Height="14" Background="Transparent">
+                        <Grid>
+                            <Path x:Name="Upper" 
+                                  Stroke="Black"
+                                  Fill="Black"
+                                  Data="M2,0 L12,0 L7,5 L2,0 Z"
+                                  RenderOptions.EdgeMode="Aliased"/>
+
+                            <Path x:Name="Lower"
+                                  Stroke="Black"
+                                  Fill="White"
+                                  Data="M2,14 L12,14 L7,9 L2,14 Z"
+                                  RenderOptions.EdgeMode="Aliased"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Upper" Property="Fill" Value="{DynamicResource DisabledColorBrush}"/>
+                            <Setter TargetName="Lower" Property="Fill" Value="{DynamicResource DisabledColorBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Thumb for the Vertical color slider. -->
+    <Style x:Key="VColorSliderThumb" TargetType="Thumb">
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="IsTabStop" Value="True" />
+        <Setter Property="Focusable" Value="True" />
+        <Setter Property="FocusVisualStyle" Value="{StaticResource CThumbFocus}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Thumb">
+                    <Border Width="14" Height="14" Background="Transparent">
+                        <Grid>
+                            <Path x:Name="Upper" 
+                                  Stroke="Black"
+                                  Fill="Black"
+                                  Data="M0,2 L0,12 L5,7 L0,2 Z"/>
+
+                            <Path x:Name="Lower"
+                                  Stroke="Black"
+                                  Fill="White"
+                                  Data="M14,2 L14,12 L9,7 L14,2 Z"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Upper" Property="Fill" Value="{DynamicResource DisabledColorBrush}"/>
+                            <Setter TargetName="Lower" Property="Fill" Value="{DynamicResource DisabledColorBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Template for the Horizontal color slider. -->
+    <ControlTemplate x:Key="CHSlider" TargetType="Slider">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}" />
+            </Grid.RowDefinitions>
+            <Border BorderThickness="7,0">
+                <Rectangle RenderOptions.EdgeMode="Aliased" ClipToBounds="True" Fill="{StaticResource TransparencyBackground}"/>
+            </Border>
+            <Border x:Name="Background" 
+                    Grid.Row="1" 
+                    BorderBrush="Transparent" 
+                    BorderThickness="7,0" 
+                    Background="{TemplateBinding Background}"/>
+            <Track Grid.Row="1"
+                   Focusable="False"
+                   x:Name="PART_Track">
+                <Track.DecreaseRepeatButton>
+                    <RepeatButton Focusable="False" Command="Slider.DecreaseLarge" Style="{StaticResource HSliderDecrease}"/>
+                </Track.DecreaseRepeatButton>
+                <Track.IncreaseRepeatButton>
+                    <RepeatButton Focusable="False" Command="Slider.IncreaseLarge" Style="{StaticResource HSliderIncrease}"/>
+                </Track.IncreaseRepeatButton>
+                <Track.Thumb>
+                    <Thumb Style="{StaticResource HColorSliderThumb}" />
+                </Track.Thumb>
+            </Track>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter TargetName="Background" Property="Background" Value="{DynamicResource DisabledBackColorBrush}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!-- Template for the Vertical color slider. -->
+    <ControlTemplate x:Key="CVSlider" TargetType="Slider">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" MinWidth="{TemplateBinding MinWidth}" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Border BorderThickness="0,7">
+                <Rectangle RenderOptions.EdgeMode="Aliased" ClipToBounds="True" Fill="{StaticResource TransparencyBackground}"/>
+            </Border>
+            <Border x:Name="Background" 
+                    Grid.Column="1" 
+                    BorderBrush="Transparent" 
+                    BorderThickness="0,7" 
+                    Background="{TemplateBinding Background}"/>
+            
+            <Track Grid.Column="1" x:Name="PART_Track" Focusable="False" Orientation="Vertical" >
+                <Track.DecreaseRepeatButton>
+                    <RepeatButton Focusable="False" Command="Slider.DecreaseLarge" Style="{StaticResource VSliderDecrease}"/>
+                </Track.DecreaseRepeatButton>
+                <Track.IncreaseRepeatButton>
+                    <RepeatButton Focusable="False" Command="Slider.IncreaseLarge" Style="{StaticResource VSliderIncrease}"/>
+                </Track.IncreaseRepeatButton>
+                <Track.Thumb>
+                    <Thumb Style="{StaticResource VColorSliderThumb}"  />
+                </Track.Thumb>
+            </Track>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter TargetName="Background" Property="Background" Value="{DynamicResource DisabledBackColorBrush}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <!-- Horizontal slider. -->
+    <Style x:Key="CHorizontalSliderStyle" TargetType="Slider">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="MinHeight" Value="14" />
+        <Setter Property="Template" Value="{StaticResource CHSlider}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+    </Style>
+
+    <!-- Vertical slider. -->
+    <Style x:Key="CVerticalSliderStyle" TargetType="Slider">
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="MinWidth" Value="14" />
+        <Setter Property="Template" Value="{StaticResource CVSlider}" />
+        <Setter Property="UseLayoutRounding" Value="True"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+    </Style>
+
+    <!-- Thumb for the HsvCanvas -->
+    <Style x:Key="ColorCanvasThumb" TargetType="{x:Type Thumb}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Grid>
+                        <Border>
+                            <Ellipse Fill="Transparent" Stroke="Black" StrokeThickness="2"/>
+                        </Border>
+                        <Border Padding="2">
+                            <Ellipse Fill="Transparent" Stroke="Wheat" StrokeThickness="2"/>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- 
+    The style for the HSV editor control with the color canvas and
+    Hue slider.
+    -->    
+    <Style x:Key="HsvCanvas" TargetType="{x:Type controls:HsvEditor}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:HsvEditor}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- The color canvas. -->
+                        <controls:BoxSlider x:Name="PART_ColorCanvas"
+                                            Grid.Column="0"
+                                            MinimumValueHorizontal="0.0"
+                                            MaximumValueHorizontal="1.0"
+                                            ValueHorizontal="{Binding Path=Saturation, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                            MinimumValueVertical="0.0"
+                                            MaximumValueVertical="1.0"
+                                            ValueVertical="{Binding Path=Value, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                            ThumbStyle="{StaticResource ColorCanvasThumb}">
+                            <controls:BoxSlider.Background>
+                                <!-- https://stackoverflow.com/questions/32513387/how-to-create-a-color-canvas-for-color-picker-wpf/32514853#32514853 -->
+                                <VisualBrush TileMode="None">
+                                    <VisualBrush.Visual>
+                                        <Grid Background="Black">
+                                            <Rectangle Width="1" Height="1" SnapsToDevicePixels="True" RenderOptions.EdgeMode="Aliased">
+                                                <Rectangle.Fill>
+                                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                                        <LinearGradientBrush.GradientStops>
+                                                            <GradientStop Color="White" Offset="0" />
+                                                            <GradientStop Color="{Binding Path=Hue, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay, Converter={StaticResource HueToColorConverter}}" Offset="1" />
+                                                        </LinearGradientBrush.GradientStops>
+                                                    </LinearGradientBrush>
+                                                </Rectangle.Fill>
+                                                <Rectangle.OpacityMask>
+                                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                                        <LinearGradientBrush.GradientStops>
+                                                            <GradientStop Color="#FFFFFFFF" Offset="0"/>
+                                                            <GradientStop Color="#00FFFFFF" Offset="1"/>
+                                                        </LinearGradientBrush.GradientStops>
+                                                    </LinearGradientBrush>
+                                                </Rectangle.OpacityMask>
+                                            </Rectangle>
+                                        </Grid>
+                                    </VisualBrush.Visual>
+                                </VisualBrush>
+                            </controls:BoxSlider.Background>
+                        </controls:BoxSlider>
+
+                        <!-- The slider for the Hue -->
+                        <Slider x:Name="PART_HueSlider"
+                                Grid.Column="1"
+                                Background="{StaticResource VerticalHueSliderBackground}"
+                                Orientation="Vertical"
+                                Margin="7,-7,0,-7"
+                                MinWidth="14"
+                                Style="{StaticResource CVerticalSliderStyle}"  
+                                Minimum="0.0" 
+                                Maximum="360.0"
+                                SmallChange="1"
+                                LargeChange="10"
+                                Value="{Binding Path=Hue, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"/>
+
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Default HsvEditor style (HsvCanvas) -->
+    <Style TargetType="{x:Type controls:HsvEditor}" BasedOn="{StaticResource HsvCanvas}">
+    </Style>
+
+    <!-- Style for the color component text boxes. -->
+    <Style x:Key="CComponentTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+        <Setter Property="MinWidth" Value="50"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="support:TextBoxSupport.MinimumValue" Value="0"/>
+        <Setter Property="support:TextBoxSupport.MaximumValue" Value="255"/>
+        <Setter Property="support:TextBoxSupport.Mask" Value="Integer"/>
+    </Style>
+
+    <Style x:Key="CHComponentSlider" TargetType="{x:Type Slider}" BasedOn="{StaticResource CHorizontalSliderStyle}">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="MinWidth" Value="200"/>
+        <Setter Property="Minimum" Value="0"/>
+        <Setter Property="Maximum" Value="255"/>
+        <Setter Property="SmallChange" Value="1"/>
+        <Setter Property="LargeChange" Value="10"/>
+    </Style>
+    
+    <!-- ColorEditor style. -->
+    <Style TargetType="{x:Type controls:ColorEditor}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:ColorEditor}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <!--
+                        The HsvEditor
+                        -->
+                        <controls:HsvEditor Hue="{Binding Path=Hue, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                            Saturation="{Binding Path=Saturation, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                            Value="{Binding Path=Value, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                            Margin="0,0,8,0"/>
+
+                        <!-- 
+                        The RGB and Alpha sliders and the edited and original color swatches.
+                        -->
+                        <StackPanel Grid.Row="0" 
+                                    Grid.Column="1"
+                                    Orientation="Vertical"
+                                    support:StackPanelSupport.Spacing="6">
+
+                            <StackPanel Orientation="Horizontal"
+                                        support:StackPanelSupport.Spacing="4">
+                                <TextBlock MinWidth="10" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{x:Static p:Resources.ColorEditor_Red}"/>
+                                <Slider x:Name="PART_RedSlider" 
+                                    Style="{StaticResource CHComponentSlider}"
+                                    Value="{Binding Path=Red, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, Converter={StaticResource ColorComponentConverter}}"/>
+                                <TextBox Style="{StaticResource CComponentTextBox}"
+                                         Text="{Binding Path=Red, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal"
+                                        support:StackPanelSupport.Spacing="4">
+                                <TextBlock MinWidth="10" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{x:Static p:Resources.ColorEditor_Green}"/>
+                                <Slider x:Name="PART_GreenSlider" 
+                                    Style="{StaticResource CHComponentSlider}"
+                                    Value="{Binding Path=Green, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, Converter={StaticResource ColorComponentConverter}}"/>
+                                <TextBox Style="{StaticResource CComponentTextBox}"
+                                         Text="{Binding Path=Green, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal"
+                                        support:StackPanelSupport.Spacing="4">
+                                <TextBlock MinWidth="10" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{x:Static p:Resources.ColorEditor_Blue}"/>
+                                <Slider x:Name="PART_BlueSlider" 
+                                    Style="{StaticResource CHComponentSlider}"
+                                    Value="{Binding Path=Blue, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, Converter={StaticResource ColorComponentConverter}}"/>
+                                <TextBox Style="{StaticResource CComponentTextBox}"
+                                         Text="{Binding Path=Blue, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal"
+                                        support:StackPanelSupport.Spacing="4">
+                                <TextBlock MinWidth="10" VerticalAlignment="Center" HorizontalAlignment="Right" Text="{x:Static p:Resources.ColorEditor_Alpha}"/>
+                                <Slider x:Name="PART_AlphaSlider" 
+                                    Style="{StaticResource CHComponentSlider}"
+                                    Value="{Binding Path=Alpha, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, Converter={StaticResource ColorComponentConverter}}"/>
+                                <TextBox Style="{StaticResource CComponentTextBox}"
+                                         Text="{Binding Path=Alpha, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"/>
+                            </StackPanel>
+                            
+                            <!-- 
+                            The background that is shown when setting the alpha channel to a value
+                            lower than maximum. 
+                            -->
+                            <Grid Grid.Row="1" Margin="0,10,0,0">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Border x:Name="PART_TransparencyBack" 
+                                            Grid.Column="1"
+                                            Grid.RowSpan="2"
+                                            Background="{StaticResource TransparencyBackground}"/>
+
+                                    <TextBlock Padding="0,0,6,0" Text="{x:Static p:Resources.ColorEditor_SelectedColor}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                    <TextBlock Padding="0,0,6,0" Grid.Row="1" Text="{x:Static p:Resources.ColorEditor_OriginalColor}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                    <TextBlock Padding="0,0,6,0" Grid.Row="2" Grid.Column="1" Text="{Binding Path=SelectedColor, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                    <!-- Selected or edited color swatch. -->
+                                    <Border Grid.Column="1"
+                                            MinHeight="25">
+                                        <Rectangle>
+                                            <Rectangle.Fill>
+                                                <SolidColorBrush Color="{Binding Path=SelectedColor, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"/>
+                                            </Rectangle.Fill>
+                                        </Rectangle>
+                                    </Border>
+                                    
+                                    <!-- Original color swatch. -->
+                                    <Border Grid.Row="1"
+                                            Grid.Column="1"
+                                            MinHeight="25">
+                                        <Rectangle>
+                                            <Rectangle.Fill>
+                                                <SolidColorBrush Color="{Binding Path=OriginalColor, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"/>
+                                            </Rectangle.Fill>
+                                        </Rectangle>
+                                    </Border>
+                                </Grid>
+
+                            </Grid>
+
+                        </StackPanel>
+                        
+                        
+
+                        
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

@@ -1,0 +1,68 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:custom="clr-namespace:Muses.Wpf.Controls.Custom">
+
+    <!-- Default BoxSlider Thumb style. -->
+    <Style x:Key="BoxSliderThumb" TargetType="Thumb">
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="IsTabStop" Value="False"/>
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Thumb">
+                    <Border Width="14" Height="14">
+                        <Grid>
+                            <Path x:Name="Thumb"
+                                  Stroke="{DynamicResource AccentColorBrush}"
+                                  StrokeThickness="1"
+                                  Data="M6,0 L6,6 L0,6 M0,8 L6,8 L6,14 M8,14 L8,8 L14,8 M14,6 L8,6 L8,0 "/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Thumb" Property="Stroke" Value="{DynamicResource DisabledColorBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Default BoxSlider style. -->
+    <Style x:Key="{x:Type custom:BoxSlider}" TargetType="{x:Type custom:BoxSlider}">
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderColorBrush}"/>
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Background" Value="{DynamicResource BackgroundColorBrush}"/>
+        <Setter Property="ThumbStyle" Value="{StaticResource BoxSliderThumb}" />
+        <Setter Property="IsTabStop" Value="False"/>
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type custom:BoxSlider}">
+                    <Grid>
+                            <Canvas x:Name="PART_Canvas"                                    
+                                    MinWidth="20"
+                                    MinHeight="20"
+                                    ClipToBounds="True"
+                                    Background="{TemplateBinding Background}">
+                                
+                            <Border x:Name="PART_Border"
+                                    Width="{Binding ActualWidth, ElementName=PART_Canvas}"
+                                    Height="{Binding ActualHeight, ElementName=PART_Canvas}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"/>
+
+                            <Thumb x:Name="PART_Thumb" 
+                                    Canvas.ZIndex="9999" 
+                                    Width="14" 
+                                    Height="14"
+                                    Style="{TemplateBinding ThumbStyle}"/>
+                        </Canvas>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

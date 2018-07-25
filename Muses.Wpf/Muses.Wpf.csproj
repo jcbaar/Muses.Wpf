@@ -55,16 +55,26 @@
   <ItemGroup>
     <Compile Include="Actions\CloseTabAction.cs" />
     <Compile Include="Controls\ClosingTabEventArgs.cs" />
+    <Compile Include="Controls\Custom\ColorEditor.cs" />
+    <Compile Include="Controls\Custom\HsvColor.cs" />
+    <Compile Include="Controls\Custom\HsvEditor.cs" />
+    <Compile Include="Controls\Custom\BoxSlider.cs" />
     <Compile Include="Controls\IconChromePack.cs" />
     <Compile Include="Controls\IconChromeFactory.cs" />
     <Compile Include="Controls\IconChromeType.cs" />
     <Compile Include="Controls\PathIconPackBase.cs" />
     <Compile Include="Controls\IconChromeGeometryExtension.cs" />
+    <Compile Include="Controls\Support\ColorSliderType.cs" />
     <Compile Include="Controls\Support\ComboBoxSupport.cs" />
+    <Compile Include="Controls\Support\NumericMask.cs" />
     <Compile Include="Controls\Support\SliderSupport.cs" />
     <Compile Include="Controls\Support\TextBoxSupport.cs" />
     <Compile Include="Controls\TransitioningContentControl.cs" />
     <Compile Include="Converters\BooleanToVisibilityHiddenConverter.cs" />
+    <Compile Include="Converters\DoubleToColorConverter.cs" />
+    <Compile Include="Converters\DoubleToPercentageConverter.cs" />
+    <Compile Include="Converters\HsvToColorConverter.cs" />
+    <Compile Include="Converters\HueToColorConverter.cs" />
     <Compile Include="Converters\NotNullConverter.cs" />
     <Compile Include="Extensions\Storyboard.cs" />
     <Compile Include="Themes\Theme.cs" />
@@ -79,6 +89,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\BaseWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Controls.BoxSlider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Controls.ColorEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
