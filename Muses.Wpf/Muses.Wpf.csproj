@@ -64,7 +64,6 @@
     <Compile Include="Controls\IconChromeType.cs" />
     <Compile Include="Controls\PathIconPackBase.cs" />
     <Compile Include="Controls\IconChromeGeometryExtension.cs" />
-    <Compile Include="Controls\Support\ColorSliderType.cs" />
     <Compile Include="Controls\Support\ComboBoxSupport.cs" />
     <Compile Include="Controls\Support\NumericMask.cs" />
     <Compile Include="Controls\Support\SliderSupport.cs" />
