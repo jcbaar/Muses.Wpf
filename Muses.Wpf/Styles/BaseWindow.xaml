@@ -101,17 +101,11 @@
                                                         Command="{Binding Source={x:Static SystemCommands.MinimizeWindowCommand}}" 
                                                         ToolTip="{x:Static p:Resources.Tip_Minimize}" 
                                                         Style="{StaticResource WindowButtonStyle}"
+                                                        MinWidth="30"
+                                                        MinHeight="25"
                                                         Focusable="False">
                                                     <Button.Content>
-                                                        <Border Width="30" 
-                                                                Height="25">
-                                                            <controls:IconChromePack Kind="MinimizeButton"
-                                                                                     Width="8"
-                                                                                     Height="6"
-                                                                                     Fill="{x:Null}"
-                                                                                     Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
-                                                                                     StrokeThickness="2"/>
-                                                        </Border>
+                                                        <TextBlock FontFamily="WebDings" Text="0"/>
                                                     </Button.Content>
                                                 </Button>
                                                 <Grid>
@@ -121,16 +115,11 @@
                                                             ToolTip="{x:Static p:Resources.Tip_Restore}" 
                                                             Visibility="Collapsed" 
                                                             Style="{StaticResource WindowButtonStyle}"
+                                                            MinWidth="30"
+                                                            MinHeight="25"
                                                             Focusable="False">
                                                         <Button.Content>
-                                                            <Border Width="30" 
-                                                                    Height="25">
-                                                                <controls:IconChromePack Kind="RestoreButton" 
-                                                                      Width="9" 
-                                                                      Height="8" 
-                                                                      Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" 
-                                                                      StrokeThickness="1"  />
-                                                            </Border>
+                                                            <TextBlock FontFamily="WebDings" Text="2"/>
                                                         </Button.Content>
                                                     </Button>
                                                     
@@ -139,36 +128,27 @@
                                                             Command="{Binding Source={x:Static SystemCommands.MaximizeWindowCommand}}" 
                                                             ToolTip="{x:Static p:Resources.Tip_Maximize}" 
                                                             Style="{StaticResource WindowButtonStyle}"
+                                                            MinWidth="30"
+                                                            MinHeight="25"
                                                             Focusable="False">
                                                         <Button.Content>
-                                                            <Border Width="30" 
-                                                                    Height="25">
-                                                                <controls:IconChromePack Kind="MaximizeButton" 
-                                                                      Width="9" 
-                                                                      Height="8" 
-                                                                      Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" 
-                                                                      StrokeThickness="1"  />
-                                                            </Border>
+                                                            <TextBlock FontFamily="WebDings" Text="1"/>
                                                         </Button.Content>
                                                     </Button>
                                                 </Grid>
                                                 <!-- The close button. -->
                                                 <Button x:Name="Close" 
                                                         Command="{Binding Source={x:Static SystemCommands.CloseWindowCommand}}" 
-                                                        ToolTip="{x:Static p:Resources.Tip_Close}"  
                                                         Style="{StaticResource WindowButtonStyle}"
+                                                        ToolTip="{x:Static p:Resources.Tip_Close}"
+                                                        MinWidth="30"
+                                                        MinHeight="25"
                                                         Focusable="False">
                                                     <Button.Content>
-                                                        <Border Width="30" 
-                                                                Height="25" >
-                                                            <controls:IconChromePack Kind="CloseButton" 
-                                                                                     Width="9" 
-                                                                                     Height="9" 
-                                                                                     Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" 
-                                                                                     StrokeThickness="2"  />
-                                                        </Border>
+                                                        <TextBlock FontFamily="WebDings" Text="r"/>
                                                     </Button.Content>
                                                 </Button>
+
                                             </StackPanel>
                                             
                                             <!-- The window caption. -->
