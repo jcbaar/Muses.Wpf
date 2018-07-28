@@ -5,6 +5,7 @@
                     xmlns:p="clr-namespace:Muses.Wpf.Properties">
 
     <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Resources/Shared.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.Slider.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Styles/Controls.BoxSlider.xaml" />
     </ResourceDictionary.MergedDictionaries>
@@ -59,26 +60,13 @@
         </DrawingBrush.Drawing>
     </DrawingBrush>
 
-    <!-- Focus style for the thumbs. -->
-    <Style x:Key="CThumbFocus">
-        <Setter Property="Control.Template">
-            <Setter.Value>
-                <ControlTemplate>
-                    <Rectangle Margin="-2" 
-                               StrokeThickness="1" 
-                               Stroke="{DynamicResource AccentColorBrush}"/>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    
     <!-- Thumb for the Horizontal color sliders. -->
     <Style x:Key="HColorSliderThumb" TargetType="Thumb">
         <Setter Property="SnapsToDevicePixels" Value="true" />
         <Setter Property="OverridesDefaultStyle" Value="true" />
         <Setter Property="IsTabStop" Value="True" />
         <Setter Property="Focusable" Value="True" />
-        <Setter Property="FocusVisualStyle" Value="{StaticResource CThumbFocus}"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource RectangleThumbFocus}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Thumb">
@@ -114,7 +102,7 @@
         <Setter Property="OverridesDefaultStyle" Value="true" />
         <Setter Property="IsTabStop" Value="True" />
         <Setter Property="Focusable" Value="True" />
-        <Setter Property="FocusVisualStyle" Value="{StaticResource CThumbFocus}"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource RectangleThumbFocus}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Thumb">
@@ -232,6 +220,9 @@
 
     <!-- Thumb for the HsvCanvas -->
     <Style x:Key="ColorCanvasThumb" TargetType="{x:Type Thumb}">
+        <Setter Property="Focusable" Value="True"/>
+        <Setter Property="IsTabStop" Value="True"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource RectangleThumbFocus}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Thumb}">
@@ -267,9 +258,13 @@
                                             Grid.Column="0"
                                             MinimumValueHorizontal="0.0"
                                             MaximumValueHorizontal="1.0"
+                                            SmallChangeHorizontal="0.01"
+                                            LargeChangeHorizontal="0.1"
                                             ValueHorizontal="{Binding Path=Saturation, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
                                             MinimumValueVertical="0.0"
                                             MaximumValueVertical="1.0"
+                                            SmallChangeVertical="0.01"
+                                            LargeChangeVertical="0.1"
                                             ValueVertical="{Binding Path=Value, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
                                             ThumbStyle="{StaticResource ColorCanvasThumb}">
                             <controls:BoxSlider.Background>
@@ -426,12 +421,12 @@
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="auto"/>
                                         <RowDefinition Height="auto"/>
-                                        <RowDefinition Height="auto"/>
                                     </Grid.RowDefinitions>
 
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="auto"/>
                                         <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="auto"/>
                                     </Grid.ColumnDefinitions>
 
                                     <Border x:Name="PART_TransparencyBack" 
@@ -439,9 +434,30 @@
                                             Grid.RowSpan="2"
                                             Background="{StaticResource TransparencyBackground}"/>
 
-                                    <TextBlock Padding="0,0,6,0" Text="{x:Static p:Resources.ColorEditor_SelectedColor}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                                    <TextBlock Padding="0,0,6,0" Grid.Row="1" Text="{x:Static p:Resources.ColorEditor_OriginalColor}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                                    <TextBlock Padding="0,0,6,0" Grid.Row="2" Grid.Column="1" Text="{Binding Path=SelectedColor, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <TextBlock Padding="0,0,6,0" 
+                                               Text="{x:Static p:Resources.ColorEditor_SelectedColor}" 
+                                               HorizontalAlignment="Right" 
+                                               VerticalAlignment="Center"/>
+                                    
+                                    <TextBlock Padding="0,0,6,0" 
+                                               Grid.Row="1" 
+                                               Text="{x:Static p:Resources.ColorEditor_OriginalColor}" 
+                                               HorizontalAlignment="Right" 
+                                               VerticalAlignment="Center"/>
+                                    
+                                    <TextBlock Padding="6,0,0,0" 
+                                               Grid.Row="0" 
+                                               Grid.Column="3" 
+                                               Text="{Binding Path=SelectedColor, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" 
+                                               HorizontalAlignment="Right" 
+                                               VerticalAlignment="Center"/>
+
+                                    <TextBlock Padding="6,0,0,0" 
+                                               Grid.Row="1" 
+                                               Grid.Column="3" 
+                                               Text="{Binding Path=OriginalColor, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}" 
+                                               HorizontalAlignment="Right" 
+                                               VerticalAlignment="Center"/>
 
                                     <!-- Selected or edited color swatch. -->
                                     <Border Grid.Column="1"

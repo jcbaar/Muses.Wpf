@@ -9,5 +9,18 @@
     <conv:DoubleToPercentageConverter x:Key="ColorValueConverter" />
     <conv:HueToColorConverter x:Key="HueToColorConverter" />
     <conv:HsvToColorConverter x:Key="HsvToColorConverter" />
-    
+
+    <!-- Focus style for the rectangle slider thumbs. -->
+    <Style x:Key="RectangleThumbFocus">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle Margin="-2" 
+                               StrokeThickness="1" 
+                               Stroke="{DynamicResource AccentColorBrush}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

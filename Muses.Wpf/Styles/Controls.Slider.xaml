@@ -6,19 +6,6 @@
         <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Resources/Shared.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <!-- Focus style for the thumbs. -->
-    <Style x:Key="SliderThumbFocus">
-        <Setter Property="Control.Template">
-            <Setter.Value>
-                <ControlTemplate>
-                    <Ellipse Margin="-3" 
-                             StrokeThickness="1" 
-                             Stroke="{DynamicResource AccentColorBrush}"/>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
     <!-- Increase button for the horizontal slider. -->
     <Style x:Key="HSliderIncrease" TargetType="RepeatButton">
         <Setter Property="SnapsToDevicePixels" Value="true" />
@@ -132,7 +119,7 @@
         <Setter Property="OverridesDefaultStyle" Value="true" />
         <Setter Property="IsTabStop" Value="true" />
         <Setter Property="Focusable" Value="true" />
-        <Setter Property="FocusVisualStyle" Value="{StaticResource SliderThumbFocus}"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource RectangleThumbFocus}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Thumb">

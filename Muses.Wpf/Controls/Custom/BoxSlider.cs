@@ -81,7 +81,6 @@ namespace Muses.Wpf.Controls.Custom
         }
         #endregion
 
-
         #region MaximumValueHorizontal dependency property
         /// <summary>
         /// The MaximumValueHorizontal dependency property.
@@ -115,7 +114,6 @@ namespace Muses.Wpf.Controls.Custom
 
         }
         #endregion
-
 
         #region ValueHorizontal dependency property
         /// <summary>
@@ -151,8 +149,40 @@ namespace Muses.Wpf.Controls.Custom
 
         }
         #endregion
+
+        #region SmallChangeHorizontal dependency property
+        /// <summary>
+        /// The SmallChangeHorizontal dependency property.
+        /// </summary>
+        public static readonly DependencyProperty SmallChangeHorizontalProperty = DependencyProperty.Register("SmallChangeHorizontal", typeof(double), typeof(BoxSlider), new PropertyMetadata(0.1));
+
+        /// <summary>
+        /// Gets/sets the value of the SmallChangeHorizontal property.
+        /// </summary>
+        public double SmallChangeHorizontal
+        {
+            get => (double)GetValue(SmallChangeHorizontalProperty);
+            set => SetValue(SmallChangeHorizontalProperty, value);
+        }
         #endregion
-       
+
+        #region LargeChangeHorizontal dependency property
+        /// <summary>
+        /// The LargeChangeHorizontal dependency property.
+        /// </summary>
+        public static readonly DependencyProperty LargeChangeHorizontalProperty = DependencyProperty.Register("LargeChangeHorizontal", typeof(double), typeof(BoxSlider), new PropertyMetadata(0.2));
+
+        /// <summary>
+        /// Gets/sets the value of the LargeChangeHorizontal property.
+        /// </summary>
+        public double LargeChangeHorizontal
+        {
+            get => (double)GetValue(LargeChangeHorizontalProperty);
+            set => SetValue(LargeChangeHorizontalProperty, value);
+        }
+        #endregion
+        #endregion
+
         #region Vertical properties
         #region MinimumValueVertical dependency property
         /// <summary>
@@ -255,6 +285,38 @@ namespace Muses.Wpf.Controls.Custom
             return value;
         }
         #endregion
+
+        #region SmallChangeVertical dependency property
+        /// <summary>
+        /// The SmallChangeVertical dependency property.
+        /// </summary>
+        public static readonly DependencyProperty SmallChangeVerticalProperty = DependencyProperty.Register("SmallChangeVertical", typeof(double), typeof(BoxSlider), new PropertyMetadata(0.1));
+
+        /// <summary>
+        /// Gets/sets the value of the SmallChangeVertical property.
+        /// </summary>
+        public double SmallChangeVertical
+        {
+            get => (double)GetValue(SmallChangeVerticalProperty);
+            set => SetValue(SmallChangeVerticalProperty, value);
+        }
+        #endregion
+
+        #region LargeChangeVertical dependency property
+        /// <summary>
+        /// The LargeChangeVertical dependency property.
+        /// </summary>
+        public static readonly DependencyProperty LargeChangeVerticalProperty = DependencyProperty.Register("LargeChangeVertical", typeof(double), typeof(BoxSlider), new PropertyMetadata(0.2));
+
+        /// <summary>
+        /// Gets/sets the value of the LargeChangeVertical property.
+        /// </summary>
+        public double LargeChangeVertical
+        {
+            get => (double)GetValue(LargeChangeVerticalProperty);
+            set => SetValue(LargeChangeVerticalProperty, value);
+        }
+        #endregion
         #endregion
 
         #region overrides and callbacks
@@ -266,7 +328,11 @@ namespace Muses.Wpf.Controls.Custom
             base.OnApplyTemplate();
 
             // Remove any existing event callbacks.
-            if (_thumb != null) _thumb.DragDelta -= _thumb_DragDelta;
+            if (_thumb != null)
+            {
+                _thumb.DragDelta -= _thumb_DragDelta;
+                _thumb.PreviewKeyDown -= _thumb_PreviewKeyDown;
+            }
             if (_canvas != null) _canvas.MouseDown -= _canvas_MouseDown;
 
             // Get to the expected template parts.
@@ -278,6 +344,7 @@ namespace Muses.Wpf.Controls.Custom
             {
                 _canvas.MouseDown += _canvas_MouseDown;
                 _thumb.DragDelta += _thumb_DragDelta;
+                _thumb.PreviewKeyDown += _thumb_PreviewKeyDown;
             }
 
 
@@ -290,6 +357,57 @@ namespace Muses.Wpf.Controls.Custom
             if (_canvas != null && _thumb != null)
             {
                 Loaded += BoxSlider_Loaded;
+            }
+        }
+
+        private void _thumb_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            switch(e.Key)
+            {
+                case Key.Up:
+                    {
+                        double step = (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control ? LargeChangeVertical : SmallChangeVertical;
+                        ValueVertical = Math.Min(ValueVertical + step, MaximumValueVertical);
+                        e.Handled = true;
+                        break;
+                    }
+
+                case Key.PageUp:
+                    ValueVertical = Math.Min(ValueVertical + LargeChangeVertical, MaximumValueVertical);
+                    e.Handled = true;
+                    break;
+
+                case Key.Down:
+                    {
+                        double step = (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control ? LargeChangeVertical : SmallChangeVertical;
+                        ValueVertical = Math.Max(ValueVertical - step, MinimumValueVertical);
+                        e.Handled = true;
+                        break;
+                    }
+
+                case Key.PageDown:
+                    ValueVertical = Math.Max(ValueVertical - LargeChangeVertical, MinimumValueVertical);
+                    e.Handled = true;
+                    break;
+
+                case Key.Right:
+                    {
+                        double step = (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control ? LargeChangeHorizontal : SmallChangeHorizontal;
+                        ValueHorizontal = Math.Min(ValueHorizontal + step, MaximumValueHorizontal);
+                        e.Handled = true;
+                        break;
+                    }
+
+                case Key.Left:
+                    {
+                        double step = (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control ? LargeChangeHorizontal : SmallChangeHorizontal;
+                        ValueHorizontal = Math.Max(ValueHorizontal - step, MinimumValueHorizontal);
+                        e.Handled = true;
+                        break;
+                    }
+
+                default:
+                    break;
             }
         }
 
