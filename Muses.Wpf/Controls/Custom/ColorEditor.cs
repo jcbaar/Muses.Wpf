@@ -6,23 +6,24 @@ using System.Windows.Media;
 namespace Muses.Wpf.Controls.Custom
 {
     /// <summary>
-    /// A simple RGB/HSV color picket control.
+    /// A simple RGB/HSV color editor control.
     /// </summary>
-    [TemplatePart(Name = "PART_TransparencyBack", Type = typeof(Border))]
-    [TemplatePart(Name = "PART_SelectedColor", Type = typeof(Border))]
-
-    [TemplatePart(Name = "PART_AlphaSlider", Type = typeof(Slider))]
-    [TemplatePart(Name = "PART_HueSlider", Type = typeof(Slider))]
-    [TemplatePart(Name = "PART_SaturationSlider", Type = typeof(Slider))]
-    [TemplatePart(Name = "PART_BrightnessSlider", Type = typeof(Slider))]
-    [TemplatePart(Name = "PART_RedSlider", Type = typeof(Slider))]
-    [TemplatePart(Name = "PART_GreenSlider", Type = typeof(Slider))]
-    [TemplatePart(Name = "PART_BlueSlider", Type = typeof(Slider))]
+    [TemplatePart(Name = PART_AlphaSlider, Type = typeof(Slider))]
+    [TemplatePart(Name = PART_HueSlider, Type = typeof(Slider))]
+    [TemplatePart(Name = PART_SaturationSlider, Type = typeof(Slider))]
+    [TemplatePart(Name = PART_BrightnessSlider, Type = typeof(Slider))]
+    [TemplatePart(Name = PART_RedSlider, Type = typeof(Slider))]
+    [TemplatePart(Name = PART_GreenSlider, Type = typeof(Slider))]
+    [TemplatePart(Name = PART_BlueSlider, Type = typeof(Slider))]
     public class ColorEditor : Control
     {
-        private bool _fromHsv = false,
-            _fromRgb = false,
-            _originalSet = false;
+        const string PART_AlphaSlider = "PART_AlphaSlider";
+        const string PART_HueSlider = "PART_HueSlider";
+        const string PART_SaturationSlider = "PART_SaturationSlider";
+        const string PART_BrightnessSlider = "PART_BrightnessSlider";
+        const string PART_RedSlider = "PART_RedSlider";
+        const string PART_GreenSlider = "PART_GreenSlider";
+        const string PART_BlueSlider = "PART_BlueSlider";
 
         private Slider _hueSlider,
             _saturationSlider,
@@ -42,38 +43,23 @@ namespace Muses.Wpf.Controls.Custom
             SelectedColor = Colors.Black;            
         }
 
+        private bool FromHsv { get; set; } = false;
+        private bool FromRgb { get; set; } = false;
+
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
 
-            _hueSlider = GetTemplateChild("PART_HueSlider") as Slider;
-            _saturationSlider = GetTemplateChild("PART_SaturationSlider") as Slider;
-            _brightnessSlider = GetTemplateChild("PART_BrightnessSlider") as Slider;
-            _redSlider = GetTemplateChild("PART_RedSlider") as Slider;
-            _greenSlider = GetTemplateChild("PART_GreenSlider") as Slider;
-            _blueSlider = GetTemplateChild("PART_BlueSlider") as Slider;
-            _alphaSlider = GetTemplateChild("PART_AlphaSlider") as Slider;
+            // These are all optional...
+            _hueSlider = GetTemplateChild(PART_HueSlider) as Slider;
+            _saturationSlider = GetTemplateChild(PART_SaturationSlider) as Slider;
+            _brightnessSlider = GetTemplateChild(PART_BrightnessSlider) as Slider;
+            _redSlider = GetTemplateChild(PART_RedSlider) as Slider;
+            _greenSlider = GetTemplateChild(PART_GreenSlider) as Slider;
+            _blueSlider = GetTemplateChild(PART_BlueSlider) as Slider;
+            _alphaSlider = GetTemplateChild(PART_AlphaSlider) as Slider;
 
-            var hsvColor = new HsvColor(SelectedColor);
-
-            _fromRgb = true;
-            Hue = hsvColor.Hue;
-            Saturation = hsvColor.Saturation;
-            Value = hsvColor.Value;
-            _fromRgb = false;
-
-            _fromHsv = true;
-            Red = hsvColor.Red;
-            Green = hsvColor.Green;
-            Blue = hsvColor.Blue;
-            Alpha = hsvColor.Alpha;
-            _fromHsv = false;
-
-            if(_originalSet == false)
-            {
-                OriginalColor = hsvColor.Color;
-                _originalSet = true;
-            }
+            OriginalColor = SelectedColor;
 
             SetSliders(this);
         }
@@ -150,7 +136,14 @@ namespace Muses.Wpf.Controls.Custom
             {
                 if (picker.RgbToHsv())
                 {
-                    picker.SelectedColor = Color.FromArgb(picker.Alpha, (byte)picker.Red, (byte)picker.Green, (byte)picker.Blue);
+                    if (!picker.FromHsv)
+                    {
+                        var color = Color.FromArgb(picker.Alpha, (byte)picker.Red, (byte)picker.Green, (byte)picker.Blue);
+                        if (!color.Equals(picker.SelectedColor))
+                        {
+                            picker.SelectedColor = color;
+                        }
+                    }
                 }
             }
         }
@@ -212,7 +205,14 @@ namespace Muses.Wpf.Controls.Custom
             {
                 if (picker.HsvToRgb())
                 {
-                    picker.SelectedColor = Color.FromArgb(picker.Alpha, (byte)picker.Red, (byte)picker.Green, (byte)picker.Blue);
+                    if (!picker.FromRgb)
+                    {
+                        var color = Color.FromArgb(picker.Alpha, (byte)picker.Red, (byte)picker.Green, (byte)picker.Blue);
+                        if (!color.Equals(picker.SelectedColor))
+                        {
+                            picker.SelectedColor = color;
+                        }
+                    }
                 }
             }
         }
@@ -238,12 +238,22 @@ namespace Muses.Wpf.Controls.Custom
         {
             if(d is ColorEditor picker)
             {
+                Color c = picker.SelectedColor;
+
+                picker.FromHsv = true;
+
+                picker.Alpha = c.A;
+                picker.Red = c.R;
+                picker.Green = c.G;
+                picker.Blue = c.B;
+
+                picker.FromHsv = false;
+
                 SetSliders(picker);
             }
         }
 
         #endregion
-
 
         #region OriginalColor dependency property
         /// <summary>
@@ -261,7 +271,13 @@ namespace Muses.Wpf.Controls.Custom
         }
         #endregion
 
-
+        #region Private helpers
+        /// <summary>
+        /// Setup the slider visuals of those sliders that
+        /// are available in the control.
+        /// </summary>
+        /// <param name="picker">The <see cref="ColorEditor"/> to setup
+        /// the sliders for.</param>
         private static void SetSliders(ColorEditor picker)
         {
             if (picker._hueSlider != null)
@@ -316,22 +332,18 @@ namespace Muses.Wpf.Controls.Custom
                 HsvColor c1 = new HsvColor(picker.SelectedColor)
                 {
                     Saturation = 1.0,
-                    Alpha = 255
+                    Alpha = 0
                 },
                 c2 = new HsvColor(picker.SelectedColor)
                 {
                     Saturation = 1.0,
-                    Alpha = 0
+                    Alpha = 255
                 };
 
-                if (picker._alphaSlider.Orientation == Orientation.Vertical)
-                {
-                    picker._alphaSlider.Background = new LinearGradientBrush(c1.Color, c2.Color, new Point(0, 0), new Point(0, 1));
-                }
-                else
-                {
-                    picker._alphaSlider.Background = new LinearGradientBrush(c1.Color, c2.Color, new Point(1, 0), new Point(0, 0));
-                }
+                picker._alphaSlider.Background = new LinearGradientBrush(c1.Color, 
+                    c2.Color, 
+                    new Point(0, 0),
+                    picker._alphaSlider.Orientation == Orientation.Vertical ? new Point(0, 1) : new Point(1, 0));
             }
             if (picker._saturationSlider != null)
             {
@@ -346,7 +358,10 @@ namespace Muses.Wpf.Controls.Custom
                     Alpha = 255
                 };
 
-                picker._saturationSlider.Background = new LinearGradientBrush(c1.Color, c2.Color, new Point(0, 0), new Point(1, 0));
+                picker._saturationSlider.Background = new LinearGradientBrush(c1.Color, 
+                    c2.Color, 
+                    new Point(0, 0),
+                    picker._saturationSlider.Orientation == Orientation.Vertical ? new Point(0, 1) : new Point(1, 0));
             }
             if (picker._brightnessSlider != null)
             {
@@ -361,7 +376,10 @@ namespace Muses.Wpf.Controls.Custom
                     Alpha = 255
                 };
 
-                picker._brightnessSlider.Background = new LinearGradientBrush(c1.Color, c2.Color, new Point(0, 0), new Point(1, 0));
+                picker._brightnessSlider.Background = new LinearGradientBrush(c1.Color, 
+                    c2.Color, 
+                    new Point(0, 0),
+                    picker._brightnessSlider.Orientation == Orientation.Vertical ? new Point(0, 1) : new Point(1, 0));
             }
             if (picker._redSlider != null)
             {
@@ -376,7 +394,10 @@ namespace Muses.Wpf.Controls.Custom
                     Alpha = 255
                 };
 
-                picker._redSlider.Background = new LinearGradientBrush(c1.Color, c2.Color, new Point(0, 0), new Point(1, 0));
+                picker._redSlider.Background = new LinearGradientBrush(c1.Color, 
+                    c2.Color, 
+                    new Point(0, 0),
+                    picker._redSlider.Orientation == Orientation.Vertical ? new Point(0, 1) : new Point(1, 0));
             }
             if (picker._greenSlider != null)
             {
@@ -391,7 +412,10 @@ namespace Muses.Wpf.Controls.Custom
                     Alpha = 255
                 };
 
-                picker._greenSlider.Background = new LinearGradientBrush(c1.Color, c2.Color, new Point(0, 0), new Point(1, 0));
+                picker._greenSlider.Background = new LinearGradientBrush(c1.Color, 
+                    c2.Color, 
+                    new Point(0, 0),
+                    picker._greenSlider.Orientation == Orientation.Vertical ? new Point(0, 1) : new Point(1, 0));
             }
             if (picker._blueSlider != null)
             {
@@ -406,36 +430,46 @@ namespace Muses.Wpf.Controls.Custom
                     Alpha = 255
                 };
 
-                picker._blueSlider.Background = new LinearGradientBrush(c1.Color, c2.Color, new Point(0, 0), new Point(1, 0));
+                picker._blueSlider.Background = new LinearGradientBrush(c1.Color, 
+                    c2.Color, 
+                    new Point(0, 0),
+                    picker._blueSlider.Orientation == Orientation.Vertical ? new Point(0, 1) : new Point(1, 0));
             }
         }
 
-        #region Helpers
+        /// <summary>
+        /// Convert the RGB values to HSV values.
+        /// </summary>
+        /// <returns>True if conversion took place, false if not.</returns>
         private bool RgbToHsv()
         {
             // Prevent circular dependencies from wreaking havoc...
-            if (_fromRgb) return false;
+            if (FromRgb) return false;
 
             HsvColor color = new HsvColor(Alpha, Red, Green, Blue);
 
             try
             {
-                _fromRgb = true;
+                FromRgb = true;
                 if(!AreSimular(color.Hue, Hue)) Hue = color.Hue;
                 if(!AreSimular(color.Saturation, Saturation)) Saturation = color.Saturation;
                 if(!AreSimular(color.Value, Value)) Value = color.Value;
             }
             finally
             {
-                _fromRgb = false;
+                FromRgb = false;
             }
             return true;
         }
 
+        /// <summary>
+        /// Convert the HSV values to RGB values.
+        /// </summary>
+        /// <returns>True if conversion took place, false if not.</returns>
         private bool HsvToRgb()
         {
             // Prevent circular dependencies from wreaking havoc...
-            if (_fromHsv) return false;
+            if (FromHsv) return false;
 
             HsvColor color = new HsvColor
             {
@@ -446,7 +480,7 @@ namespace Muses.Wpf.Controls.Custom
 
             try
             {
-                _fromHsv = true;
+                FromHsv = true;
 
                 if(color.Red != Red) Red = color.Red;
                 if(color.Green != Green) Green = color.Green;
@@ -454,12 +488,13 @@ namespace Muses.Wpf.Controls.Custom
             }
             finally
             {
-                _fromHsv = false;
+                FromHsv = false;
             }
             return true;
         }
 
-        private static bool AreSimular(double left, double right, double precission = 0.001) => Math.Abs(left - right) < precission;
+        private static bool AreSimular(double left, double right, double precission = 0.001) => 
+            Math.Abs(left - right) < precission;
         #endregion
     }
 }

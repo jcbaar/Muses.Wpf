@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Muses.Wpf.Themes;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -11,7 +12,7 @@ namespace Muses.TestControls
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App : ThemedApplication
     {
     }
 }

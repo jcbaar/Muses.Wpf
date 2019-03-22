@@ -70,21 +70,19 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Thumb">
-                    <Border Width="14" Height="14" Background="Transparent">
-                        <Grid>
+                    <Viewbox Stretch="Fill">
+                        <Grid Background="Transparent">
                             <Path x:Name="Upper" 
                                   Stroke="Black"
                                   Fill="Black"
-                                  Data="M2,0 L12,0 L7,5 L2,0 Z"
-                                  RenderOptions.EdgeMode="Aliased"/>
+                                  Data="M0,0 L12,0 L6,5 L0,0 Z"/>
 
                             <Path x:Name="Lower"
                                   Stroke="Black"
                                   Fill="White"
-                                  Data="M2,14 L12,14 L7,9 L2,14 Z"
-                                  RenderOptions.EdgeMode="Aliased"/>
+                                  Data="M0,12 L12,12 L6,7 L0,12 Z"/>
                         </Grid>
-                    </Border>
+                    </Viewbox>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="Upper" Property="Fill" Value="{DynamicResource DisabledColorBrush}"/>
@@ -106,19 +104,18 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Thumb">
-                    <Border Width="14" Height="14" Background="Transparent">
-                        <Grid>
+                    <Viewbox Stretch="Fill">
+                        <Grid Background="Transparent">
                             <Path x:Name="Upper" 
-                                  Stroke="Black"
                                   Fill="Black"
-                                  Data="M0,2 L0,12 L5,7 L0,2 Z"/>
+                                  Data="M0,0 L0,12 L5,6 L0,0 Z"/>
 
                             <Path x:Name="Lower"
-                                  Stroke="Black"
                                   Fill="White"
-                                  Data="M14,2 L14,12 L9,7 L14,2 Z"/>
+                                  Stroke="Black"
+                                  Data="M12,0 L12,12 L7,6 L12,0 Z"/>
                         </Grid>
-                    </Border>
+                    </Viewbox>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="Upper" Property="Fill" Value="{DynamicResource DisabledColorBrush}"/>
@@ -136,13 +133,13 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}" />
             </Grid.RowDefinitions>
-            <Border BorderThickness="7,0">
-                <Rectangle RenderOptions.EdgeMode="Aliased" ClipToBounds="True" Fill="{StaticResource TransparencyBackground}"/>
+            <Border BorderThickness="6,0">
+                <Rectangle Fill="{StaticResource TransparencyBackground}"/>
             </Border>
             <Border x:Name="Background" 
                     Grid.Row="1" 
                     BorderBrush="Transparent" 
-                    BorderThickness="7,0" 
+                    BorderThickness="6,0" 
                     Background="{TemplateBinding Background}"/>
             <Track Grid.Row="1"
                    Focusable="False"
@@ -154,7 +151,8 @@
                     <RepeatButton Focusable="False" Command="Slider.IncreaseLarge" Style="{StaticResource HSliderIncrease}"/>
                 </Track.IncreaseRepeatButton>
                 <Track.Thumb>
-                    <Thumb Style="{StaticResource HColorSliderThumb}" />
+                    <Thumb Style="{StaticResource HColorSliderThumb}" 
+                           Height="{Binding ActualHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Grid }}}"/>
                 </Track.Thumb>
             </Track>
         </Grid>
@@ -173,13 +171,13 @@
                 <ColumnDefinition Width="Auto" MinWidth="{TemplateBinding MinWidth}" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Border BorderThickness="0,7">
-                <Rectangle RenderOptions.EdgeMode="Aliased" ClipToBounds="True" Fill="{StaticResource TransparencyBackground}"/>
+            <Border BorderThickness="0,6">
+                <Rectangle Fill="{StaticResource TransparencyBackground}"/>
             </Border>
             <Border x:Name="Background" 
                     Grid.Column="1" 
                     BorderBrush="Transparent" 
-                    BorderThickness="0,7" 
+                    BorderThickness="0,6" 
                     Background="{TemplateBinding Background}"/>
             
             <Track Grid.Column="1" x:Name="PART_Track" Focusable="False" Orientation="Vertical" >
@@ -190,7 +188,8 @@
                     <RepeatButton Focusable="False" Command="Slider.IncreaseLarge" Style="{StaticResource VSliderIncrease}"/>
                 </Track.IncreaseRepeatButton>
                 <Track.Thumb>
-                    <Thumb Style="{StaticResource VColorSliderThumb}"  />
+                    <Thumb Style="{StaticResource VColorSliderThumb}"  
+                           Width="{Binding ActualWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Grid }}}"/>
                 </Track.Thumb>
             </Track>
         </Grid>
@@ -231,7 +230,7 @@
                             <Ellipse Fill="Transparent" Stroke="Black" StrokeThickness="2"/>
                         </Border>
                         <Border Padding="2">
-                            <Ellipse Fill="Transparent" Stroke="Wheat" StrokeThickness="2"/>
+                            <Ellipse Fill="Transparent" Stroke="White" StrokeThickness="2"/>
                         </Border>
                     </Grid>
                 </ControlTemplate>
@@ -244,6 +243,8 @@
     Hue slider.
     -->    
     <Style x:Key="HsvCanvas" TargetType="{x:Type controls:HsvEditor}">
+        <Setter Property="MinWidth" Value="200" />
+        <Setter Property="MinHeight" Value="200" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:HsvEditor}">
@@ -301,7 +302,7 @@
                                 Grid.Column="1"
                                 Background="{StaticResource VerticalHueSliderBackground}"
                                 Orientation="Vertical"
-                                Margin="7,-7,0,-7"
+                                Margin="7,-6,0,-6"
                                 MinWidth="14"
                                 Style="{StaticResource CVerticalSliderStyle}"  
                                 Minimum="0.0" 
@@ -333,7 +334,7 @@
 
     <Style x:Key="CHComponentSlider" TargetType="{x:Type Slider}" BasedOn="{StaticResource CHorizontalSliderStyle}">
         <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="MinWidth" Value="200"/>
+        <Setter Property="MinWidth" Value="150"/>
         <Setter Property="Minimum" Value="0"/>
         <Setter Property="Maximum" Value="255"/>
         <Setter Property="SmallChange" Value="1"/>
@@ -352,8 +353,7 @@
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="auto" />
-                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         
                         <!--
@@ -432,6 +432,7 @@
                                     <Border x:Name="PART_TransparencyBack" 
                                             Grid.Column="1"
                                             Grid.RowSpan="2"
+                                            MinHeight="50"
                                             Background="{StaticResource TransparencyBackground}"/>
 
                                     <TextBlock Padding="0,0,6,0" 
@@ -480,14 +481,8 @@
                                         </Rectangle>
                                     </Border>
                                 </Grid>
-
                             </Grid>
-
                         </StackPanel>
-                        
-                        
-
-                        
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

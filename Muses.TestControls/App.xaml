@@ -1,14 +1,19 @@
-﻿<Application
+﻿<themes:ThemedApplication
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Classic" xmlns:Primitives="clr-namespace:System.Windows.Controls.Ribbon.Primitives;assembly=System.Windows.Controls.Ribbon" xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="Muses.TestControls.App"
+             x:Class="Muses.TestControls.App"
              xmlns:muses="clr-namespace:Muses.Wpf.Controls;assembly=Muses.Wpf"
-             StartupUri="MainWindow.xaml">
+             xmlns:themes="clr-namespace:Muses.Wpf.Themes;assembly=Muses.Wpf"
+             xmlns:conv="clr-namespace:Muses.Wpf.Converters;assembly=Muses.Wpf"
+             StartupUri="MainWindow.xaml"
+             FollowSystemTheme="True">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/Muses.Wpf;component/Themes/Generic.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
+            <conv:InvertedBooleanConverter x:Key="InvertedBooleanConverter" />
 
             <Style x:Key="MyWindowButton" BasedOn="{StaticResource WindowButtonStyle}" TargetType="{x:Type Button}">
                 <Style.Triggers>
@@ -19,4 +24,4 @@
             </Style>
         </ResourceDictionary>
     </Application.Resources>
-</Application>
+</themes:ThemedApplication>

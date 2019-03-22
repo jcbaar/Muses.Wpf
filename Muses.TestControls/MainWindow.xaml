@@ -1,5 +1,6 @@
 ﻿<muses:BaseWindow x:Class="Muses.TestControls.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -71,6 +72,7 @@
         <ItemsControl>
             <StackPanel Focusable="False" 
                         Orientation="Horizontal"
+                        MinWidth="0"
                         support:StackPanelSupport.Spacing="4">
                 <Button Style="{StaticResource MyWindowButton}" 
                         Height="28" 
@@ -264,7 +266,7 @@
                                         Margin="0,0,8,0">
                                 <TextBox support:TextBoxSupport.Hint="This is a hint... Yes. It really is!" 
                                                    support:TextBoxSupport.SelectAllOnFocus="False"/>
-                                <PasswordBox support:TextBoxSupport.Hint="This is a password box..." 
+                                <PasswordBox support:TextBoxSupport.Hint="This is a password box... Press Caps Lock ;)" 
                                              support:TextBoxSupport.ShowCapsLockWarning="True"
                                                    support:TextBoxSupport.SelectAllOnFocus="True"/>
                                 <TextBox HorizontalScrollBarVisibility="Auto"
@@ -428,11 +430,46 @@ vulputate et risus ac, fermentum consequat erat.</TextBox>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="60"/>
                     </Grid.RowDefinitions>
                     
-                    <custom:ColorEditor BorderBrush="{DynamicResource BorderColorBrush}" 
+                    <custom:ColorEditor x:Name="TopEditor" BorderBrush="{DynamicResource BorderColorBrush}" 
                                     BorderThickness="2" 
                                     SelectedColor="#C0804040"/>
+
+
+                    <!-- 
+                    Sample for a color toggle button.
+                    
+                    Note the use of the IsHitTestVisible binding. This is to prevent clicking
+                    on the button when the pop up is open. This in turn prevents the pop up from
+                    re-opening.
+                    -->
+                    <ToggleButton Grid.Row="1" 
+                                  Name="PToggle" 
+                                  Content="Color pop up" 
+                                  IsHitTestVisible="{Binding ElementName=Popup, Path=IsOpen, Converter={StaticResource InvertedBooleanConverter}}"
+                                  Margin="0,10"/>
+
+                    <Popup Name="Popup"
+                           MinWidth="{Binding ElementName=PToggle, Path=ActualWidth}"
+                           IsOpen="{Binding ElementName=PToggle, Path=IsChecked}"   
+                           PlacementTarget="{Binding ElementName=PToggle}" 
+                           Placement="Bottom"
+                           AllowsTransparency="True"  
+                           PopupAnimation="Fade"  
+                           StaysOpen="False"
+                           HorizontalOffset="0"  
+                           VerticalOffset="0">
+                        <Border BorderBrush="{DynamicResource BorderColorBrush}"
+                            BorderThickness="1"
+                            Background="{DynamicResource Background2ColorBrush}">
+                            <Grid Margin="10">
+                                <custom:ColorEditor SelectedColor="{Binding ElementName=TopEditor, Path=SelectedColor, Mode=TwoWay}" />
+                            </Grid>
+
+                        </Border>
+                    </Popup>
                 </Grid>
             </muses:CloseableTabItem>
             <muses:CloseableTabItem Header="Content transitioning" IsCloseable="False">
