@@ -90,12 +90,6 @@
                                             </Grid.ColumnDefinitions>
                                             
                                             <StackPanel Grid.Row="0" Grid.Column="1"  Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" WindowChrome.IsHitTestVisibleInChrome="True">
-                                                <!-- User controls. -->
-                                                <ContentPresenter x:Name="PART_TitlebarControls" 
-                                                              VerticalAlignment="Top"
-                                                              Content="{Binding TitlebarControls, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
-                                                              Focusable="False"/>
-                                                
                                                 <!-- The minimize button. -->
                                                 <Button x:Name="Minimize"
                                                         Command="{Binding Source={x:Static SystemCommands.MinimizeWindowCommand}}" 
@@ -152,7 +146,14 @@
                                             </StackPanel>
                                             
                                             <!-- The window caption. -->
-                                            <TextBlock x:Name="WindowTitleTextBlock" 
+                                            <Grid Grid.Row="0"
+                                                  Grid.Column="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                
+                                                <TextBlock x:Name="WindowTitleTextBlock" 
                                                        Grid.Row="0" 
                                                        Grid.Column="0" 
                                                        Text="{TemplateBinding Title}" 
@@ -162,6 +163,15 @@
                                                        Margin="8 -1 0 0"  
                                                        FontSize="{Binding Source={x:Static SystemFonts.CaptionFontSize}}"  
                                                        Foreground="{TemplateBinding Foreground}"/>
+                                               
+                                                <!-- User controls. -->
+                                                <ContentPresenter x:Name="PART_TitlebarControls"
+                                                                  Grid.Row="0"
+                                                                  Grid.Column="1"
+                                                              VerticalAlignment="Top"
+                                                              Content="{Binding TitlebarControls, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                                              Focusable="False"/>
+                                            </Grid>
                                         </Grid>
 
                                         <Grid Grid.Row="2">
