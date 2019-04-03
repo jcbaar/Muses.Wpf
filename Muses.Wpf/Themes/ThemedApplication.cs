@@ -10,7 +10,7 @@ namespace Muses.Wpf.Themes
     /// Simple <see cref="Application"/> derived class that enables automatically
     /// following the dark/light system theme settings of Windows 10.
     /// </summary>
-    public class ThemedApplication : Application
+    public class ThemedApplication : Application, IDisposable
     {
         // The registry key we are monitoring for the theme changes.
         const string subKey = @"Software\Microsoft\Windows\CurrentVersion\Themes\Personalize";
@@ -136,5 +136,28 @@ namespace Muses.Wpf.Themes
 
             }
         }
+
+        #region IDisposable Support
+        private bool _disposedValue = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposedValue)
+            {
+                if (disposing)
+                {
+                    if (_watcher != null)
+                        _watcher.Dispose();
+                }
+
+                _disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+        #endregion
     }
 }

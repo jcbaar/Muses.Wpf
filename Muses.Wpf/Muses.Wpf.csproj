@@ -78,6 +78,7 @@
     <Compile Include="Converters\InvertedBooleanConverter.cs" />
     <Compile Include="Converters\NotNullConverter.cs" />
     <Compile Include="Extensions\Storyboard.cs" />
+    <Compile Include="Helpers\NativeMethods.cs" />
     <Compile Include="Helpers\RegistryMonitor.cs" />
     <Compile Include="Themes\Theme.cs" />
     <Compile Include="Themes\ThemedApplication.cs" />

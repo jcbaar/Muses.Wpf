@@ -47,35 +47,6 @@ namespace Muses.Wpf.Helpers
     /// </example>
     internal class RegistryMonitor : IDisposable
     {
-        #region P/Invoke
-
-        [DllImport("advapi32.dll", SetLastError = true)]
-        private static extern int RegOpenKeyEx(IntPtr hKey, string subKey, uint options, int samDesired,
-                                               out IntPtr phkResult);
-
-        [DllImport("advapi32.dll", SetLastError = true)]
-        private static extern int RegNotifyChangeKeyValue(IntPtr hKey, bool bWatchSubtree,
-                                                          RegChangeNotifyFilter dwNotifyFilter, IntPtr hEvent,
-                                                          bool fAsynchronous);
-
-        [DllImport("advapi32.dll", SetLastError = true)]
-        private static extern int RegCloseKey(IntPtr hKey);
-
-        private const int KEY_QUERY_VALUE = 0x0001;
-        private const int KEY_NOTIFY = 0x0010;
-        private const int KEY_WOW64_64KEY = 0x0100;
-        private const int STANDARD_RIGHTS_READ = 0x00020000;
-
-        private static readonly IntPtr HKEY_CLASSES_ROOT = new IntPtr(unchecked((int)0x80000000));
-        private static readonly IntPtr HKEY_CURRENT_USER = new IntPtr(unchecked((int)0x80000001));
-        private static readonly IntPtr HKEY_LOCAL_MACHINE = new IntPtr(unchecked((int)0x80000002));
-        private static readonly IntPtr HKEY_USERS = new IntPtr(unchecked((int)0x80000003));
-        private static readonly IntPtr HKEY_PERFORMANCE_DATA = new IntPtr(unchecked((int)0x80000004));
-        private static readonly IntPtr HKEY_CURRENT_CONFIG = new IntPtr(unchecked((int)0x80000005));
-        private static readonly IntPtr HKEY_DYN_DATA = new IntPtr(unchecked((int)0x80000006));
-
-        #endregion
-
         #region Event handling
 
         /// <summary>
@@ -176,6 +147,10 @@ namespace Muses.Wpf.Helpers
         public void Dispose()
         {
             Stop();
+            if(_eventTerminate != null)
+            {
+                _eventTerminate.Dispose();
+            }
             _disposed = true;
             GC.SuppressFinalize(this);
         }
@@ -205,31 +180,31 @@ namespace Muses.Wpf.Helpers
             switch (hive)
             {
                 case RegistryHive.ClassesRoot:
-                    _registryHive = HKEY_CLASSES_ROOT;
+                    _registryHive = NativeMethods.HKEY_CLASSES_ROOT;
                     break;
 
                 case RegistryHive.CurrentConfig:
-                    _registryHive = HKEY_CURRENT_CONFIG;
+                    _registryHive = NativeMethods.HKEY_CURRENT_CONFIG;
                     break;
 
                 case RegistryHive.CurrentUser:
-                    _registryHive = HKEY_CURRENT_USER;
+                    _registryHive = NativeMethods.HKEY_CURRENT_USER;
                     break;
 
                 case RegistryHive.DynData:
-                    _registryHive = HKEY_DYN_DATA;
+                    _registryHive = NativeMethods.HKEY_DYN_DATA;
                     break;
 
                 case RegistryHive.LocalMachine:
-                    _registryHive = HKEY_LOCAL_MACHINE;
+                    _registryHive = NativeMethods.HKEY_LOCAL_MACHINE;
                     break;
 
                 case RegistryHive.PerformanceData:
-                    _registryHive = HKEY_PERFORMANCE_DATA;
+                    _registryHive = NativeMethods.HKEY_PERFORMANCE_DATA;
                     break;
 
                 case RegistryHive.Users:
-                    _registryHive = HKEY_USERS;
+                    _registryHive = NativeMethods.HKEY_USERS;
                     break;
 
                 default:
@@ -246,25 +221,25 @@ namespace Muses.Wpf.Helpers
             {
                 case "HKEY_CLASSES_ROOT":
                 case "HKCR":
-                    _registryHive = HKEY_CLASSES_ROOT;
+                    _registryHive = NativeMethods.HKEY_CLASSES_ROOT;
                     break;
 
                 case "HKEY_CURRENT_USER":
                 case "HKCU":
-                    _registryHive = HKEY_CURRENT_USER;
+                    _registryHive = NativeMethods.HKEY_CURRENT_USER;
                     break;
 
                 case "HKEY_LOCAL_MACHINE":
                 case "HKLM":
-                    _registryHive = HKEY_LOCAL_MACHINE;
+                    _registryHive = NativeMethods.HKEY_LOCAL_MACHINE;
                     break;
 
                 case "HKEY_USERS":
-                    _registryHive = HKEY_USERS;
+                    _registryHive = NativeMethods.HKEY_USERS;
                     break;
 
                 case "HKEY_CURRENT_CONFIG":
-                    _registryHive = HKEY_CURRENT_CONFIG;
+                    _registryHive = NativeMethods.HKEY_CURRENT_CONFIG;
                     break;
 
                 default:
@@ -342,7 +317,7 @@ namespace Muses.Wpf.Helpers
 
         private void ThreadLoop()
         {
-            int result = RegOpenKeyEx(_registryHive, _registrySubName, 0, STANDARD_RIGHTS_READ | KEY_QUERY_VALUE | KEY_NOTIFY | KEY_WOW64_64KEY,
+            int result = NativeMethods.RegOpenKeyEx(_registryHive, _registrySubName, 0, NativeMethods.STANDARD_RIGHTS_READ | NativeMethods.KEY_QUERY_VALUE | NativeMethods.KEY_NOTIFY | NativeMethods.KEY_WOW64_64KEY,
                                       out IntPtr registryKey);
             if (result != 0)
                 throw new Win32Exception(result);
@@ -353,7 +328,7 @@ namespace Muses.Wpf.Helpers
                 WaitHandle[] waitHandles = new WaitHandle[] { _eventNotify, _eventTerminate };
                 while (!_eventTerminate.WaitOne(0, true))
                 {
-                    result = RegNotifyChangeKeyValue(registryKey, true, _regFilter, _eventNotify.SafeWaitHandle.DangerousGetHandle(), true);
+                    result = NativeMethods.RegNotifyChangeKeyValue(registryKey, true, _regFilter, _eventNotify.SafeWaitHandle.DangerousGetHandle(), true);
                     if (result != 0)
                         throw new Win32Exception(result);
 
@@ -367,7 +342,7 @@ namespace Muses.Wpf.Helpers
             {
                 if (registryKey != IntPtr.Zero)
                 {
-                    RegCloseKey(registryKey);
+                    NativeMethods.RegCloseKey(registryKey);
                 }
             }
         }
