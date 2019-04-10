@@ -147,8 +147,7 @@
                                             
                                             <!-- The window caption. -->
                                             <Grid Grid.Row="0"
-                                                  Grid.Column="0"
-                                                  WindowChrome.IsHitTestVisibleInChrome="True">
+                                                  Grid.Column="0">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="Auto"/>
@@ -167,7 +166,7 @@
                                                
                                                 <!-- User controls. -->
                                                 <ContentPresenter x:Name="PART_TitlebarControls"
-                                                                  Grid.Row="0"
+                                                                  WindowChrome.IsHitTestVisibleInChrome="True"                                                                      Grid.Row="0"
                                                                   Grid.Column="1"
                                                                   VerticalAlignment="Top"
                                                                   Content="{Binding TitlebarControls, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
